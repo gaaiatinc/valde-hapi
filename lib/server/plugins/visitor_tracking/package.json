@@ -1,0 +1,10 @@
+{
+    "name": "visitor-tracking",
+    "version": "1.0.0",
+    "description": "Visitor tracking plugin",
+    "main": "index.js",
+    "author": "Ali Ismael",
+    "license": "ISC",
+    "dependencies": {
+    }
+}
