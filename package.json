@@ -1,5 +1,5 @@
 {
-    "name": "valse-hapi",
+    "name": "valde-hapi",
     "version": "0.0.1",
     "description": "A hapi and dust framework for building API and web applicatins.",
     "main": "./lib/index.js",
