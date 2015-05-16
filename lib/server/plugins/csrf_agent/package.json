@@ -4,7 +4,7 @@
     "description": "CSRF agent plugin (enforcing the presence of the decorator header)",
     "main": "index.js",
     "author": "Ali Ismael",
-    "license": "ISC",
+    "license": "Apache-2.0",
     "dependencies": {
     }
 }
