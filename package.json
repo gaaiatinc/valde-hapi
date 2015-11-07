@@ -1,6 +1,6 @@
 {
   "name": "valde-hapi",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "A hapi and dust framework for building API and web applicatins.",
   "main": "./lib/index.js",
   "scripts": {
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "async": "^1.5.0",
-    "bell": "^5.4.0",
+    "bell": "^6.0.0",
     "dustjs-helpers": "^1.7.3",
     "dustjs-linkedin": "^2.7.2",
     "hapi": "^11.1.0",
@@ -48,7 +48,7 @@
     "hoek": "^3.0.1",
     "inert": "^3.2.0",
     "iron": "^3.0.1",
-    "joi": "^6.10.0",
+    "joi": "^7.0.0",
     "lru-cache-js": "^0.4.0",
     "moment": "^2.10.6",
     "mongodb": "^2.0",
@@ -59,7 +59,7 @@
     "selectn": "^0.10.0",
     "stripe": "^4.0.0",
     "uuid": "^2.0.1",
-    "vision": "^3.0.0",
+    "vision": "^4.0.0",
     "winston": "^2.1.0",
     "wreck": "^7.0.0"
   }
