@@ -1,0 +1,6 @@
+{
+    "directory" : "components",
+    "json"      : "component.json",
+    "endpoint"  : "http://10.9.98.32:8000"
+}
+

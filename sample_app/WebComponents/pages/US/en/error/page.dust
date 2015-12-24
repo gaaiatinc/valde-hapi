@@ -1,0 +1,26 @@
+{>"/resources/partials/base-template" /}
+
+
+{<pageCSS}
+<link href="/res/css/signin.css" rel="stylesheet">
+{/pageCSS}
+
+{<pageContent}
+<div class="error-page container">
+    <main id="content" class="error-container" role="main">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-xs-10 col-lg-offset-4 col-sm-offset-3 col-xs-offset-1">
+                <div class="error-container">
+                    <h1 class="error-code">{content.error.code|s}</h1>
+                    <p class="error-info">
+                        {content.error.message|s}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{/pageContent}
+
+{<pageJS}
+{/pageJS}

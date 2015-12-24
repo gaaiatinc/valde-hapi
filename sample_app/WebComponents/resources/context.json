@@ -1,0 +1,695 @@
+{
+	"footerCopyright": function(chunk, context, bodies, params) {
+		chunk.write("&copy; 1999-" + (new Date()).getFullYear());
+	},
+
+	"dumpModel": function(chunk, context, bodies, params) {
+		chunk.write("<p/>");
+		chunk.write("<h2>View Context (JSON data model):</h2>");
+		chunk.write("<pre style='background-color: rgb(255, 255, 210)'><code>");
+		chunk.write(JSON.stringify(params.modelData, null, 4));
+		chunk.write("</code></pre>");
+	},
+	"localeParam": function(chunk, context, bodies, params) {
+		var locale = '';
+		if (typeof params !== 'undefined' &&
+			params &&
+			typeof params.modelData !== 'undefined' &&
+			params.modelData &&
+			typeof params.query_string_params !== 'undefined' &&
+			params.query_string_params &&
+			typeof params.query_string_params['locale.x'] !== 'undefined' &&
+			params.query_string_params['locale.x'] &&
+			(params.query_string_params['locale.x'].toString()).match('^[a-z]{2}[_-][a-zA-Z][a-zA-Z2]$')) {
+			locale = params.query_string_params['locale.x'].toString();
+		}
+		if (params && params.link.indexOf("?") >= 0) {
+			if (locale) {
+				chunk.write('&locale.x=' + locale.substring(0, 2) + '-' + (locale.substring(3)).toUpperCase());
+			}
+		} else {
+			if (locale) {
+				chunk.write('?locale.x=' + locale.substring(0, 2) + '-' + (locale.substring(3)).toUpperCase());
+			}
+		}
+	},
+	"pplink": function(chunk, context, bodies, params) {
+		if (params.base && params.link && (params.link.indexOf("/") == 0)) {
+			var strBuffer = [params.base];
+			var base = params.base;
+			var countryCode;
+			if (params.countryOn) {
+				strBuffer.push("/");
+
+				// temporary GB > UK switch
+				if (params.client_info.client_locale_country === 'GB') {
+					countryCode = 'UK';
+				} else {
+					countryCode = params.client_info.client_locale_country;
+				}
+
+				strBuffer.push(countryCode.toLowerCase());
+			}
+			strBuffer.push(params.link);
+			if (params.localeOn && params.link.indexOf("locale.x") < 0 && params.modelData && params.query_string_params['locale.x']) {
+				strBuffer.push(params.link.indexOf("?") >= 0 ? "&" : "?");
+				strBuffer.push("locale.x=");
+
+				// temporary in_ID > id_ID switch
+				if (params.client_info.client_locale === 'in_ID') {
+					strBuffer.push('id_ID');
+				} else {
+					strBuffer.push(params.client_info.client_locale);
+				}
+			}
+			chunk.write(strBuffer.join(""));
+		} else if (params.link) {
+			chunk.write(params.link);
+		} else {
+			chunk.write('');
+		}
+	},
+	"mpplink": function(chunk, context, bodies, params) {
+		var mixContent = params.text;
+		var hrefRegex = /(href="\/[^"]*)/g; // pattern of [href="/webapps/mpp/xyz]
+		var links = [];
+		if (mixContent) {
+			var matches;
+			while ((matches = hrefRegex.exec(mixContent)) != null) {
+				links.push(matches[1]); // push the part "/[rest of url]".
+			}
+			if (params.base) {
+				if (links.length) {
+					for (var key in links) {
+						var strBuffer = ["href=\"" + params.base];
+						var base = params.base;
+						var countryCode;
+						if (params.countryOn) {
+							strBuffer.push("/");
+
+							// temporary GB > UK switch
+							if (params.client_info.client_locale_country === 'GB') {
+								countryCode = 'UK';
+							} else {
+								countryCode = params.client_info.client_locale_country;
+							}
+
+							strBuffer.push(countryCode.toLowerCase());
+
+						}
+						strBuffer.push(links[key].substring(6));
+						if (params.localeOn && links[key].indexOf("locale.x") < 0 && params.modelData && params.query_string_params['locale.x']) {
+							strBuffer.push(links[key].indexOf("?") >= 0 ? "&" : "?");
+							strBuffer.push("locale.x=");
+
+							// temporary in_ID > id_ID switch
+							if (params.client_info.client_locale === 'in_ID') {
+								strBuffer.push('id_ID');
+							} else {
+								strBuffer.push(params.client_info.client_locale);
+							}
+						}
+						mixContent = mixContent.replace(links[key], strBuffer.join(""));
+					}
+				}
+			}
+			chunk.write(mixContent);
+		}
+	},
+	"cmslink": function(chunk, context, bodies, params) {
+		/*temp usage until CMS/SR2 server goes away.*/
+		var mixContent = params.text;
+		var hrefRegex = /href="(\/[^"]*)/g; // pattern of "href=/[rest of url]".
+		var links = [];
+		if (mixContent) {
+			var matches;
+			while ((matches = hrefRegex.exec(mixContent)) != null) {
+				links.push(matches[1]); // push the part "/[rest of url]".
+			}
+			if (params.base) {
+				if (links.length) {
+					for (var key in links) {
+						var baseURI;
+						if (params.countryCode === undefined) {
+							baseURI = params.base;
+						} else {
+							baseURI = (params.base) + "/" + (params.countryCode).toLowerCase();
+						}
+						var strBuffer = [baseURI, links[key]];
+						if (params.localeOn && links[key].indexOf("locale.x") < 0 && params.modelData && params.query_string_params['locale.x']) {
+							strBuffer.push(links[key].indexOf("?") >= 0 ? "&" : "?");
+							strBuffer.push("locale.x=");
+
+							// temporary in_ID > id_ID switch
+							if (params.client_info.client_locale === 'in_ID') {
+								strBuffer.push('id_ID');
+							} else {
+								strBuffer.push(params.client_info.client_locale);
+							}
+						}
+						mixContent = mixContent.replace(links[key], strBuffer.join(""));
+					}
+				}
+			}
+			chunk.write(mixContent);
+		}
+	},
+	"tabHighlight": function(chunk, context, bodies, params) {
+		if (params &&
+			params.index != 'undefined' &&
+			params.tab &&
+			(params.index + 1).toString() === params.tab.toString()) {
+			chunk.write('current');
+		}
+	},
+
+	"canonicalPath": function(chunk, context, bodies, params) {
+		if (params.base) {
+			/* Construct canonical url path. ModelData does not have the full path with sub-directories. */
+			if (params.pageID) {
+				var pagePath = params.pageID;
+			} else {
+				var pagePath = "";
+			}
+			var relaventPath = pagePath.slice(6); //Extract from position 6 to the end. (get everything after /US/en...)
+			var countryCode;
+			var appPath = "/webapps/mpp";
+			var strBuffer = [params.base];
+			if (params.countryOn) {
+				strBuffer.push("/");
+				// temporary GB > UK switch
+				if (params.client_info.client_locale_country === 'GB') {
+					countryCode = 'UK';
+				} else {
+					countryCode = params.client_info.client_locale_country;
+				}
+				strBuffer.push(countryCode.toLowerCase());
+			}
+			if (params.homepage) {
+				strBuffer.push(relaventPath);
+			} else {
+				strBuffer.push(appPath, relaventPath);
+			}
+			if (params.localeOn && params.modelData) {
+				strBuffer.push(relaventPath.indexOf("?") >= 0 ? "&" : "?");
+				strBuffer.push("locale.x=");
+
+				// temporary in_ID > id_ID switch
+				if (params.client_info.client_locale === 'in_ID') {
+					strBuffer.push('id_ID');
+				} else {
+					strBuffer.push(params.client_info.client_locale);
+				}
+			}
+			chunk.write(strBuffer.join(""));
+		} else {
+			chunk.write('');
+		}
+	},
+
+	"country": {
+		"algeria": "Algeria",
+		"angola": "Angola",
+		"benin": "Benin",
+		"botswana": "Botswana",
+		"burkinafaso": "Burkina Faso",
+		"burundi": "Burundi",
+		"capeverde": "Cape Verde",
+		"chad": "Chad",
+		"comoros": "Comoros",
+		"democraticrepublicofthecongo": "Democratic Republic of the Congo",
+		"djibouti": "Djibouti",
+		"egypt": "Egypt",
+		"eritrea": "Eritrea",
+		"ethiopia": "Ethiopia",
+		"gabonrepublic": "Gabon Republic",
+		"gambia": "Gambia",
+		"guinea": "Guinea",
+		"guineabissau": "Guinea-Bissau",
+		"kenya": "Kenya",
+		"lesotho": "Lesotho",
+		"madagascar": "Madagascar",
+		"malawi": "Malawi",
+		"mali": "Mali",
+		"mauritania": "Mauritania",
+		"mauritius": "Mauritius",
+		"mayotte": "Mayotte",
+		"morocco": "Morocco",
+		"mozambique": "Mozambique",
+		"namibia": "Namibia",
+		"niger": "Niger",
+		"republicofcongo": "Republic of the Congo",
+		"reunion": "Reunion",
+		"rwanda": "Rwanda",
+		"sainthelena": "Saint Helena",
+		"saotomeandprincipe": "Sao Tome and Principe",
+		"senegal": "Senegal",
+		"seychelles": "Seychelles",
+		"sierraleone": "Sierra Leone",
+		"somalia": "Somalia",
+		"southafrica": "South Africa",
+		"swaziland": "Swaziland",
+		"tanzania": "Tanzania",
+		"togo": "Togo",
+		"tunisia": "Tunisia",
+		"uganda": "Uganda",
+		"zambia": "Zambia",
+		"anguilla": "Anguilla",
+		"antiguaandbarbuda": "Antigua and Barbuda",
+		"argentina": "Argentina",
+		"aruba": "Aruba",
+		"bahamas": "Bahamas",
+		"barbados": "Barbados",
+		"belize": "Belize",
+		"bermuda": "Bermuda",
+		"bolivia": "Bolivia",
+		"brazil": "Brazil",
+		"virginislands": "British Virgin Islands",
+		"canada": "Canada",
+		"caymanislands": "Cayman Islands",
+		"chile": "Chile",
+		"colombia": "Colombia",
+		"costarica": "Costa Rica",
+		"dominica": "Dominica",
+		"dominicanrepublic": "Dominican Republic",
+		"ecuador": "Ecuador",
+		"elsalvador": "El Salvador",
+		"falklandislands": "Falkland Islands",
+		"frenchguiana": "French Guiana",
+		"greenland": "Greenland",
+		"grenada": "Grenada",
+		"guadeloupe": "Guadeloupe",
+		"guatemala": "Guatemala",
+		"guyana": "Guyana",
+		"honduras": "Honduras",
+		"jamaica": "Jamaica",
+		"martinique": "Martinique",
+		"mexico": "Mexico",
+		"montserrat": "Montserrat",
+		"netherlandsantilles": "Netherlands Antilles",
+		"nicaragua": "Nicaragua",
+		"panama": "Panama",
+		"peru": "Peru",
+		"saintkittsandnevis": "Saint Kitts and Nevis",
+		"saintlucia": "Saint Lucia",
+		"saintpierreandmiquelon": "Saint Pierre and Miquelon",
+		"saintvincentandthegrenadines": "Saint Vincent and the Grenadines",
+		"suriname": "Suriname",
+		"trinidadandtobago": "Trinidad and Tobago",
+		"turksandcaicos": "Turks and Caicos",
+		"unitedstates": "United States",
+		"uruguay": "Uruguay",
+		"venezuela": "Venezuela",
+		"armenia": "Armenia",
+		"australia": "Australia",
+		"bahrain": "Bahrain",
+		"bhutan": "Bhutan",
+		"brunei": "Brunei",
+		"cambodia": "Cambodia",
+		"china": "China",
+		"cookislands": "Cook Islands",
+		"cyprus": "Cyprus",
+		"fiji": "Fiji",
+		"frenchpolynesia": "French Polynesia",
+		"hongkong": "Hong Kong",
+		"india": "India",
+		"indonesia": "Indonesia",
+		"israel": "Israel",
+		"japan": "Japan",
+		"jordan": "Jordan",
+		"kazakhstan": "Kazakhstan",
+		"kiribati": "Kiribati",
+		"kuwait": "Kuwait",
+		"kyrgyzstan": "Kyrgyzstan",
+		"laos": "Laos",
+		"malaysia": "Malaysia",
+		"maldives": "Maldives",
+		"marshallislands": "Marshall Islands",
+		"micronesia": "Federated States of Micronesia",
+		"mongolia": "Mongolia",
+		"nauru": "Nauru",
+		"nepal": "Nepal",
+		"newcaledonia": "New Caledonia",
+		"newzealand": "New Zealand",
+		"niue": "Niue",
+		"norfolkisland": "Norfolk Island",
+		"oman": "Oman",
+		"palau": "Palau",
+		"papuanewguinea": "Papua New Guinea",
+		"philippines": "Philippines",
+		"pitcairnislands": "Pitcairn Islands",
+		"qatar": "Qatar",
+		"samoa": "Samoa",
+		"saudiarabia": "Saudi Arabia",
+		"singapore": "Singapore",
+		"solomonislands": "Solomon Islands",
+		"southkorea": "South Korea",
+		"srilanka": "Sri Lanka",
+		"taiwan": "Taiwan",
+		"tajikistan": "Tajikistan",
+		"thailand": "Thailand",
+		"tonga": "Tonga",
+		"turkmenistan": "Turkmenistan",
+		"tuvalu": "Tuvalu",
+		"unitedarabemirates": "United Arab Emirates",
+		"vanuatu": "Vanuatu",
+		"vietnam": "Vietnam",
+		"wallisandfutuna": "Wallis and Futuna",
+		"yemen": "Yemen",
+		"albania": "Albania",
+		"andorra": "Andorra",
+		"austria": "Austria",
+		"azerbaijanrepublic": "Azerbaijan Republic",
+		"belgium": "Belgium",
+		"bosniaandherzegovina": "Bosnia and Herzegovina",
+		"bulgaria": "Bulgaria",
+		"croatia": "Croatia",
+		"czechrepublic": "Czech Republic",
+		"denmark": "Denmark",
+		"estonia": "Estonia",
+		"faroeislands": "Faroe Islands",
+		"finland": "Finland",
+		"france": "France",
+		"georgia": "Georgia",
+		"germany": "Germany",
+		"gibraltar": "Gibraltar",
+		"greece": "Greece",
+		"hungary": "Hungary",
+		"iceland": "Iceland",
+		"ireland": "Ireland",
+		"italy": "Italy",
+		"latvia": "Latvia",
+		"liechtenstein": "Liechtenstein",
+		"lithuania": "Lithuania",
+		"luxembourg": "Luxembourg",
+		"malta": "Malta",
+		"netherlands": "Netherlands",
+		"norway": "Norway",
+		"poland": "Poland",
+		"portugal": "Portugal",
+		"romania": "Romania",
+		"russia": "Russia",
+		"sanmarino": "San Marino",
+		"serbia": "Serbia",
+		"slovakia": "Slovakia",
+		"slovenia": "Slovenia",
+		"spain": "Spain",
+		"svalbardandjanmayen": "Svalbard and Jan Mayen",
+		"sweden": "Sweden",
+		"switzerland": "Switzerland",
+		"turkey": "Turkey",
+		"ukraine": "Ukraine",
+		"unitedkingdom": "United Kingdom",
+		"vaticancity": "Vatican City",
+		"montenegro": "Montenegro",
+		"macedonia": "Macedonia",
+		"moldova": "Moldova",
+		"belarus": "Belarus",
+		"monaco": "Monaco",
+		"nigeria": "Nigeria",
+		"cotedivoire": "Cote d'Ivoire",
+		"cameroon": "Cameroon",
+		"zimbabwe": "Zimbabwe",
+		"paraguay": "Paraguay"
+	},
+
+	"pxp-global-nav": function(chunk, context, bodies, params) {
+		var body = 'control';
+
+		if (params.query_string_params.ver && /^[a-z0-9]+$/.test(params.query_string_params.ver)) {
+			body = params.query_string_params.ver;
+		} else if (params.pxp_data && params.pxp_data.pxp_live_data) {
+			var pxpExpName = params.pxp_data.pxp_live_data.us_global_nav_test;
+
+			if (pxpExpName) {
+				var pxpTreatmentName = (typeof(pxpExpName.treatment_name) === 'undefined') ? '' : pxpExpName.treatment_name.replace(/^\s+|\s+$/g, '');
+
+				switch (pxpTreatmentName) {
+					case "us_global_nav_treatment1":
+						body = 'treatment1';
+						break;
+					case "us_global_nav_treatment2":
+						body = 'treatment2';
+						break;
+					default:
+						body = 'control';
+				}
+			}
+		}
+		/* Test to see if the body section in the dust file exist. */
+		if (bodies[body]) {
+			return chunk.render(bodies[body], context);
+		} else {
+			return chunk.render(bodies['control'], context);
+		}
+	},
+
+	"pxp-unifiedLogin": function(chunk, context, bodies, params) {
+		var body = 'treatment';
+		if (params.query_string_params.ver && /^[a-z0-9]+$/.test(params.query_string_params.ver)) {
+			body = params.query_string_params.ver;
+		} else if (params.pxp_data && params.pxp_data.pxp_live_data) {
+			/*uncookied*/
+			var ukUncookied = params.pxp_data.pxp_live_data.login_unifiedlogin_mpp_traffic_splitter_uk;
+			var usUncookied = params.pxp_data.pxp_live_data.login_unifiedlogin_mpp_traffic_splitter;
+
+			/*cookied*/
+			/*check if IP is internal*/
+			var ukInternal = params.pxp_data.pxp_live_data.login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_2;
+			var usInternal = params.pxp_data.pxp_live_data.login_unifiedlogin_mpp_traffic_splitter_cookied_users_2;
+			/*check all users*/
+			var ukAll = params.pxp_data.pxp_live_data.login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users;
+			var usAll = params.pxp_data.pxp_live_data.login_unifiedlogin_mpp_traffic_splitter_cookied_users;
+
+			if ((typeof ukUncookied == 'undefined') &&
+				(typeof usUncookied == 'undefined') &&
+				(typeof ukInternal == 'undefined') &&
+				(typeof usInternal == 'undefined') &&
+				(typeof ukAll == 'undefined') &&
+				(typeof usAll == 'undefined')) {
+				/* For pages that has pxp_data, but not Unified Login. */
+				body = 'control';
+			} else if (params.UserHome == 'CONSUMER' || params.UserHome == 'BUSINESS') {
+				if (params.user_account_info.login_email) { /*User has login_email cookie.*/
+					if (ukInternal) {
+						var ukInternalTreatmentName = (typeof(ukInternal.treatment_name) === 'undefined') ? '' : ukInternal.treatment_name.replace(/^\s+|\s+$/g, '');
+						switch (ukInternalTreatmentName) {
+							case "login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_2_treatment":
+								body = 'treatment';
+								break;
+							case "login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_2_control":
+								/*If control, then check for All Users*/
+								var ukAllTreatmentName = (typeof(ukAll.treatment_name) === 'undefined') ? '' : ukAll.treatment_name.replace(/^\s+|\s+$/g, '');
+								switch (ukAllTreatmentName) {
+									case "login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_treatment":
+										body = 'treatment';
+										break;
+									case "login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_control":
+										body = 'control';
+										break;
+									default:
+										body = 'treatment';
+								};
+								break;
+							default:
+								body = 'treatment';
+						};
+					} else if (usInternal) {
+						var usInternalTreatmentName = (typeof(usInternal.treatment_name) === 'undefined') ? '' : usInternal.treatment_name.replace(/^\s+|\s+$/g, '');
+						switch (usInternalTreatmentName) {
+							case "login_unifiedlogin_mpp_traffic_splitter_cookied_users_2_treatment":
+								body = 'treatment';
+								break;
+							case "login_unifiedlogin_mpp_traffic_splitter_cookied_users_2_control":
+								/*If control, then check for All Users*/
+								var usAllTreatmentName = (typeof(usAll.treatment_name) === 'undefined') ? '' : usAll.treatment_name.replace(/^\s+|\s+$/g, '');
+								switch (usAllTreatmentName) {
+									case "login_unifiedlogin_mpp_traffic_splitter_cookied_users_treatment":
+										body = 'treatment';
+										break;
+									case "login_unifiedlogin_mpp_traffic_splitter_cookied_users_control":
+										body = 'control';
+										break;
+									default:
+										body = 'treatment';
+								};
+								break;
+							default:
+								body = 'treatment';
+						};
+					} else if (ukAll) { /*If there is no Internal IP check, then check All Users*/
+						var ukAllTreatmentName = (typeof(ukAll.treatment_name) === 'undefined') ? '' : ukAll.treatment_name.replace(/^\s+|\s+$/g, '');
+						switch (ukAllTreatmentName) {
+							case "login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_treatment":
+								body = 'treatment';
+								break;
+							case "login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_control":
+								body = 'control';
+								break;
+							default:
+								body = 'treatment';
+						};
+					} else if (usAll) { /*If there is no Internal IP check, then check All Users*/
+						var usAllTreatmentName = (typeof(usAll.treatment_name) === 'undefined') ? '' : usAll.treatment_name.replace(/^\s+|\s+$/g, '');
+						switch (usAllTreatmentName) {
+							case "login_unifiedlogin_mpp_traffic_splitter_cookied_users_treatment":
+								body = 'treatment';
+								break;
+							case "login_unifiedlogin_mpp_traffic_splitter_cookied_users_control":
+								body = 'control';
+								break;
+							default:
+								body = 'treatment';
+						};
+					} else {
+						body = 'treatment';
+					}
+				} else { /* Cookied user, but no login_email cookie when browser is closed. UL didn't make this persistent? */
+					if (usAll) { /*If there is no Internal IP check, then check All Users*/
+						var usAllTreatmentName = (typeof(usAll.treatment_name) === 'undefined') ? '' : usAll.treatment_name.replace(/^\s+|\s+$/g, '');
+						switch (usAllTreatmentName) {
+							case "login_unifiedlogin_mpp_traffic_splitter_cookied_users_treatment":
+								body = 'treatment';
+								break;
+							case "login_unifiedlogin_mpp_traffic_splitter_cookied_users_control":
+								body = 'control';
+								break;
+							default:
+								body = 'treatment';
+						};
+					} else if (ukAll) { /*If there is no Internal IP check, then check All Users*/
+						var ukAllTreatmentName = (typeof(ukAll.treatment_name) === 'undefined') ? '' : ukAll.treatment_name.replace(/^\s+|\s+$/g, '');
+						switch (ukAllTreatmentName) {
+							case "login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_treatment":
+								body = 'treatment';
+								break;
+							case "login_unifiedlogin_mpp_traffic_splitter_uk_cookied_users_control":
+								body = 'control';
+								break;
+							default:
+								body = 'treatment';
+						};
+					}
+				}
+			} else { /*uncookied user*/
+				if (ukUncookied) {
+					var ukUncookiedTreatmentName = (typeof(ukUncookied.treatment_name) === 'undefined') ? '' : ukUncookied.treatment_name.replace(/^\s+|\s+$/g, '');
+					switch (ukUncookiedTreatmentName) {
+						case "login_unifiedlogin_mpp_traffic_splitter_uk_treatment":
+							body = 'treatment';
+							break;
+						case "login_unifiedlogin_mpp_traffic_splitter_uk_control":
+							body = 'control';
+							break;
+						default:
+							body = 'treatment';
+					};
+				} else if (usUncookied) {
+					var usUncookiedTreatmentName = (typeof(usUncookied.treatment_name) === 'undefined') ? '' : usUncookied.treatment_name.replace(/^\s+|\s+$/g, '');
+					switch (usUncookiedTreatmentName) {
+						case "login_unifiedlogin_mpp_traffic_splitter_treatment":
+							body = 'treatment';
+							break;
+						case "login_unifiedlogin_mpp_traffic_splitter_control":
+							body = 'control';
+							break;
+						default:
+							body = 'treatment';
+					};
+				} else {
+					body = 'treatment';
+				}
+			}
+		} else {
+			/* For pages without any pxp_data. */
+			body = 'control';
+		}
+		/* Test to see if the body section in the dust file exist. */
+		if (bodies[body]) {
+			return chunk.render(bodies[body], context);
+		} else {
+			return chunk.render(bodies['control'], context);
+		}
+	},
+
+	/* helper to check when in time to display specific content */
+	"showContentOn": function(chunk, context, bodies, params) {
+		"use strict";
+
+		var today,
+			ondate = params.query_string_params.ondate;
+
+		if (params.usingDate) {
+			today = new Date(params.usingDate);
+		} else if (ondate) {
+			ondate = ondate.split(",");
+			//reviewing this
+			today = new(Function.prototype.bind.apply(
+				Date, [null].concat(ondate)
+			));
+		} else {
+			today = new Date();
+		}
+
+		var currentHour = [
+				0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+			],
+			UTC = params.UTC || 0,
+			date = {
+				weekday: today.getDay(),
+				day: today.getDate(),
+				month: today.getMonth(),
+				year: today.getFullYear(),
+				hour: _getCurrentHour(today.getUTCHours(), UTC),
+				minute: today.getMinutes(),
+				seconds: today.getSeconds()
+			},
+			helpers = params.showOn,
+			holidays = params.holidays,
+			otherwise = params.otherwise || "otherwise",
+			body = params.query_string_params.showview || "show",
+			counter;
+
+		function _getCurrentHour(UTCCurrentHour, UTC) {
+			var UTC = parseInt(UTC),
+				//will determine how many additional indexes should we move the pointer to get the correct hour
+				moveIndex = UTCCurrentHour + UTC;
+			//if we have a negative moveIndex value, then we need to get the hour starting backwards, from 23
+			if (moveIndex < 0) {
+				//we check how many indexes do we need to move the pointer
+				moveIndex = Math.abs(UTC) + (moveIndex);
+				return currentHour[(currentHour.length) + UTC + moveIndex];
+			}
+			return currentHour[UTCCurrentHour + UTC];
+		}
+
+		//to switch between views with a query string
+		if (params.query_string_params.showview &&
+			/^[a-z0-9]+$/.test(params.query_string_params.showview)) {
+			return chunk.render(bodies[body], context);
+		}
+
+		//if we have additional helper conditions
+		if (helpers) {
+			for (counter = helpers.length; counter > 0;) {
+				if (!helpers[--counter](date)) {
+					return chunk.render(bodies[otherwise], context);
+				}
+			}
+		}
+
+		//if we want to hide it during holidays
+		if (holidays) {
+			holidays = holidays.split(',');
+			for (counter = holidays.length; counter > 0;) {
+				if ((date.month + "-" + date.day + "-" + date.year) === holidays[--counter]) {
+					return chunk.render(bodies[otherwise], context);
+				}
+			}
+		}
+
+		//at this point we can render the 'show' view
+		return chunk.render(bodies[body], context);
+	}
+
+}

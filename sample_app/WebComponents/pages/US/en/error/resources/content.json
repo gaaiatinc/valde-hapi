@@ -1,0 +1,11 @@
+{
+    "page": {
+        "title": "Sample App - Login",
+        "keywords": "",
+        "description": "Sample App"
+    },
+    "error": {
+        "code": "404",
+        "message": "Opps! it seems that this page does not exist."
+    }
+}

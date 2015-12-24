@@ -1,0 +1,10 @@
+{
+    "name": "v1/sa_customer",
+    "version": "1.0.0",
+    "description": "Customer Services API plugin",
+    "main": "index.js",
+    "author": "SA developer",
+    "license": "ISC",
+    "dependencies": {
+    }
+}

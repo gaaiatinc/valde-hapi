@@ -1,0 +1,10 @@
+{
+    "name": "v1/sa_account",
+    "version": "1.0.0",
+    "description": "Session/Account Management API plugin",
+    "main": "index.js",
+    "author": "SA developer",
+    "license": "ISC",
+    "dependencies": {
+    }
+}

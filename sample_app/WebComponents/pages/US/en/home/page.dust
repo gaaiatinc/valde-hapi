@@ -1,0 +1,18 @@
+{>"/resources/partials/base-template" /}
+
+{<pageCSS}
+<link href="/res/angle/vendor/nprogress/nprogress.css" rel="stylesheet">
+<link href="/res/css/pages/home/page.css" rel="stylesheet">
+{/pageCSS}
+
+{<pageContent}
+<!-- WEBSITE PRELOADER-->
+
+<h1>Sample valde-hapi APP</h1>
+
+<p>This is just a test page.</p>
+{/pageContent}
+
+{<pageJS}
+<script src="/res/js/pages/home/page.js"></script>
+{/pageJS}
