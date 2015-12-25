@@ -1,0 +1,16 @@
+{
+    "attr_set_1": {
+        "status_text": {
+            "101": "Message 1",
+            "102": "Message 2",
+            "201": "Message 3",
+            "202": "Message 4"
+        }
+    },
+    "attr_set_2": {
+        "service_type": {
+            "100": "Message 22",
+            "200": "Message 33"
+        }
+    }
+}

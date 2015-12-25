@@ -1,7 +1,7 @@
 "use strict";
 
 var path = require("path"),
-    appConfig = require("valde-hapi").app_config.getConfig(),
+    appConfig = require("../../../../../../lib").app_config.getConfig(),
     Joi = require("joi");
 
 
@@ -54,7 +54,7 @@ module.exports.register = function (server, options, next) {
             handler: signin_handler,
             tags: ["api"],
             description: "signin",
-            notes: "An API method implementing account",
+            notes: "A demo API method implementing account sign in.",
             auth: {
                 mode: "try",
                 strategy: "session"
@@ -64,6 +64,11 @@ module.exports.register = function (server, options, next) {
                     redirectTo: false
                 },
                 "resource_set": {
+                    /**
+                     * If enabled, the localized resource sets will be added to the  request:
+                     *      request.__valde.resource_set
+                     *  An example of the localized resource sets is in the folder WebComponents.
+                     */
                     enabled: true
                 }
             },
@@ -96,7 +101,7 @@ module.exports.register = function (server, options, next) {
         config: {
             handler: signout_handler,
             description: "signout",
-            notes: "Returns a todo item by the id passed in the path",
+            notes: "Just a demo rest endpoint.",
             tags: ["api"]
         }
     });

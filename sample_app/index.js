@@ -3,7 +3,7 @@
  */
 "use strict";
 
-var platform = require("valde-hapi");
+var platform = require("../../lib");
 
 
 platform.init(function(err, server){

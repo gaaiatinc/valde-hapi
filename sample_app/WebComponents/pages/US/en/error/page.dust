@@ -1,4 +1,4 @@
-{>"/resources/partials/base-template" /}
+{>"/resources/dust_partials/base-template" /}
 
 
 {<pageCSS}

@@ -6,9 +6,9 @@
 "use strict";
 
 var path = require("path"),
-    dbMgr = require("valde-hapi").database,
+    dbMgr = require("../../../../../lib").database,
     ObjectId = require("mongodb").ObjectID,
-    appConfig = require("valde-hapi").app_config.getConfig();
+    appConfig = require("../../../../../lib").app_config.getConfig();
 
 function handler(request, reply) {
 
@@ -43,7 +43,9 @@ function handler(request, reply) {
             return reply.redirect(appConfig.get("app_root") + "/signin?next=" +
                 encodeURIComponent(appConfig.get("app_root") + "/" + request.params.pageID));
         } else {
-            reply.view("index.js", request.__valde.web_model);
+
+            console.log(request.__valde.web_model.pageViewTemplate);
+            reply.view(request.__valde.web_model.pageViewTemplate, request.__valde.web_model);
         }
     }
 }
