@@ -3,9 +3,13 @@
 import React from "react";
 
 class AppScript extends React.Component {
+
+
     render() {
+        let appScriptPath = "/res/js" + entityRelativePath + ".js";
+
         return (
-            <script src="/res/js/page.js"></script>
+            <script src={appScriptPath}></script>
         )
     }
 }

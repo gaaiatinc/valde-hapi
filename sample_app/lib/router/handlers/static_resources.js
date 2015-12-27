@@ -12,7 +12,8 @@ module.exports = {
     path: "/res/{resID*}",
     handler: {
         directory: {
-            path: "public"
+            path: "public",
+            etagMethod: "hash"
         }
     }
 };

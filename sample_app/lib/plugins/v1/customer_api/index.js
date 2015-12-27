@@ -3,7 +3,7 @@
 
 
 var path = require("path"),
-    appConfig = require("../../../../../../lib").app_config.getConfig(),
+    appConfig = require("valde-hapi").app_config.getConfig(),
     Joi = require("joi");
 
 
