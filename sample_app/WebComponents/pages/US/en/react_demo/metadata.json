@@ -1,6 +1,6 @@
 {
     "page_id": "react_demo",
-    "template_id": "resources/jsx_components/server_side/demo_template/base",
+    "template_id": "resources/jsx_components/server_side/demo_template/parent",
     "access_conditions": {
         "logged_in_only": false,
         "account_type": "ANY"

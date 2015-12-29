@@ -1,8 +1,6 @@
 "use strict";
 
 import React from "react";
-
-import ReactDOMServer  from "react-dom/server";
 import ReactDOM  from "react-dom";
 import TemplateHead from "resources/jsx_components/server_side/demo_template/head/TemplateHead";
 import TemplateBody from "resources/jsx_components/server_side/demo_template/body/TemplateBody";

@@ -31,7 +31,7 @@ function handler(request, reply) {
             .catch(function (err) {
             })
             .finally(function () {
-                reply.view("index.js", request.__valde.web_model);
+                reply.view(request.__valde.web_model.pageViewTemplate, request.__valde.web_model);
             });
     } else {
         //check if the model construction is redirecting to signin page:
