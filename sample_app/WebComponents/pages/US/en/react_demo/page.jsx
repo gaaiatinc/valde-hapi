@@ -1,16 +1,18 @@
 "use strict";
 
 import React from "react";
-
 import ReactDOM  from "react-dom";
 
+
+import ParentTemplate from "resources/jsx_components/server_side/demo_template/parent";
 
 import HelloButton from "resources/jsx_components/demo/HelloButton";
 import Greeting from "resources/jsx_components/demo/Greeting";
 
-import ParentTemplate from "resources/jsx_components/server_side/demo_template/parent";
 
-
+/**
+ * An example of an element to override the body top element in the parent template.
+ */
 class PageBodyTop extends React.Component {
     constructor(props) {
         super(props);
@@ -22,6 +24,9 @@ class PageBodyTop extends React.Component {
     }
 }
 
+/**
+ * An example of an element to override the body main element in the parent template.
+ */
 class PageBodyMain extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +34,24 @@ class PageBodyMain extends React.Component {
     }
 
     componentWillMount() {
-        console.log("pageBodyMain will  mount!!!");
+    }
+
+    render() {
+        return (<Greeting /> );
+    }
+}
+
+
+/**
+ * An example of an element to override the body bottom element in the parent template.
+ */
+class PageBodyBottom extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    componentWillMount() {
     }
 
     render() {
@@ -38,35 +60,33 @@ class PageBodyMain extends React.Component {
 }
 
 
-export default class DemoPage extends ParentTemplate {
+/**
+ * An example of how to extend the parent template, and replace the elements that the
+ * parent template allows for overriding.
+ */
+export default class AppMainPage extends ParentTemplate {
     constructor(props) {
         super(props);
         //this.state = {balance: props.openingBalance};
 
         this.bodyTop = <PageBodyTop />;
-        this.bodyMain = <PageBodyMain id="tttttttt"/>;
-
-        //if (typeof document !== "undefined") {
-        //    alert("we are almost there!");
-        //}
+        this.bodyMain = <PageBodyMain id="t24"/>;
+        this.bodyMain = <PageBodyBottom id="q122"/>;
     }
 
-    //render() {
-    //    return (
-    //        <html>
-    //        <TemplateHead entityRelativePath={entityRelativePath} modelData={modelData}/>
-    //        <TemplateBody />
-    //        </html>
-    //    );
-    //}
-}
-//DemoPage.propTypes = { openingBalance: React.PropTypes.number };
-//DemoPage.defaultProps = { openingBalance: 0 };
-
-
-//let fullApp = React.createElement(DemoPage);
-if (typeof document !== "undefined") {
-    var demoPageInstance = new DemoPage(window.modelData);
-    demoPageInstance.attachComponentsInBrowser();
+    /**
+     * You should never override the render method of the parent template!
+     */
 }
 
+/**
+ * The following is for client side rendering:
+ * The following code is what replaces the "replaceable" elements in the browser
+ */
+
+if ((typeof document !== "undefined") && (typeof AppMainPage !== "undefined") && (typeof AppMainPage === "function")) {
+    $(function () {
+        var appMainPage = new AppMainPage(window.modelData);
+        appMainPage.attachComponentsInBrowser();
+    });
+}

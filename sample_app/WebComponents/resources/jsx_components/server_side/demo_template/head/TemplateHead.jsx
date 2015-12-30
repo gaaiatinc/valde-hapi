@@ -8,22 +8,24 @@ import ModelData from "resources/jsx_components/server_side/demo_template/head/H
 import Title from "resources/jsx_components/server_side/demo_template/head/Title";
 import MetaCharSet from "resources/jsx_components/server_side/demo_template/head/MetaCharSet";
 import HeadJQueryScript from "resources/jsx_components/server_side/demo_template/head/HeadScriptsComponents/HeadJQueryScript"
+import AppScript from "resources/jsx_components/server_side/demo_template/body/AppScript";
 
 
 
 class HeadScripts extends React.Component {
-  render() {
-     return (
-             <head>
+    render() {
+        return (
+            <head>
                 <MetaCharSet />
                 <Title />
                 <HeadReactScript />
                 <HeadReactDOMScript />
                 <HeadJQueryScript />
-                <ModelData  modelData={this.props.modelData} />
+                <ModelData modelData={this.props.modelData}/>
+                <AppScript entityRelativePath={modelData.pageViewID}/>
             </head>
-      )
-  }
+        )
+    }
 }
 
 export default HeadScripts;

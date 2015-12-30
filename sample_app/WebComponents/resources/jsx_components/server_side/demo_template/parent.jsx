@@ -2,10 +2,7 @@
 
 import React from "react";
 import ReactDOM  from "react-dom";
-import ReactDOMServer from "react-dom/server";
-import ReactDOMServer from "react-dom/server";
 import TemplateHead from "resources/jsx_components/server_side/demo_template/head/TemplateHead";
-import AppScript from "resources/jsx_components/server_side/demo_template/body/AppScript";
 
 
 /**
@@ -23,68 +20,66 @@ class AppMount extends React.Component {
 }
 
 
+/**
+ *
+ */
 export default class ParentTemplate extends React.Component {
+    /**
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
         //this.state = {balance: props.openingBalance};
         this.state = {};
 
+        /**
+         * The following eelements are replaceable by pages which extend this template:
+         */
         this.bodyTop = <AppMount />;
         this.bodyMain = <AppMount />;
         this.bodyBottom = <AppMount />;
-
-        console.log(">>>>>>>  parentTmplate constr!");
-
     }
 
+    /**
+     * This method will replace/re-mount the page-specific elements in the browser:
+     */
     attachComponentsInBrowser() {
-        console.log("attachComponentsInBrowser");
+        $( "#body_top_mount_point" ).replaceWith( "<div id='body_top_mount_point'></div>" );
+        ReactDOM.render(this.bodyTop, document.getElementById("body_top_mount_point"));
 
-        //let bodyTopMount = React.createElement(this.bodyTop);
+        $( "#body_main_mount_point" ).replaceWith( "<div id='body_main_mount_point'></div>" );
+        ReactDOM.render(this.bodyMain, document.getElementById("body_main_mount_point"));
 
-
-        //let bodyMainMount = React.createElement(this.bodyMain);
-        ReactDOM.render(this.bodyMain, document.getElementById("mmmmmmmm"));
-
-        //let bodyBottomMount = React.createElement(this.bodyBottom);
+        $( "#body_bottom_mount_point" ).replaceWith( "<div id='body_bottom_mount_point'></div>" );
+        ReactDOM.render(this.bodyBottom, document.getElementById("body_bottom_mount_point"));
     }
 
 
-    componentDidMount() {
-
-        console.log(">>>>>>>  parentTmplate did mount!");
-        /**
-         * The following is for client side rendering:
-         */
-        if (typeof document !== "undefined") {
-            alert("foooo");
-
-            //ReactDOM.render(this.renderBodyTop(), document.getElementById("body_top_mount_point"));
-            //ReactDOM.render(this.renderBodyMain(), document.getElementById("body_main_mount_point"));
-            //ReactDOM.render(this.renderBodyBottom(), document.getElementById("body_bottom_mount_point"));
-        }
-    }
-
+    /**
+     * This method is for server-side rendering only!
+     * @returns {XML}
+     */
     render() {
 
         return (
             <html>
-            <TemplateHead entityRelativePath={entityRelativePath} modelData={modelData}/>
+            <TemplateHead entityRelativePath={modelData.pageViewID} modelData={modelData}/>
 
-            <body>
-
-            <div id="mmmmmmmm" dangerouslySetInnerHTML={{__html: ReactDOMServer.renderToString(this.bodyMain)}}/>
+            <body id="document-body">
 
             <div id="body_top_mount_point">
                 {this.bodyTop}
+            </div>
+
+            <div id="body_main_mount_point">
+                {this.bodyMain}
             </div>
 
             <div id="body_bottom_mount_point">
                 {this.bodyBottom}
             </div>
 
-
-            <AppScript />
             </body>
             </html >
         );
@@ -94,14 +89,6 @@ ParentTemplate.propTypes = {modelData: React.PropTypes.object};
 ParentTemplate.defaultProps = {};
 
 
-/**
- * The following is for client side rendering:
- */
-if (typeof document !== "undefined") {
-    //alert("we are almost there!");
-    //ReactDOM.render(fullApp, document.documentElement);
-    //ReactDOM.render(fullApp, document.getElementById("body_main_mount_point"));
-    //ReactDOM.render(ParentTemplate.renderBodyMain(), document.getElementById("body_main_mount_point"));
-    //ReactDOM.render(ParentTemplate.renderBodyBottom(), document.getElementById("body_bottom_mount_point"));
-}
+
+
 
