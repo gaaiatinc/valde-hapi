@@ -2,6 +2,8 @@
 
 import React from "react";
 import ReactDOM  from "react-dom";
+import ReactDOMServer from "react-dom/server";
+import ReactDOMServer from "react-dom/server";
 import TemplateHead from "resources/jsx_components/server_side/demo_template/head/TemplateHead";
 import AppScript from "resources/jsx_components/server_side/demo_template/body/AppScript";
 
@@ -12,7 +14,7 @@ import AppScript from "resources/jsx_components/server_side/demo_template/body/A
 class AppMount extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {balance: props.openingBalance};
+        this.state = {};
     }
 
     render() {
@@ -24,12 +26,29 @@ class AppMount extends React.Component {
 export default class ParentTemplate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {balance: props.openingBalance};
+        //this.state = {balance: props.openingBalance};
+        this.state = {};
 
         this.bodyTop = <AppMount />;
-        this.bodyMain = <AppMount id="qqqq"/>;
+        this.bodyMain = <AppMount />;
         this.bodyBottom = <AppMount />;
+
+        console.log(">>>>>>>  parentTmplate constr!");
+
     }
+
+    attachComponentsInBrowser() {
+        console.log("attachComponentsInBrowser");
+
+        //let bodyTopMount = React.createElement(this.bodyTop);
+
+
+        //let bodyMainMount = React.createElement(this.bodyMain);
+        ReactDOM.render(this.bodyMain, document.getElementById("mmmmmmmm"));
+
+        //let bodyBottomMount = React.createElement(this.bodyBottom);
+    }
+
 
     componentDidMount() {
 
@@ -38,8 +57,8 @@ export default class ParentTemplate extends React.Component {
          * The following is for client side rendering:
          */
         if (typeof document !== "undefined") {
-            alert("foooo")
-            ReactDOM.render(this.bodyMain, document.getElementById("mmmmmmmm"));
+            alert("foooo");
+
             //ReactDOM.render(this.renderBodyTop(), document.getElementById("body_top_mount_point"));
             //ReactDOM.render(this.renderBodyMain(), document.getElementById("body_main_mount_point"));
             //ReactDOM.render(this.renderBodyBottom(), document.getElementById("body_bottom_mount_point"));
@@ -47,18 +66,17 @@ export default class ParentTemplate extends React.Component {
     }
 
     render() {
+
         return (
             <html>
             <TemplateHead entityRelativePath={entityRelativePath} modelData={modelData}/>
 
             <body>
 
+            <div id="mmmmmmmm" dangerouslySetInnerHTML={{__html: ReactDOMServer.renderToString(this.bodyMain)}}/>
+
             <div id="body_top_mount_point">
                 {this.bodyTop}
-            </div>
-
-            <div id="mmmmmmmm">
-                {this.bodyMain}
             </div>
 
             <div id="body_bottom_mount_point">
@@ -72,11 +90,9 @@ export default class ParentTemplate extends React.Component {
         );
     }
 }
-ParentTemplate.propTypes = {openingBalance: React.PropTypes.number};
-ParentTemplate.defaultProps = {openingBalance: 0};
+ParentTemplate.propTypes = {modelData: React.PropTypes.object};
+ParentTemplate.defaultProps = {};
 
-
-let fullApp = React.createElement(ParentTemplate);
 
 /**
  * The following is for client side rendering:

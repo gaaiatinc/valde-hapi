@@ -14,30 +14,28 @@ import ParentTemplate from "resources/jsx_components/server_side/demo_template/p
 class PageBodyTop extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {balance: props.openingBalance};
+        this.state = {};
     }
 
     render() {
-        return (<p>hello page body top!!</p>);
+        return (<p>hello page body top!!, testing 123</p>);
     }
 }
-let pageBodyTop = <PageBodyTop />;
 
 class PageBodyMain extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {balance: props.openingBalance};
+        this.state = {};
     }
 
     componentWillMount() {
-        console.log("pageBodyMain did mount!!!");
+        console.log("pageBodyMain will  mount!!!");
     }
 
     render() {
         return (<HelloButton /> );
     }
 }
-let pageBodyMain = <PageBodyMain id="tttttttt"/>;
 
 
 export default class DemoPage extends ParentTemplate {
@@ -45,12 +43,12 @@ export default class DemoPage extends ParentTemplate {
         super(props);
         //this.state = {balance: props.openingBalance};
 
-        this.bodyTop = pageBodyTop;
-        this.bodyMain = pageBodyMain;
+        this.bodyTop = <PageBodyTop />;
+        this.bodyMain = <PageBodyMain id="tttttttt"/>;
 
-        if (typeof document !== "undefined") {
-            alert("we are almost there!");
-        }
+        //if (typeof document !== "undefined") {
+        //    alert("we are almost there!");
+        //}
     }
 
     //render() {
@@ -68,8 +66,7 @@ export default class DemoPage extends ParentTemplate {
 
 //let fullApp = React.createElement(DemoPage);
 if (typeof document !== "undefined") {
-    //pageBodyMain.forceUpdate();
-    //alert(pageBodyMain.props);
-    ReactDOM.render(pageBodyMain, document.getElementById("mmmmmmmm"));
+    var demoPageInstance = new DemoPage(window.modelData);
+    demoPageInstance.attachComponentsInBrowser();
 }
 
