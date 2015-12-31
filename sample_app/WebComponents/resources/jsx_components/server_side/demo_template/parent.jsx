@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM  from "react-dom";
 import TemplateHead from "resources/jsx_components/server_side/demo_template/head/TemplateHead";
-
+//import {AppMainPage} from "AppMainPage";
 
 /**
  *
@@ -87,7 +87,6 @@ export default class ParentTemplate extends React.Component {
 }
 ParentTemplate.propTypes = {modelData: React.PropTypes.object};
 ParentTemplate.defaultProps = {};
-
 
 
 

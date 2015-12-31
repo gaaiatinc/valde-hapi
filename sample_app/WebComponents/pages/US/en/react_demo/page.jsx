@@ -77,16 +77,6 @@ export default class AppMainPage extends ParentTemplate {
     /**
      * You should never override the render method of the parent template!
      */
-}
+};
 
-/**
- * The following is for client side rendering:
- * The following code is what replaces the "replaceable" elements in the browser
- */
 
-if ((typeof document !== "undefined") && (typeof AppMainPage !== "undefined") && (typeof AppMainPage === "function")) {
-    $(function () {
-        var appMainPage = new AppMainPage(window.modelData);
-        appMainPage.attachComponentsInBrowser();
-    });
-}
