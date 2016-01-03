@@ -9,6 +9,9 @@ import ParentTemplate from "resources/jsx_components/server_side/demo_template/p
 import HelloButton from "resources/jsx_components/demo/HelloButton";
 import Greeting from "resources/jsx_components/demo/Greeting";
 
+import MyGraph from "./resources/jsx_components/MyGraph/my_graph";
+import MyGraphRefresher from "./resources/jsx_components/MyGraph/my_graph_refresher";
+
 
 /**
  * An example of an element to override the body top element in the parent template.
@@ -36,8 +39,12 @@ class PageBodyMain extends React.Component {
     componentWillMount() {
     }
 
+    setNewGraphData(newGraphData) {
+        this.__newGraphRef.plotNewGraphData(newGraphData);
+    }
+
     render() {
-        return (<Greeting /> );
+        return (<MyGraph {...this.props} ref={(newGraphRef) => {this.__newGraphRef = newGraphRef;}} /> );
     }
 }
 
@@ -55,7 +62,7 @@ class PageBodyBottom extends React.Component {
     }
 
     render() {
-        return (<HelloButton /> );
+        return (<MyGraphRefresher {...this.props} /> );
     }
 }
 
@@ -70,8 +77,12 @@ export default class AppMainPage extends ParentTemplate {
         //this.state = {balance: props.openingBalance};
 
         this.bodyTop = <PageBodyTop />;
-        this.bodyMain = <PageBodyMain id="t24"/>;
-        this.bodyMain = <PageBodyBottom id="q122"/>;
+        this.bodyMain = <PageBodyMain id="t24" ref={(bdyMnRef) => {this.__bodyMainRef = bdyMnRef;}}/>;
+        this.bodyBottom = <PageBodyBottom id="q122" onClick={() => {this.__bodyMainRef.setNewGraphData({age: Math.random()});}}/>;
+    }
+
+    handleClick() {
+        this.__bodyMainRef.setState({age: Math.random()});
     }
 
     /**
