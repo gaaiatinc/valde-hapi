@@ -48,10 +48,6 @@ var PageBundle =
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
 	var _extends2 = __webpack_require__(1);
 
 	var _extends3 = _interopRequireDefault(_extends2);
@@ -75,6 +71,10 @@ var PageBundle =
 	var _inherits2 = __webpack_require__(48);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _react = __webpack_require__(55);
 
@@ -110,7 +110,7 @@ var PageBundle =
 	 * An example of an element to override the body top element in the parent template.
 	 */
 
-	var PageBodyTop = (function (_React$Component) {
+	var PageBodyTop = function (_React$Component) {
 	    (0, _inherits3.default)(PageBodyTop, _React$Component);
 
 	    function PageBodyTop(props) {
@@ -133,13 +133,13 @@ var PageBundle =
 	        }
 	    }]);
 	    return PageBodyTop;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	/**
 	 * An example of an element to override the body main element in the parent template.
 	 */
 
-	var PageBodyMain = (function (_React$Component2) {
+	var PageBodyMain = function (_React$Component2) {
 	    (0, _inherits3.default)(PageBodyMain, _React$Component2);
 
 	    function PageBodyMain(props) {
@@ -170,13 +170,13 @@ var PageBundle =
 	        }
 	    }]);
 	    return PageBodyMain;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	/**
 	 * An example of an element to override the body bottom element in the parent template.
 	 */
 
-	var PageBodyBottom = (function (_React$Component3) {
+	var PageBodyBottom = function (_React$Component3) {
 	    (0, _inherits3.default)(PageBodyBottom, _React$Component3);
 
 	    function PageBodyBottom(props) {
@@ -198,14 +198,14 @@ var PageBundle =
 	        }
 	    }]);
 	    return PageBodyBottom;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	/**
 	 * An example of how to extend the parent template, and replace the elements that the
 	 * parent template allows for overriding.
 	 */
 
-	var AppMainPage = (function (_ParentTemplate) {
+	var AppMainPage = function (_ParentTemplate) {
 	    (0, _inherits3.default)(AppMainPage, _ParentTemplate);
 
 	    function AppMainPage(props) {
@@ -237,7 +237,7 @@ var PageBundle =
 
 	    }]);
 	    return AppMainPage;
-	})(_parent2.default);
+	}(_parent2.default);
 
 	exports.default = AppMainPage;
 	;
@@ -1219,10 +1219,6 @@ var PageBundle =
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
 	var _getPrototypeOf = __webpack_require__(17);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -1242,6 +1238,10 @@ var PageBundle =
 	var _inherits2 = __webpack_require__(48);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _react = __webpack_require__(55);
 
@@ -1263,7 +1263,7 @@ var PageBundle =
 	 *
 	 */
 
-	var AppMount = (function (_React$Component) {
+	var AppMount = function (_React$Component) {
 	    (0, _inherits3.default)(AppMount, _React$Component);
 
 	    function AppMount(props) {
@@ -1286,13 +1286,13 @@ var PageBundle =
 	        }
 	    }]);
 	    return AppMount;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	/**
 	 *
 	 */
 
-	var ParentTemplate = (function (_React$Component2) {
+	var ParentTemplate = function (_React$Component2) {
 	    (0, _inherits3.default)(ParentTemplate, _React$Component2);
 
 	    /**
@@ -1371,7 +1371,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return ParentTemplate;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = ParentTemplate;
 
@@ -1383,10 +1383,6 @@ var PageBundle =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -1407,6 +1403,10 @@ var PageBundle =
 	var _inherits2 = __webpack_require__(48);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _react = __webpack_require__(55);
 
@@ -1442,7 +1442,7 @@ var PageBundle =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HeadScripts = (function (_React$Component) {
+	var HeadScripts = function (_React$Component) {
 	    (0, _inherits3.default)(HeadScripts, _React$Component);
 
 	    function HeadScripts() {
@@ -1467,7 +1467,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return HeadScripts;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = HeadScripts;
 
@@ -1476,10 +1476,6 @@ var PageBundle =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -1501,13 +1497,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HeadReactScript = (function (_React$Component) {
+	var HeadReactScript = function (_React$Component) {
 	    (0, _inherits3.default)(HeadReactScript, _React$Component);
 
 	    function HeadReactScript() {
@@ -1522,7 +1522,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return HeadReactScript;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = HeadReactScript;
 
@@ -1531,10 +1531,6 @@ var PageBundle =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -1556,13 +1552,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HeadReactDOMScript = (function (_React$Component) {
+	var HeadReactDOMScript = function (_React$Component) {
 	    (0, _inherits3.default)(HeadReactDOMScript, _React$Component);
 
 	    function HeadReactDOMScript() {
@@ -1577,7 +1577,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return HeadReactDOMScript;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = HeadReactDOMScript;
 
@@ -1586,10 +1586,6 @@ var PageBundle =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _stringify = __webpack_require__(62);
 
@@ -1615,13 +1611,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var ModelData = (function (_React$Component) {
+	var ModelData = function (_React$Component) {
 	    (0, _inherits3.default)(ModelData, _React$Component);
 
 	    function ModelData() {
@@ -1637,7 +1637,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return ModelData;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = ModelData;
 
@@ -1662,10 +1662,6 @@ var PageBundle =
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var _getPrototypeOf = __webpack_require__(17);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -1686,13 +1682,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Title = (function (_React$Component) {
+	var Title = function (_React$Component) {
 	  (0, _inherits3.default)(Title, _React$Component);
 
 	  function Title() {
@@ -1711,7 +1711,7 @@ var PageBundle =
 	    }
 	  }]);
 	  return Title;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = Title;
 
@@ -1720,10 +1720,6 @@ var PageBundle =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -1745,13 +1741,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var MetaCharSet = (function (_React$Component) {
+	var MetaCharSet = function (_React$Component) {
 	  (0, _inherits3.default)(MetaCharSet, _React$Component);
 
 	  function MetaCharSet() {
@@ -1766,7 +1766,7 @@ var PageBundle =
 	    }
 	  }]);
 	  return MetaCharSet;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = MetaCharSet;
 
@@ -1775,10 +1775,6 @@ var PageBundle =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -1800,13 +1796,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HeadJQueryScript = (function (_React$Component) {
+	var HeadJQueryScript = function (_React$Component) {
 	    (0, _inherits3.default)(HeadJQueryScript, _React$Component);
 
 	    function HeadJQueryScript() {
@@ -1821,7 +1821,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return HeadJQueryScript;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = HeadJQueryScript;
 
@@ -1830,10 +1830,6 @@ var PageBundle =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -1855,13 +1851,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var AppScript = (function (_React$Component) {
+	var AppScript = function (_React$Component) {
 	    (0, _inherits3.default)(AppScript, _React$Component);
 
 	    function AppScript() {
@@ -1878,7 +1878,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return AppScript;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = AppScript;
 
@@ -1888,10 +1888,6 @@ var PageBundle =
 
 	
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -1913,13 +1909,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HelloButton = (function (_React$Component) {
+	var HelloButton = function (_React$Component) {
 	    (0, _inherits3.default)(HelloButton, _React$Component);
 
 	    function HelloButton() {
@@ -1943,7 +1943,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return HelloButton;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = HelloButton;
 
@@ -1952,10 +1952,6 @@ var PageBundle =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -1977,13 +1973,17 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Greeting = (function (_React$Component) {
+	var Greeting = function (_React$Component) {
 	  (0, _inherits3.default)(Greeting, _React$Component);
 
 	  function Greeting() {
@@ -2002,7 +2002,7 @@ var PageBundle =
 	    }
 	  }]);
 	  return Greeting;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	exports.default = Greeting;
 
@@ -2014,10 +2014,6 @@ var PageBundle =
 	 * Created by Ali on 1/3/2016.
 	 */
 	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _getPrototypeOf = __webpack_require__(17);
 
@@ -2038,6 +2034,10 @@ var PageBundle =
 	var _inherits2 = __webpack_require__(48);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _react = __webpack_require__(55);
 
@@ -2059,7 +2059,7 @@ var PageBundle =
 	 * An example of an element to override the body top element in the parent template.
 	 */
 
-	var MyGraph = (function (_React$Component) {
+	var MyGraph = function (_React$Component) {
 	    (0, _inherits3.default)(MyGraph, _React$Component);
 
 	    function MyGraph(props) {
@@ -2087,7 +2087,7 @@ var PageBundle =
 	        }
 	    }, {
 	        key: "redrawCanvas",
-	        value: function redrawCanvas() {
+	        value: function redrawCanvas(newGraphData) {
 	            function getRandomInc() {
 	                return Math.floor(Math.random() * 30 - 15);
 	            }
@@ -2150,7 +2150,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return MyGraph;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	MyGraph.propTypes = { modelData: _react2.default.PropTypes.object };
 	MyGraph.defaultProps = {};
@@ -2184,10 +2184,6 @@ var PageBundle =
 	 */
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
 	var _extends2 = __webpack_require__(1);
 
 	var _extends3 = _interopRequireDefault(_extends2);
@@ -2212,6 +2208,10 @@ var PageBundle =
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _react = __webpack_require__(55);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -2232,7 +2232,7 @@ var PageBundle =
 	 * An example of an element to override the body top element in the parent template.
 	 */
 
-	var MyGraphRefresher = (function (_React$Component) {
+	var MyGraphRefresher = function (_React$Component) {
 	    (0, _inherits3.default)(MyGraphRefresher, _React$Component);
 
 	    function MyGraphRefresher(props) {
@@ -2258,7 +2258,7 @@ var PageBundle =
 	        }
 	    }]);
 	    return MyGraphRefresher;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	MyGraphRefresher.propTypes = { modelData: _react2.default.PropTypes.object };
 	MyGraphRefresher.defaultProps = {};
