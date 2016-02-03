@@ -53,7 +53,7 @@
     "style-loader": "~0.13.0",
     "url-loader": "^0.5.7",
     "uuid": "^2.0.1",
-    "valde-hapi": "^0.8.1",
+    "valde-hapi": "^0.8.2",
     "vision": "^4.0.1",
     "webpack": "^1.12.12",
     "winston": "^2.1.1",
