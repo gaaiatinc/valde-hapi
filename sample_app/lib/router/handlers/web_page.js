@@ -20,14 +20,15 @@ function handler(request, reply) {
     if (request.auth.isAuthenticated) {
         //add the user account data to the model
         var collectionName = "sa_customer_accounts";
-        dbMgr.findOne(collectionName,
-            {"_id": new ObjectId(request.auth.credentials.account_id)})
+
+        dbMgr.find(collectionName,
+            {"_id": request.auth.credentials.account_id})
             .then(function (accountData) {
-                request.__valde.web_model.account_type = request.auth.credentials.account_type;
-                request.__valde.web_model.account_data = accountData;
-            },
-            function (err) {
-            })
+                    request.__valde.web_model.account_type = request.auth.credentials.account_type;
+                    request.__valde.web_model.account_data = accountData;
+                },
+                function (err) {
+                })
             .catch(function (err) {
             })
             .finally(function () {

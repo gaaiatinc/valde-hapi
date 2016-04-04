@@ -3,10 +3,10 @@
  */
 "use strict";
 
-var platform = require("valde-hapi");
+let platform = require("valde-hapi");
 
 
-platform.init(function(err, server){
+platform.init((err, server) => {
     server.start(function () {
         console.log("Server running at:", server.info.uri);
     });
