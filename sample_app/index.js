@@ -11,6 +11,3 @@ platform.init((err, server) => {
         console.log("Server running at:", server.info.uri);
     });
 });
-
-
-

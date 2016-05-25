@@ -11,8 +11,6 @@
     "show_search": true,
     "mobile_template_id": "",
     "mobile_redirect_link": "",
-    "required_services": [
-    ],
-    "analytics_descriptor": {
-    }
+    "required_services": [],
+    "analytics_descriptor": {}
 }
