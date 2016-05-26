@@ -2,7 +2,6 @@
  * Created by Ali on 3/13/2015.
  */
 
-
 "use strict";
 
 var path = require("path"),
@@ -16,21 +15,19 @@ function handler(request, reply) {
         request.__valde.web_model = {};
     }
 
-
     if (request.auth.isAuthenticated) {
         //add the user account data to the model
         var collectionName = "sa_customer_accounts";
 
-        dbMgr.find(collectionName,
-            {"_id": request.auth.credentials.account_id})
+        dbMgr.find(collectionName, {
+                "_id": request.auth.credentials.account_id
+            })
             .then(function (accountData) {
                     request.__valde.web_model.account_type = request.auth.credentials.account_type;
                     request.__valde.web_model.account_data = accountData;
                 },
-                function (err) {
-                })
-            .catch(function (err) {
-            })
+                function (err) {})
+            .catch(function (err) {})
             .finally(function () {
                 reply.view(request.__valde.web_model.pageViewTemplate, request.__valde.web_model);
             });
@@ -49,15 +46,14 @@ function handler(request, reply) {
     }
 }
 
-
 module.exports = {
     method: "GET",
     path: appConfig.get("app_root") + "/{pageID*}",
     config: {
         handler: handler,
         auth: {
-            mode: 'try',
-            strategy: 'session'
+            mode: "try",
+            strategy: "session"
         },
         plugins: {
             "hapi-auth-cookie": {
@@ -72,4 +68,3 @@ module.exports = {
         }
     }
 };
-

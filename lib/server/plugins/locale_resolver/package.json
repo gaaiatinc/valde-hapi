@@ -1,10 +1,9 @@
 {
-    "name": "locale_resolver",
-    "version": "1.0.0",
-    "description": "A plugin to perform locale resolution using the user-agent header",
-    "main": "index.js",
-    "author": "Ali Ismael",
-    "license": "Apache-2.0",
-    "dependencies": {
-    }
+  "name": "locale_resolver",
+  "version": "1.0.0",
+  "description": "A plugin to perform locale resolution using the user-agent header",
+  "main": "index.js",
+  "author": "Ali Ismael",
+  "license": "Apache-2.0",
+  "dependencies": {}
 }

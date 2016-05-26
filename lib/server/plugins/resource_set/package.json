@@ -1,10 +1,9 @@
 {
-    "name": "resource_set",
-    "version": "1.0.0",
-    "description": "A plugin to load the resource set data for an HTTP request",
-    "main": "index.js",
-    "author": "Ali Ismael",
-    "license": "Apache-2.0",
-    "dependencies": {
-    }
+  "name": "resource_set",
+  "version": "1.0.0",
+  "description": "A plugin to load the resource set data for an HTTP request",
+  "main": "index.js",
+  "author": "Ali Ismael",
+  "license": "Apache-2.0",
+  "dependencies": {}
 }

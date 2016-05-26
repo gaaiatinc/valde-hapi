@@ -1,10 +1,9 @@
 {
-    "name": "web_model",
-    "version": "1.0.0",
-    "description": "A plugin to load the model data for a web HTTP request",
-    "main": "index.js",
-    "author": "Ali Ismael",
-    "license": "Apache-2.0",
-    "dependencies": {
-    }
+  "name": "web_model",
+  "version": "1.0.0",
+  "description": "A plugin to load the model data for a web HTTP request",
+  "main": "index.js",
+  "author": "Ali Ismael",
+  "license": "Apache-2.0",
+  "dependencies": {}
 }

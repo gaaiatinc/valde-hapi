@@ -1,10 +1,9 @@
 {
-    "name": "csrf_agent",
-    "version": "1.0.0",
-    "description": "CSRF agent plugin (enforcing the presence of the decorator header)",
-    "main": "index.js",
-    "author": "Ali Ismael",
-    "license": "Apache-2.0",
-    "dependencies": {
-    }
+  "name": "csrf_agent",
+  "version": "1.0.0",
+  "description": "CSRF agent plugin (enforcing the presence of the decorator header)",
+  "main": "index.js",
+  "author": "Ali Ismael",
+  "license": "Apache-2.0",
+  "dependencies": {}
 }

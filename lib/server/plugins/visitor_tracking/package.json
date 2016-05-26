@@ -1,10 +1,9 @@
 {
-    "name": "visitor-tracking",
-    "version": "1.0.0",
-    "description": "Visitor tracking plugin",
-    "main": "index.js",
-    "author": "Ali Ismael",
-    "license": "Apache-2.0",
-    "dependencies": {
-    }
+  "name": "visitor-tracking",
+  "version": "1.0.0",
+  "description": "Visitor tracking plugin",
+  "main": "index.js",
+  "author": "Ali Ismael",
+  "license": "Apache-2.0",
+  "dependencies": {}
 }

@@ -5,7 +5,6 @@
 
 let platform = require("valde-hapi");
 
-
 platform.init((err, server) => {
     server.start(function () {
         console.log("Server running at:", server.info.uri);
