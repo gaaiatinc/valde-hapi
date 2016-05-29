@@ -22,7 +22,8 @@ function handler(request, reply) {
         dbMgr.find(collectionName, {
                 "_id": request.auth.credentials.account_id
             })
-            .then(function (accountData) {
+            .then(
+                (accountData) => {
                     request.__valde.web_model.account_type = request.auth.credentials.account_type;
                     request.__valde.web_model.account_data = accountData;
                 },

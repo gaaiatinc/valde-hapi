@@ -3,10 +3,9 @@
  */
 "use strict";
 import React from "react";
-import ReactDOM  from "react-dom";
+import ReactDOM from "react-dom";
 
 import * as MyCanvas from "./lib/graph_impl";
-
 
 /**
  * An example of an element to override the body top element in the parent template.
@@ -17,9 +16,7 @@ class MyGraphRefresher extends React.Component {
         this.state = {};
     }
 
-    componentDidMount() {
-
-    }
+    componentDidMount() {}
 
     render() {
         return (
@@ -27,8 +24,9 @@ class MyGraphRefresher extends React.Component {
         );
     }
 }
-MyGraphRefresher.propTypes = {modelData: React.PropTypes.object};
+MyGraphRefresher.propTypes = {
+    modelData: React.PropTypes.object
+};
 MyGraphRefresher.defaultProps = {};
-
 
 export default MyGraphRefresher;
