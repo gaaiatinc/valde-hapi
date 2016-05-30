@@ -6,7 +6,7 @@ class Greeting extends React.Component {
     render() {
         return (
             <p>Hello, Universe</p>
-        )
+        );
     }
 }
 

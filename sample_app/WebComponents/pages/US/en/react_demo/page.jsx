@@ -76,13 +76,13 @@ export default class AppMainPage extends RootTemplate {
     constructor(props) {
         super(props);
 
-        this.bodyTop = <PageBodyTop/>;
+        this.bodyTop = <PageBodyTop />;
         this.bodyMain = <PageBodyMain id="t24" ref={(bdyMnRef) => {
             this.__bodyMainRef = bdyMnRef;
-        }}/>;
+        }} />;
         this.bodyBottom = <PageBodyBottom id="q122" onClick={() => {
             this.__bodyMainRef.setNewGraphData({age: Math.random()});
-        }}/>;
+        }} />;
     }
 
     /**
