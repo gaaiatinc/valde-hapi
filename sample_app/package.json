@@ -1,7 +1,7 @@
 {
   "name": "webnodeapp",
   "version": "0.2.0",
-  "description": "The main web app for ShipLoop",
+  "description": "The main web app for Sample app",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Shiploop/webnodeapp.git"
+    "url": "https://github.com/gaaiatinc/valde-hapi.git"
   },
   "author": "Ali Ismael",
   "license": "UNLICENSED",
   "private": true,
   "bugs": {
-    "url": "https://github.com/Shiploop/webnodeapp/issues"
+    "url": "https://github.com/gaaiatinc/issues"
   },
-  "homepage": "https://github.com/Shiploop/webnodeapp",
+  "homepage": "https://github.com/gaaiatinc",
   "dependencies": {
       "valde-hapi": "^1.0.1"
   },
