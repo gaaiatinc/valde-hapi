@@ -21,7 +21,7 @@ var sa_customer_account_1 = {
     middle_name: "June",
     last_name: "Doe",
     phone_number: "650-555-1234",
-    email_address: "april@asmplecorp.com",
+    email_address: "april@samplecorp.com",
     picture_url: "https://github.com/favicon.ico",
     account_hash_code: "197210abc540",
     signin_method: {
@@ -48,5 +48,3 @@ db.sa_customer_accounts.insert(sa_customer_account_1);
 
 
 //////////////////////////////////
-
-
