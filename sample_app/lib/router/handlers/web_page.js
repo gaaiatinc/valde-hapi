@@ -19,9 +19,10 @@ function handler(request, reply) {
         //add the user account data to the model
         var collectionName = "sa_customer_accounts";
 
-        dbMgr.find(collectionName, {
-                "_id": request.auth.credentials.account_id
-            })
+        dbMgr.find(
+                collectionName, {
+                    "_id": request.auth.credentials.account_id
+                })
             .then(
                 (accountData) => {
                     request.__valde.web_model.account_type = request.auth.credentials.account_type;
