@@ -83,7 +83,7 @@ class MyGraph extends React.Component {
     }
 }
 MyGraph.propTypes = {
-    modelData: React.PropTypes.object
+    model: React.PropTypes.object
 };
 MyGraph.defaultProps = {};
 

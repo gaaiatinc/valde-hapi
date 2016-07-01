@@ -12,7 +12,7 @@
 {<pageIdLogic}
 {/pageIdLogic}
 
-<body class="{?metaData.page_id} page-{metaData.page_id}{/metaData.page_id}"{?metaData.page_id} data-page="{metaData.page_id}"{/metaData.page_id} data-template="blank">
+<body class="{?metadata.page_id} page-{metadata.page_id}{/metadata.page_id}"{?metadata.page_id} data-page="{metadata.page_id}"{/metadata.page_id} data-template="blank">
     {+headerContent/}
     {+pageContent/}
     {+footerContent/}

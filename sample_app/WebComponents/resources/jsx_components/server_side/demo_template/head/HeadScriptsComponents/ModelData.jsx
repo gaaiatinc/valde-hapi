@@ -7,7 +7,7 @@ class ModelData extends React.Component {
     render() {
         return (
             <script
-                dangerouslySetInnerHTML={{__html:  "var modelData = " +JSON.stringify(this.props.modelData) + ";" }}/>
+                dangerouslySetInnerHTML={{__html:  "var model = " +JSON.stringify(this.props.model) + ";" }}/>
         );
     }
 }

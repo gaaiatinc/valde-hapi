@@ -64,7 +64,7 @@ export default class ParentTemplate extends React.Component {
 
         return (
             <html>
-            <TemplateHead entityRelativePath={modelData.pageViewID} modelData={modelData}/>
+            <TemplateHead entityRelativePath={model.pageViewID} model={model}/>
 
             <body id="document-body">
 
@@ -85,7 +85,7 @@ export default class ParentTemplate extends React.Component {
         );
     }
 }
-ParentTemplate.propTypes = {modelData: React.PropTypes.object};
+ParentTemplate.propTypes = {model: React.PropTypes.object};
 ParentTemplate.defaultProps = {};
 
 

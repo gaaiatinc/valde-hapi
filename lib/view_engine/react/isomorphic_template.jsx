@@ -46,13 +46,13 @@ export default class IsomorphicTemplate extends React.Component {
         }}/>);
 
         const app_mount_code = " if (typeof window !== \"undefined\" && window.document && window.document.createElement) {" +
-        " var appElement = React.createElement(window.PageBundle.default,   {modelData: window.modelData}); " +
+        " var appElement = React.createElement(window.PageBundle.default,   {model: window.model}); " +
         " ReactDOM.render(appElement, window.document.getElementById(\"app-element-mountpoint\")); " +
         "}";
 
-        let tempModelData = this.props.modelData || {};
+        let tempModelData = this.props.model || {};
 
-        const modelData = tempModelData;
+        const model = tempModelData;
         const clientInfo = tempModelData.client_info;
         const clientLocale = "en"; //clientInfo.client_locale_language;
         const clientCountry = "US"; //clientInfo.client_locale_country;
@@ -61,13 +61,13 @@ export default class IsomorphicTemplate extends React.Component {
 
         const sanitized_model_data = this.props.filter_model_data(tempModelData);
 
-        let modelDataVarStr = "var modelData = {};";
+        let modelVarStr = "var model = {};";
         try {
-            modelDataVarStr = "var modelData = " + JSON.stringify(sanitized_model_data) + ";";
+            modelVarStr = "var model = " + JSON.stringify(sanitized_model_data) + ";";
         } catch (err) {}
 
-        const modelDataBrowserElement = <script dangerouslySetInnerHTML={{
-            __html: modelDataVarStr
+        const modelBrowserElement = <script dangerouslySetInnerHTML={{
+            __html: modelVarStr
         }}/>;
 
         const html = (
@@ -76,7 +76,7 @@ export default class IsomorphicTemplate extends React.Component {
                     {header_tags.map((header_tag) => header_tag)}
 
                     {/* Model  data */}
-                    {modelDataBrowserElement}
+                    {modelBrowserElement}
 
                     {/* Generating link tags for css artifacts */}
                     {assets.styles.map((style_url, idx) => <link key={"style_" + idx} href={style_url} media="screen, projection" rel="stylesheet" type="text/css" charSet="UTF-8"/>)}
@@ -120,7 +120,7 @@ IsomorphicTemplate.propTypes = {
     run_mode: PropTypes.string,
     body_class_name: PropTypes.string,
     assets: PropTypes.object.isRequired,
-    modelData: PropTypes.object.isRequired,
+    model: PropTypes.object.isRequired,
     app_element: PropTypes.node.isRequired,
     filter_model_data: PropTypes.func.isRequired,
     header_tags: React.PropTypes.arrayOf(React.PropTypes.node),

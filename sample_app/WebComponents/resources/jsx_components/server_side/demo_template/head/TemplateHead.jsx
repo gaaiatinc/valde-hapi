@@ -21,8 +21,8 @@ class HeadScripts extends React.Component {
                 <HeadReactScript />
                 <HeadReactDOMScript />
                 <HeadJQueryScript />
-                <ModelData modelData={this.props.modelData}/>
-                <AppScript entityRelativePath={modelData.pageViewID}/>
+                <ModelData model={this.props.model}/>
+                <AppScript entityRelativePath={model.pageViewID}/>
             </head>
         )
     }

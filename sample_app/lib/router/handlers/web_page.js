@@ -7,7 +7,7 @@
 var path = require("path"),
     dbMgr = require("valde-hapi").database,
     ObjectId = require("mongodb").ObjectID,
-    appConfig = require("valde-hapi").app_config.getConfig();
+    app_config = require("valde-hapi").app_config.get_config();
 
 function handler(request, reply) {
 
@@ -40,8 +40,8 @@ function handler(request, reply) {
 
         if (matches && (matches.length > 0) && (matches[1] == "signin") && (matches[1] != request.params.pageID)) {
             // the requested page requires signin:
-            return reply.redirect(appConfig.get("app_root") + "/signin?next=" +
-                encodeURIComponent(appConfig.get("app_root") + "/" + request.params.pageID));
+            return reply.redirect(app_config.get("app_root") + "/signin?next=" +
+                encodeURIComponent(app_config.get("app_root") + "/" + request.params.pageID));
         } else {
             reply.view(request.__valde.web_model.pageViewTemplate, request.__valde.web_model);
         }
@@ -50,7 +50,7 @@ function handler(request, reply) {
 
 module.exports = {
     method: "GET",
-    path: appConfig.get("app_root") + "/{pageID*}",
+    path: app_config.get("app_root") + "/{pageID*}",
     config: {
         handler: handler,
         auth: {

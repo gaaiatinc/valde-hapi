@@ -1,7 +1,7 @@
 "use strict";
 
 var path = require("path"),
-    appConfig = require("valde-hapi").app_config.getConfig(),
+    app_config = require("valde-hapi").app_config.get_config(),
     Joi = require("joi");
 
 
@@ -26,7 +26,7 @@ function signout_handler(request, reply) {
         success: true,
         message: "Your session is signed out.",
         "sl-decorator": "",
-        redirect: appConfig.get("app_root") + "/home"
+        redirect: app_config.get("app_root") + "/home"
     }).type("application/json");
 }
 
@@ -42,7 +42,7 @@ function signin_handler(request, reply) {
         success: true,
         message: "This method is just a dummy for demo purposes",
         "sl-decorator": "",
-        redirect: appConfig.get("app_root") + "/home"
+        redirect: app_config.get("app_root") + "/home"
     }).type("application/json");
 }
 

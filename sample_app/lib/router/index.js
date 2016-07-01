@@ -3,11 +3,11 @@
  */
 
 "use strict";
-var appConfig = require("valde-hapi").app_config.getConfig();
+var app_config = require("valde-hapi").app_config.get_config();
 
-var loggerFactory = require("valde-hapi").app_logger;
+var logger_factory = require("valde-hapi").app_logger;
 
-var logger = loggerFactory.getLogger("ViewEngine", (appConfig.get("env:production")) ? "WARN" : "DEBUG");
+var logger = logger_factory.getLogger("ViewEngine", (app_config.get("env:production")) ? "WARN" : "DEBUG");
 
 /**
  *

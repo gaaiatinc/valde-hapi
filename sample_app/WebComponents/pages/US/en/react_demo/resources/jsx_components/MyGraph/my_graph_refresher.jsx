@@ -25,7 +25,7 @@ class MyGraphRefresher extends React.Component {
     }
 }
 MyGraphRefresher.propTypes = {
-    modelData: React.PropTypes.object
+    model: React.PropTypes.object
 };
 MyGraphRefresher.defaultProps = {};
 

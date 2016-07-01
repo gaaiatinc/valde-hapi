@@ -9,7 +9,7 @@ import React from "react";
 /**
  * This is a template for react-based pages.  The purpose of this template is to
  * encapsulate the methods and functionalith which must be implemented in any
- * PayPal react-based web pages.
+ * react-based web pages.
  */
 export default class RootTemplate extends React.Component {
     /**
@@ -40,7 +40,7 @@ export default class RootTemplate extends React.Component {
     }
 
     /**
-   * This method must return a subset of the modelData that is secure for
+   * This method must return a subset of the model that is secure for
    * sending to the browser.
    *
    * [filterModelData description]

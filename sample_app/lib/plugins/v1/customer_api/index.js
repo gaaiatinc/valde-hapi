@@ -3,7 +3,7 @@
 
 
 var path = require("path"),
-    appConfig = require("valde-hapi").app_config.getConfig(),
+    app_config = require("valde-hapi").app_config.get_config(),
     Joi = require("joi");
 
 
@@ -15,7 +15,7 @@ function get_customer_account(request, reply) {
         success: true,
         message: "This method is just a dummy for demo purposes",
         "sl-decorator": "",
-        redirect: appConfig.get("app_root") + "/home"
+        redirect: app_config.get("app_root") + "/home"
     }).type("application/json");
 }
 
