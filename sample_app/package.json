@@ -12,14 +12,14 @@
     "url": "https://github.com/gaaiatinc/valde-hapi.git"
   },
   "author": "Ali Ismael",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "private": true,
   "bugs": {
     "url": "https://github.com/gaaiatinc/issues"
   },
   "homepage": "https://github.com/gaaiatinc",
   "dependencies": {
-      "valde-hapi": "^1.0.1"
+      "valde-hapi": "^1.2.3"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
