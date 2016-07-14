@@ -1,9 +1,9 @@
 {
     "PORT": 8000,
     "app_root": "/sample_app",
-    "app_url_domain": "samplecorp.com",
-    "external_server_url": "https://localhost.sampleapp.com",
-    "PID_FILE_PATH": "/var/run/nnn.pid",
+    "app_url_domain": "sampleapp.com",
+    "external_server_url": "https://localhost.sampleapp.com:8443",
+    "PID_FILE_PATH": "/var/run/sample_app.pid",
     "platform": {
         "supported_locales": [
             "en-US",
@@ -21,11 +21,17 @@
             "ja-JP"
         ],
         "auth": {
-            "session_cookie_password": "some strong session password  123456789012345678901234567890",
-            "cookie_name": "sats",
-            "on_auth_failure_redirect_to": "/sample_app/signin",
-            "session_cookie_ttl": 15552000000,
-            "session_validation_plugin": null
+            "cookie": {
+                "session_cookie_password": "some strong session password  123456789012345678901234567890",
+                "cookie_name": "sats",
+                "on_auth_failure_redirect_to": "/sample_app/signin",
+                "session_cookie_ttl": 15552000000,
+                "session_cookie_validation_module": "/lib/auth/cookie_validator"
+            },
+            "basic": {
+                "basic_auth_validation_module": "/lib/auth/basic_validator",
+                "unauthorized_response_attributes": ""
+            }
         },
         "visitor_tracking": {
             "vt_cookie_password": "some strong visitor tracking password 123456789012345678901234567890"
@@ -59,18 +65,26 @@
     }, {
         "module_name": "hapi-swagger",
         "module_options": {
-            "apiVersion": "V1.0",
-            "protocol": "http",
-            "documentationPath": "/api/swagger-ui",
-            "endpoint": "/api/docs",
-            "pathPrefixSize": 3,
+            "schemes": [
+                "https"
+            ],
+            "documentationPath": "/sample_app/api/swagger-ui",
+            "swaggerUIPath": "/sample_app/api/swaggerui/",
+            "jsonPath": "/sample_app/api/swagger.json",
+            "basePath": "/sample_app",
+            "pathPrefixSize": 2,
             "info": {
-                "title": "SampleApp REST API",
-                "description": "The REST API published by SampleApp applications integration.",
-                "termsOfServiceUrl": "http://www.samplecorp.com/terms-and-conditions",
-                "contact": "support@samplecorp.com",
-                "license": "SampleCorp license - TBD",
-                "licenseUrl": "http://www.samplecorp.com/api-license"
+                "title": "SampleCorp REST API",
+                "version": "V2.0",
+                "description": "The REST API published by SampleCorp for mobile applications integration.",
+                "termsOfService": "https://www.samplecorp.com/sample_app/terms-and-conditions",
+                "contact": {
+                    "email": "support@gaaiat.com"
+                },
+                "license": {
+                    "name": "SampleCorp license - TBD",
+                    "url": "https://www.samplecorp.com/sample_app/api-license"
+                }
             }
         }
     }],

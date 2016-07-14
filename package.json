@@ -1,6 +1,6 @@
 {
   "name": "valde-hapi",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "A hapi and dust framework for building API and web applicatins.",
   "main": "./lib/index.js",
   "scripts": {
@@ -66,6 +66,7 @@
     "eslint-plugin-react": "^5.2.2",
     "file-loader": "^0.8.5",
     "hapi": "^13.5.0",
+    "hapi-auth-basic": "^4.2.0",
     "hapi-auth-cookie": "^6.1.1",
     "hapi-swagger": "^6.1.0",
     "hoek": "^4.0.1",

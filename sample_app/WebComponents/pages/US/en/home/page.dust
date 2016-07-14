@@ -1,7 +1,6 @@
 {>"/resources/dust_partials/base-template" /}
 
 {<pageCSS}
-<link href="/res/angle/vendor/nprogress/nprogress.css" rel="stylesheet">
 <link href="/res/css/pages/home/page.css" rel="stylesheet">
 {/pageCSS}
 

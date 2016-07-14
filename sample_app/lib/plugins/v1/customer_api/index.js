@@ -1,14 +1,8 @@
-
 "use strict";
-
 
 var path = require("path"),
     app_config = require("valde-hapi").app_config.get_config(),
     Joi = require("joi");
-
-
-
-
 
 function get_customer_account(request, reply) {
     return reply({
@@ -19,33 +13,29 @@ function get_customer_account(request, reply) {
     }).type("application/json");
 }
 
-
 /**
  *
  * @param server
  * @param options
  * @param next
  */
-module.exports.register = function (server, options, next) {
+module.exports.register = function(server, options, next) {
 
     /**
      *
      */
     server.route({
         method: "GET",
-        path: "/rest/v1/customer/get_customer_account",
+        path: app_config.get("app_root") + "/api/v1/customer/get_customer_account",
         config: {
             handler: get_customer_account,
             tags: ["api"],
             description: "get_customer_account",
             notes: "An API method to retrieve the customer account profile",
-            auth: "session",
+            auth: "simple",
             plugins: {
-                "hapi-auth-cookie": {
-                    redirectTo: false
-                },
                 "csrf_agent": {
-                    enabled: true
+                    enabled: false
                 },
                 "resource_set": {
                     enabled: true
@@ -53,7 +43,8 @@ module.exports.register = function (server, options, next) {
             },
             validate: {
                 headers: Joi.object({
-                    "sa-decorator": Joi.string().required(),
+//                    "sa-decorator": Joi.string().required(),
+                    "authorization": Joi.string().required(),
                     "accept-language": Joi.string().required(),
                     "user-agent": Joi.string().required()
                 }).options({
@@ -62,8 +53,6 @@ module.exports.register = function (server, options, next) {
             }
         }
     });
-
-
 
     next();
 };

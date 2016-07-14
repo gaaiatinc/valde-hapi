@@ -1,14 +1,14 @@
 "use strict";
 
-var path = require("path"),
+let path = require("path"),
     app_config = require("valde-hapi").app_config.get_config(),
+    crypto = require("crypto"),
+    moment = require("moment"),
+
     Joi = require("joi");
 
-
-var SIGNIN_WITH_DESCR = "SAMPLEAPP",
-    USER_ID_DESCR = "Email address for SAMPLEAPP",
-    ACCESS_TOKEN_DESCR = "Account password for SAMPLEAPP accounts";
-
+var USER_NAME = "Email address for SAMPLEAPP",
+    PASSWORD_DESCR = "Account password for SAMPLEAPP accounts";
 
 /**
  *
@@ -18,9 +18,8 @@ var SIGNIN_WITH_DESCR = "SAMPLEAPP",
  */
 function signout_handler(request, reply) {
     try {
-        request.auth.session.clear();
-    } catch (err) {
-    }
+        request.cookieAuth.clear();
+    } catch (err) {}
 
     return reply({
         success: true,
@@ -30,7 +29,6 @@ function signout_handler(request, reply) {
     }).type("application/json");
 }
 
-
 /**
  *
  * @param request
@@ -38,18 +36,39 @@ function signout_handler(request, reply) {
  * @returns {*}
  */
 function signin_handler(request, reply) {
-    return reply({
-        success: true,
-        message: "This method is just a dummy for demo purposes",
-        "sl-decorator": "",
-        redirect: app_config.get("app_root") + "/home"
-    }).type("application/json");
+
+    if (!request.auth.isAuthenticated) {
+        var shasum = crypto.createHash("sha1");
+        shasum.update(String(request.payload.username));
+        shasum.update(String(request.headers["accept-language"]));
+        shasum.update(String(request.headers["user-agent"]));
+        var device_fingerprint = "29af01" + shasum.digest("hex").substr(5);
+
+        var expire_on = moment().add(6, "months");
+        var session = {
+            device_fingerprint: device_fingerprint,
+            username: request.payload.username,
+            expire_on: expire_on.format()
+        };
+        request.cookieAuth.set(session);
+    }
+
+    if (request.query["redirect_uri"]) {
+        return reply.redirect(request.query["redirect_uri"]);
+    } else {
+        return reply({
+            success: true,
+            message: "This method is just a dummy for demo purposes",
+            "sl-decorator": "",
+            redirect: app_config.get("app_root") + "/home"
+        }).type("application/json");
+    }
 }
 
-module.exports.register = function (server, options, next) {
+module.exports.register = function(server, options, next) {
     server.route({
         method: "POST",
-        path: "/rest/v1/account/signin",
+        path: app_config.get("app_root") + "/api/v1/account/signin",
         config: {
             handler: signin_handler,
             tags: ["api"],
@@ -74,12 +93,11 @@ module.exports.register = function (server, options, next) {
             },
             validate: {
                 payload: {
-                    signin_with: Joi.string().valid(["SAMPLEAPP"]).required().description(SIGNIN_WITH_DESCR),
-                    user_id: Joi.string().when("signin_with", {
-                        is: "SAMPLEAPP",
-                        then: Joi.string().email()
-                    }).required().description(USER_ID_DESCR),
-                    access_token: Joi.string().required().description(ACCESS_TOKEN_DESCR)
+                    username: Joi.string().required().description(USER_NAME),
+                    password: Joi.string().required().description(PASSWORD_DESCR)
+                },
+                query: {
+                    redirect_uri: Joi.string().description("An optional URI to redirect to upon successful login")
                 },
                 headers: Joi.object({
                     "accept-language": Joi.string().required(),
@@ -91,13 +109,12 @@ module.exports.register = function (server, options, next) {
         }
     });
 
-
     /**
      *
      */
     server.route({
         method: "GET",
-        path: "/rest/v1/account/signout",
+        path: app_config.get("app_root") + "/api/v1/account/signout",
         config: {
             handler: signout_handler,
             description: "signout",
@@ -106,10 +123,8 @@ module.exports.register = function (server, options, next) {
         }
     });
 
-
     next();
 };
-
 
 module.exports.register.attributes = {
     pkg: require("./package.json")
