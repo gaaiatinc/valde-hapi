@@ -20,7 +20,7 @@
   "homepage": "https://github.com/gaaiatinc",
   "dependencies": {
     "react-bootstrap": "^0.29.5",
-    "valde-hapi": "^1.2.3"
+    "valde-hapi": "^1.2.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
