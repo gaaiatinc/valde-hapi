@@ -1,7 +1,7 @@
 "use strict";
 
 var path = require("path"),
-    app_config = require("valde-hapi").app_config.get_config(),
+    app_config = require("valde-hapi").app_config,
     Joi = require("joi");
 
 function get_customer_account(request, reply) {

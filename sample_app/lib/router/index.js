@@ -3,7 +3,7 @@
  */
 
 "use strict";
-var app_config = require("valde-hapi").app_config.get_config();
+var app_config = require("valde-hapi").app_config;
 
 var logger_factory = require("valde-hapi").app_logger;
 

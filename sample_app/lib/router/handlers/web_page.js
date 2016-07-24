@@ -5,9 +5,8 @@
 "use strict";
 
 var path = require("path"),
-    dbMgr = require("valde-hapi").database,
-    ObjectId = require("mongodb").ObjectID,
-    app_config = require("valde-hapi").app_config.get_config();
+    db_mgr = require("valde-hapi").database,
+    app_config = require("valde-hapi").app_config;
 
 function handler(request, reply) {
 
@@ -19,7 +18,7 @@ function handler(request, reply) {
         //add the user account data to the model
         var collectionName = "sa_customer_accounts";
 
-        dbMgr.find(
+        db_mgr.find(
                 collectionName, {
                     "_id": request.auth.credentials.account_id
                 })
@@ -34,17 +33,7 @@ function handler(request, reply) {
                 reply.view(request.__valde.web_model.pageViewTemplate, request.__valde.web_model);
             });
     } else {
-        //check if the model construction is redirecting to signin page:
-        var resolvedPageRe = /\/pages\/..\/..\/(.*)\/page/;
-        var matches = resolvedPageRe.exec(request.__valde.web_model.pageViewID);
-
-        if (matches && (matches.length > 0) && (matches[1] == "signin") && (matches[1] != request.params.pageID)) {
-            // the requested page requires signin:
-            return reply.redirect(app_config.get("app_root") + "/signin?next=" +
-                encodeURIComponent(app_config.get("app_root") + "/" + request.params.pageID));
-        } else {
-            reply.view(request.__valde.web_model.pageViewTemplate, request.__valde.web_model);
-        }
+        reply.view(request.__valde.web_model.pageViewTemplate, request.__valde.web_model);
     }
 }
 

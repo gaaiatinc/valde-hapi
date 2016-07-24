@@ -1,6 +1,7 @@
 # valde-hapi
 
-valde-hapi is a config-driven framework which you can use to produce a working skeleton app in minutes. The resulting skeleton app supports:
+valde-hapi is a config-driven framework which you can use to produce a working skeleton application
+in a few minutes. The resulting skeleton app supports:
 
 ```
 1-   Web pages based on LinkedIn dust templates

@@ -1,7 +1,7 @@
 "use strict";
 
 let path = require("path"),
-    app_config = require("valde-hapi").app_config.get_config(),
+    app_config = require("valde-hapi").app_config,
     crypto = require("crypto"),
     moment = require("moment"),
 
