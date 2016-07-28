@@ -13,7 +13,7 @@ describe("temp tests", function() {
     before(() => {
         // runs before all tests in this block
         //
-        platform.init("../");
+        platform.init("./");
         app_config = platform.app_config;
         return;
     });
