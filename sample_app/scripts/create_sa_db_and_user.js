@@ -7,7 +7,7 @@ db.dropDatabase();
 db.createUser(
     {
         user: "sa_db_user",
-        pwd: "sa_user_pwd",
+        pwd: "sa_db_pwd",
         roles: [{role: "readWrite", db: "sa_db"}]
     }
 );
