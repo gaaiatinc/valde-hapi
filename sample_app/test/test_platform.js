@@ -1,6 +1,6 @@
 "use strict";
 
-let platform = require("../lib");
+let platform = require("valde-hapi");
 
 let app_config;
 
@@ -16,7 +16,7 @@ describe("temp tests", () => {
         platform.init("./");
         app_config = platform.app_config;
 
-        // platform.launch(next);
+        platform.launch(next);
         return;
     });
 
@@ -39,12 +39,12 @@ describe("temp tests", () => {
             console.log("done it!", app_config.get("application_root_folder"));
         });
 
-        // it("should upsert a doc in the sample db", () => {
-        //     let db_mgr = platform.database;
-        //
-        //     return db_mgr.updateOne({_id: null}, {$currentDate: {expire_on: true}}, {upsert: true} );
-        //
-        // });
+        it("should upsert a doc in the sample db", () => {
+            let db_mgr = platform.database;
+
+            return db_mgr.updateOne("demo_col", {_id: {$exists: false}}, {$currentDate: {expire_on: true}}, {upsert: true} );
+
+        });
     });
 
 });

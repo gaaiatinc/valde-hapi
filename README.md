@@ -10,4 +10,6 @@ in a few minutes. The resulting skeleton app supports:
 4-   CSRF protection (using bearer tokens) and session cookies
 ```
 
+The major version number of this framework will follow the one of the hapi framework.
+
 **This is work in porgress**
