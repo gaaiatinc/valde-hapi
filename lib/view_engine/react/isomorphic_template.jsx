@@ -4,8 +4,7 @@
 
 "use strict";
 
-import React, {Component, PropTypes} from "react";
-import ReactDOM from "react-dom";
+import React, {PropTypes} from "react";
 import ReactDOMServer from "react-dom/server";
 
 /**
@@ -19,7 +18,6 @@ export default class IsomorphicTemplate extends React.Component {
      */
     constructor(props) {
         super(props);
-        //this.state = {balance: props.openingBalance};
         this.state = {};
     }
 
@@ -29,37 +27,35 @@ export default class IsomorphicTemplate extends React.Component {
      */
     render() {
         const {
-            run_mode,
+            // run_mode,
             assets,
             filter_model_data,
             header_tags,
             body_class_name,
             app_element,
-            locale,
+            // locale,
             app_script_url,
             body_end_element
         } = this.props;
-
-        const app_element_markup = ReactDOMServer.renderToString(app_element);
-        const app_element_div = (<div id="app-element-mountpoint" dangerouslySetInnerHTML={{
-            __html: app_element_markup
-        }}/>);
 
         const app_mount_code = " if (typeof window !== \"undefined\" && window.document && window.document.createElement) {" +
         " var appElement = React.createElement(window.PageBundle.default,   {model: window.model}); " +
         " ReactDOM.render(appElement, window.document.getElementById(\"app-element-mountpoint\")); " +
         "}";
 
-        let tempModelData = this.props.model || {};
-
-        const model = tempModelData;
-        const clientInfo = tempModelData.client_info;
-        const clientLocale = "en"; //clientInfo.client_locale_language;
-        const clientCountry = "US"; //clientInfo.client_locale_country;
-        const deviceType = "desktop"; //clientInfo.client_type;
+        const model = this.props.model || {};
+        const clientInfo = model.client_info || {};
+        const clientLocale = clientInfo.client_locale_language || "en";
+        const clientCountry = clientInfo.client_locale_country || "US";
+        const deviceType = clientInfo.client_type || "desktop";
         const lang = `${clientLocale}-${clientCountry}`;
 
-        const sanitized_model_data = this.props.filter_model_data(tempModelData);
+        const sanitized_model_data = filter_model_data(model);
+
+        const app_element_markup = ReactDOMServer.renderToString(app_element);
+        const app_element_div = (<div id="app-element-mountpoint" dangerouslySetInnerHTML={{
+            __html: app_element_markup
+        }}/>);
 
         let modelVarStr = "var model = {};";
         try {
