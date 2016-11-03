@@ -31,6 +31,16 @@
             "basic": {
                 "basic_auth_validation_module": "/lib/auth/basic_validator",
                 "unauthorized_response_attributes": ""
+            },
+            "bearer_jwt": {
+                "verification_key": "some strong token password  123456789012345678901234567890",
+                "bearer_jwt_validation_module": "/lib/auth/bearer_jwt",
+                "verify_attributes": {
+                    "algorithms": ["HS256"],
+                    "audience": "12345",
+                    "issuer": "sample_corp.com",
+                    "subject": "sample_corp"
+                }
             }
         },
         "visitor_tracking": {
@@ -63,11 +73,18 @@
             "app_secret": "secret-321123456"
         }
     }, {
+        "module_path": "lib/plugins/v1/bearer_test_api",
+        "module_options": {
+            "app_id": "321123456",
+            "app_secret": "secret-321123456"
+        }
+    }, {
         "module_name": "hapi-swagger",
         "module_options": {
             "schemes": [
                 "https"
             ],
+            "host": "localhost.sampleapp.com:8443",
             "documentationPath": "/sample_app/api/swagger-ui",
             "swaggerUIPath": "/sample_app/api/swaggerui/",
             "jsonPath": "/sample_app/api/swagger.json",

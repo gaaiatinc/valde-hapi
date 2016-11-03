@@ -1,0 +1,10 @@
+{
+    "name": "v1/sa_bearer_jwt",
+    "version": "1.0.0",
+    "description": "Bearer jwt test API plugin",
+    "main": "index.js",
+    "author": "SA developer",
+    "license": "ISC",
+    "dependencies": {
+    }
+}
