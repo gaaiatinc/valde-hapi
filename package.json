@@ -1,6 +1,6 @@
 {
   "name": "valde-hapi",
-  "version": "15.2.2",
+  "version": "15.2.3",
   "description": "A hapi and dust framework for building API and web applicatins.",
   "main": "./lib/index.js",
   "scripts": {
@@ -73,6 +73,7 @@
     "less": "^2.7.1",
     "lodash": "^4.16.6",
     "lru-cache-js": "^0.4.2",
+    "memory-fs": "^0.3.0",
     "moment": "^2.15.2",
     "mongodb": "^2.2.11",
     "nconf": "^0.8.4",
