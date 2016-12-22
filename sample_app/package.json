@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/gaaiatinc",
   "dependencies": {
-    "react-bootstrap": "^0.30.3",
+    "react-bootstrap": "^0.30.7",
     "valde-hapi": "../"
   },
   "devDependencies": {
