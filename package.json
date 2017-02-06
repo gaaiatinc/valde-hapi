@@ -1,6 +1,6 @@
 {
   "name": "valde-hapi",
-  "version": "16.1.5",
+  "version": "16.1.6",
   "description": "A hapi and dust framework for building API and web applicatins.",
   "main": "./lib/index.js",
   "scripts": {
@@ -73,7 +73,7 @@
     "jsonwebtoken": "^7.2.1",
     "less": "^2.7.2",
     "lodash": "^4.17.4",
-    "lru-cache-js": "^0.4.2",
+    "lru-cache-js": "^1.0.1",
     "memory-fs": "^0.4.1",
     "mocha": "^3.2.0",
     "moment": "^2.17.1",
@@ -88,6 +88,7 @@
     "vision": "^4.1.1",
     "webpack": "^2.2.0",
     "winston": "^2.3.1",
-    "wreck": "^10.0.0"
+    "wreck": "^10.0.0",
+    "xss-filters": "^1.2.7"
   }
 }
