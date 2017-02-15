@@ -43,7 +43,7 @@
                 "VariableDeclarator": {
                     "var": 1,
                     "let": 1,
-                    "const": 2
+                    "const": 1
                 },
                 "outerIIFEBody": 1,
                 "MemberExpression": 1,
