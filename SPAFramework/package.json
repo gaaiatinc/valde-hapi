@@ -1,0 +1,43 @@
+{
+  "author": {
+    "name": "Ali Ismael"
+  },
+  "bugs": {
+    "url": "https://github.com/gaaiatinc/valde-hapi.git"
+  },
+  "dependencies": {},
+  "description": "A module comprising the base framework for a single page react-redux app.",
+  "devDependencies": {
+  },
+  "directories": {},
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "keywords": [],
+  "main": "./lib/BaseSPATemplate.js",
+  "maintainers": [
+    {
+      "name": "Ali Ismael",
+      "email": "ali@gaaiat.com"
+    }
+  ],
+  "name": "spa-framework",
+  "peerDependencies": {
+    "axios": ">0.15.3",
+    "react": ">15.4.2",
+    "react-bootstrap": ">0.30.7",
+    "react-dom": ">15.4.2",
+    "react-redux": ">5.0.2",
+    "redux": ">3.6.0",
+    "redux-thunk": ">2.2.0"
+  },
+  "readme": "No README data found!",
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/gaaiatinc/valde-hapi.git"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "version": "1.0.1"
+}

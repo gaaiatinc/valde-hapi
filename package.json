@@ -1,11 +1,12 @@
 {
   "name": "valde-hapi",
-  "version": "16.1.8",
+  "version": "16.1.9",
   "description": "A hapi and dust framework for building API and web applicatins.",
   "main": "./lib/index.js",
   "scripts": {
     "test": "mocha test",
-    "ve_build": "babel lib/view_engine/react/isomorphic_template.jsx -o lib/view_engine/react/isomorphic_template.js"
+    "ve_build": "babel lib/view_engine/react/isomorphic_template.jsx -o lib/view_engine/react/isomorphic_template.js",
+    "spa_build": "babel SPAFramework/lib/BaseSPATemplate.jsx -o SPAFramework/lib/BaseSPATemplate.js"
   },
   "repository": {
     "type": "git",
