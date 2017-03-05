@@ -3,8 +3,9 @@
  */
 "use strict";
 import axios from "axios";
-import {get as _get, set as _set, unset as _unset} from "lodash";
+import {get as _get, startsWith as _startsWith} from "lodash";
 import encodeUrl from "encodeurl";
+import isURL from "validator/lib/isURL";
 
 import {
     setContent,
@@ -12,10 +13,13 @@ import {
     setRunMode,
     setDeployMode,
     setPageViewID,
-    setRequestInfo
+    setRequestInfo,
+    setAppMountPoint,
+    setPageID,
+    setResolvedLocale
 } from "./model_data_actions";
 
-let axios_config = {
+let axiosConfig = {
     baseURL: "/",
     headers: {
         "Content-Type": "application/json",
@@ -29,81 +33,137 @@ let axios_config = {
     maxRedirects: 2
 };
 
-const process_release_name = _get(process,)
+let urlOptions = {
+    protocols: ["https"],
+    require_tld: true,
+    require_protocol: true,
+    require_host: true,
+    require_valid_protocol: true,
+    allow_underscores: true,
+    host_whitelist: false,
+    host_blacklist: false,
+    allow_trailing_dot: false,
+    allow_protocol_relative_urls: false
+};
 
-const running_in_browser = () => {
+/**
+ *
+ * @return {[type]} [description]
+ */
+export const runningInBrowser = () => {
     if (typeof process !== "undefined") {
-        let process_name = _get(process, "release.name", null);
-        if ((typeof process_name === "string") && (process_name.search(/node|io.js/i) !== -1)) {
+        let processName = _get(process, "release.name", null);
+        if ((typeof processName === "string") && (processName.search(/node|io.js/i) !== -1)) {
             return false;
         }
     }
 
     return true;
-}(typeof process === "undefined") || (typeof process.release === "undefined") || (typeof process.release.name === "undefined") || (process.release.name.search(/node|io.js/i) !== -1)
-
-const build_request_url = (page_uri, query_string_params) => {
-    let page_url = "/" + page_uri;
-
-    let query_string = "?";
-    let query_string_valid = false;
-
-    for (let qp_name of Object.getOwnPropertyNames(query_string_params)) {
-        if (!query_string_valid) {
-            query_string_valid = true;
-            query_string += qp_name + "=" + query_string_params[qp_name];
-        } else {
-            query_string += "&" + qp_name + "=" + query_string_params[qp_name];
-        }
-        query_string_valid = true;
-    }
-    if (query_string_valid) {
-        page_url += query_string;
-
-        page_url = encodeUrl(page_url);
-        // console.log("page_url", page_url);
-    }
-    return page_url;
 };
 
 /**
  *
- * @param  {[type]} page_uri             [description]
- * @param  {[type]} query_string_params [description]
+ * @param  {[type]} queryStringParams [description]
  * @return {[type]}                     [description]
  */
-const submit_get_with_query = (page_uri, query_string_params) => {
-    let op_config = Object.assign({}, axios_config);
-    let page_url = build_request_url(page_uri, query_string_params);
-
-    // console.log("requiest uri", page_url);
-    return axios.get(page_url, op_config);
-};
-
-/**
- *
- * @param  {[type]} query_string_params [description]
- * @return {[type]}                     [description]
- */
-export const get_action = (query_string_params) => {
-    query_string_params = query_string_params || {};
+export const getAction = (queryStringParams) => {
 
     return function(dispatch, getState) {
-        const {appData} = getState();
-        if (running_in_browser) {
-            submit_get_with_query(appData.page_uri, query_string_params).then((response) => {
 
-                let model = response.data;
+        if (runningInBrowser) {
+            const {requestInfo, appMountPoint, pageID} = getState();
 
-                dispatch((setContent));
-                dispatch((setMetadata));
-                dispatch((setRunMode));
-                dispatch((setDeployMode));
-                dispatch((setPageViewID));
-                dispatch((setRequestInfo));
-            }).catch((error) => {
-                // console.log(error);
-            });
+            let targetUrl = "https://" + requestInfo.headers.host + "/" + appMountPoint + "/" + pageID;
+            if (!isURL(targetUrl, urlOptions)) {
+                return;
+            }
+
+            let opConfig = Object.assign({}, axiosConfig);
+            let params;
+
+            if (typeof queryStringParams === "object") {
+                params = {
+                    params: queryStringParams
+                };
+            }
+
+            axios
+                .get(targetUrl, params, opConfig)
+                .then((response) => {
+
+                    let model = response.data;
+
+                    dispatch(setContent(model));
+                    dispatch(setMetadata(model));
+                    dispatch(setRunMode(model));
+                    dispatch(setDeployMode(model));
+                    dispatch(setPageViewID(model));
+                    dispatch(setRequestInfo(model));
+                    dispatch(setResolvedLocale(model));
+                    dispatch(setPageID(model));
+                    dispatch(setAppMountPoint(model));
+                })
+                .catch((error) => {
+                    // console.log(error);
+                });
         }
     };
+};
+
+/**
+ *
+ * @param  {[type]}   targetUrl          [description]
+ * @param  {[type]}   queryStringParams [description]
+ * @param  {Function} callback            [description]
+ * @return {[type]}                       [description]
+ */
+export const apiGet = (targetUrl, queryStringParams) => {
+    if (runningInBrowser) {
+        if (!isURL(targetUrl, urlOptions)) {
+            return Promise.reject(new Error("Invlaid target URL!"));
+        }
+
+        let opConfig = Object.assign({}, axiosConfig);
+        let params;
+
+        if (typeof queryStringParams === "object") {
+            params = {
+                params: queryStringParams
+            };
+        }
+
+        return axios.get(targetUrl, params, opConfig);
+    } else {
+        //This will simply resolve with an empty object when run outside of a browser
+        return Promise.resolve({});
+    }
+};
+
+/**
+ *
+ * @param  {[type]} targetUrl         [description]
+ * @param  {[type]} queryStringParams [description]
+ * @param  {[type]} payload           [description]
+ * @return {[type]}                   [description]
+ */
+export const apiPost = (targetUrl, queryStringParams, payload) => {
+    if (runningInBrowser) {
+        if (!isURL(targetUrl, urlOptions)) {
+            return Promise.reject(new Error("Invlaid target URL!"));
+        }
+
+        let opConfig = Object.assign({}, axiosConfig);
+        let params;
+
+        if (typeof queryStringParams === "object") {
+            params = {
+                params: queryStringParams
+            };
+        }
+
+        return axios.post(targetUrl, params, payload, opConfig);
+    } else {
+        //This will simply resolve with an empty object when run outside of a browser
+        return Promise.resolve({});
+    }
 };

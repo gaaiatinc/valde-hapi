@@ -6,6 +6,9 @@ import metadata from "./metadata";
 import pageViewID from "./pageViewID";
 import requestInfo from "./requestInfo";
 import run_mode from "./run_mode";
+import pageID from "./pageID";
+import resolvedLocale from "./resolvedLocale";
+import appMountPoint from "./appMountPoint";
 
 const SPAppReducers = {
     content,
@@ -13,7 +16,10 @@ const SPAppReducers = {
     metadata,
     pageViewID,
     requestInfo,
-    run_mode
+    run_mode,
+    resolvedLocale,
+    appMountPoint,
+    pageID
 };
 
 export default SPAppReducers;

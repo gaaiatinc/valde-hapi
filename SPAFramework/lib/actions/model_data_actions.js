@@ -27,3 +27,15 @@ export const setPageViewID = (model) => {
 export const setRequestInfo = (model) => {
     return {type: "SET_REQUESTINFO", pageViewID: model.requestInfo};
 };
+
+export const setResolvedLocale = (model) => {
+    return {type: "SET_RESOLVEDLOCALE", resolvedLocale: model.resolvedLocale};
+};
+
+export const setPageID = (model) => {
+    return {type: "SET_PAGEID", pageID: model.pageID};
+};
+
+export const setAppMountPoint = (model) => {
+    return {type: "SET_APPMOUNTPOINT", appMountPoint: model.appMountPoint};
+};

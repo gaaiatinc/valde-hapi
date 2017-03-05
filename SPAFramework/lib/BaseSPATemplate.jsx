@@ -56,6 +56,8 @@ const genInitialStateData = (props) => {
         requestInfo: props.model.requestInfo,
         content: props.model.content,
         metadata: props.model.metadata,
+        pageID: props.model.pageID,
+        resolvedLocale: props.model.resolvedLocale,
         appState: {}
     };
 };
@@ -66,6 +68,15 @@ export default class BaseSPATemplate extends React.Component {
      */
     constructor(props) {
         super(props);
+
+        this.getExternalAssetsDescriptor = this.getExternalAssetsDescriptor.bind(this);
+        this.filterModelData = this.filterModelData.bind(this);
+        this.getHeaderTags = this.getHeaderTags.bind(this);
+        this.getBodyEndElement = this.getBodyEndElement.bind(this);
+        this.getBodyClassName = this.getBodyClassName.bind(this);
+        this.createAppContainer = this.createAppContainer.bind(this);
+        this.getAppStateReducer = this.getAppStateReducer.bind(this);
+
     }
 
     /**
@@ -184,7 +195,9 @@ BaseSPATemplate.propTypes = {
     deploy_mode: React.PropTypes.string,
     content: React.PropTypes.object,
     metadata: React.PropTypes.object,
-    requestInfo: React.PropTypes.object
+    requestInfo: React.PropTypes.object,
+    resolvedLocale: React.PropTypes.object,
+    pageID: React.PropTypes.string
 };
 
 /**
