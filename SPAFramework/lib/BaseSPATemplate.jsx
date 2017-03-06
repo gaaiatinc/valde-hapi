@@ -69,13 +69,27 @@ export default class BaseSPATemplate extends React.Component {
     constructor(props) {
         super(props);
 
-        this.getExternalAssetsDescriptor = this.getExternalAssetsDescriptor.bind(this);
-        this.filterModelData = this.filterModelData.bind(this);
-        this.getHeaderTags = this.getHeaderTags.bind(this);
-        this.getBodyEndElement = this.getBodyEndElement.bind(this);
-        this.getBodyClassName = this.getBodyClassName.bind(this);
-        this.createAppContainer = this.createAppContainer.bind(this);
-        this.getAppStateReducer = this.getAppStateReducer.bind(this);
+        this.getExternalAssetsDescriptor = this
+            .getExternalAssetsDescriptor
+            .bind(this);
+        this.filterModelData = this
+            .filterModelData
+            .bind(this);
+        this.getHeaderTags = this
+            .getHeaderTags
+            .bind(this);
+        this.getBodyEndElement = this
+            .getBodyEndElement
+            .bind(this);
+        this.getBodyClassName = this
+            .getBodyClassName
+            .bind(this);
+        this.createAppContainer = this
+            .createAppContainer
+            .bind(this);
+        this.getAppStateReducer = this
+            .getAppStateReducer
+            .bind(this);
 
     }
 
@@ -204,5 +218,4 @@ BaseSPATemplate.propTypes = {
  *
  * @type {Object}
  */
-BaseSPATemplate.defaultProps = {
-};
+BaseSPATemplate.defaultProps = {};

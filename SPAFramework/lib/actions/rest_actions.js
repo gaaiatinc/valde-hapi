@@ -66,7 +66,7 @@ export const runningInBrowser = () => {
  * @param  {[type]} queryStringParams [description]
  * @return {[type]}                     [description]
  */
-export const getAction = (queryStringParams) => {
+export const getAction = (queryStringParams, headers) => {
 
     return function(dispatch, getState) {
 
@@ -79,16 +79,16 @@ export const getAction = (queryStringParams) => {
             }
 
             let opConfig = Object.assign({}, axiosConfig);
-            let params;
-
             if (typeof queryStringParams === "object") {
-                params = {
-                    params: queryStringParams
-                };
+                opConfig.params = queryStringParams;
+            }
+
+            if (typeof headers === "object") {
+                opConfig.headers = headers;
             }
 
             axios
-                .get(targetUrl, params, opConfig)
+                .get(targetUrl, opConfig)
                 .then((response) => {
 
                     let model = response.data;
@@ -117,22 +117,23 @@ export const getAction = (queryStringParams) => {
  * @param  {Function} callback            [description]
  * @return {[type]}                       [description]
  */
-export const apiGet = (targetUrl, queryStringParams) => {
+export const apiGet = (targetUrl, queryStringParams, headers) => {
     if (runningInBrowser) {
         if (!isURL(targetUrl, urlOptions)) {
             return Promise.reject(new Error("Invlaid target URL!"));
         }
 
         let opConfig = Object.assign({}, axiosConfig);
-        let params;
 
         if (typeof queryStringParams === "object") {
-            params = {
-                params: queryStringParams
-            };
+            opConfig.params = queryStringParams;
         }
 
-        return axios.get(targetUrl, params, opConfig);
+        if (typeof headers === "object") {
+            opConfig.headers = headers;
+        }
+
+        return axios.get(targetUrl, opConfig);
     } else {
         //This will simply resolve with an empty object when run outside of a browser
         return Promise.resolve({});
@@ -146,22 +147,23 @@ export const apiGet = (targetUrl, queryStringParams) => {
  * @param  {[type]} payload           [description]
  * @return {[type]}                   [description]
  */
-export const apiPost = (targetUrl, queryStringParams, payload) => {
+export const apiPost = (targetUrl, queryStringParams, headers, payload) => {
     if (runningInBrowser) {
         if (!isURL(targetUrl, urlOptions)) {
             return Promise.reject(new Error("Invlaid target URL!"));
         }
 
         let opConfig = Object.assign({}, axiosConfig);
-        let params;
 
         if (typeof queryStringParams === "object") {
-            params = {
-                params: queryStringParams
-            };
+            opConfig.params = queryStringParams;
         }
 
-        return axios.post(targetUrl, params, payload, opConfig);
+        if (typeof headers === "object") {
+            opConfig.headers = headers;
+        }
+
+        return axios.post(targetUrl, payload, opConfig);
     } else {
         //This will simply resolve with an empty object when run outside of a browser
         return Promise.resolve({});

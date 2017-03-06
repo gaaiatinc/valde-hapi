@@ -75,7 +75,9 @@ export default class IsomorphicTemplate extends React.Component {
                     {modelBrowserElement}
 
                     {/* Generating link tags for css artifacts */}
-                    {assets.styles.map((style_url, idx) => <link key={"style_" + idx} href={style_url} media="screen, projection" rel="stylesheet" type="text/css" charSet="UTF-8"/>)}
+                    {assets
+                        .styles
+                        .map((style_url, idx) => <link key={"style_" + idx} href={style_url} media="screen, projection" rel="stylesheet" type="text/css" charSet="UTF-8"/>)}
                 </head>
 
                 <body className={body_class_name}>
@@ -90,15 +92,18 @@ export default class IsomorphicTemplate extends React.Component {
                     {/* <script dangerouslySetInnerHTML={{__html: `window._locale=${JSON.stringify(locale)}`}} charSet="UTF-8"/> */}
 
                     {/* javascripts */}
-                    {assets.javascript.map((script_url, idx) => <script src={script_url} key={"js_script_" + idx} charSet="UTF-8"/>)}
+                    {assets
+                        .javascript
+                        .map((script_url, idx) => <script src={script_url} key={"js_script_" + idx} charSet="UTF-8"/>)}
 
                     {/* Main application React javascript */}
                     <script src={app_script_url} charSet="UTF-8"/>
 
                     <script dangerouslySetInnerHTML={{
                         __html: app_mount_code
-                    }} charSet="UTF-8"/> {/* APP element mount code*/}
+                    }} charSet="UTF-8"/>
 
+                    {/* APP element mount code*/}
                     {body_end_element}
                 </body>
             </html>
@@ -119,7 +124,9 @@ IsomorphicTemplate.propTypes = {
     model: PropTypes.object.isRequired,
     app_element: PropTypes.node.isRequired,
     filter_model_data: PropTypes.func.isRequired,
-    header_tags: React.PropTypes.arrayOf(React.PropTypes.node),
+    header_tags: React
+        .PropTypes
+        .arrayOf(React.PropTypes.node),
     locale: PropTypes.string,
     body_end_element: PropTypes.node,
     app_script_url: PropTypes.string.isRequired

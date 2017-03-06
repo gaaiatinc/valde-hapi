@@ -2,7 +2,6 @@
  *
  */
 "use strict";
+import {getAction, apiGet, apiPost} from "./lib/actions/rest_actions";
 
-import get_action from "./lib/actions/get_actions";
-
-export {get_action};
+export {getAction, apiGet, apiPost};
