@@ -1,19 +1,64 @@
 "use strict";
 
-import _Object$assign from "babel-runtime/core-js/object/assign";
-import React from "react";
-import { connect, Provider } from "react-redux";
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import redux_thunk from "redux-thunk";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-import SPAppReducers from "./reducers";
+var _assign = require("babel-runtime/core-js/object/assign");
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require("babel-runtime/helpers/createClass");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _objectDestructuringEmpty2 = require("babel-runtime/helpers/objectDestructuringEmpty");
+
+var _objectDestructuringEmpty3 = _interopRequireDefault(_objectDestructuringEmpty2);
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require("react-redux");
+
+var _redux = require("redux");
+
+var _reduxThunk = require("redux-thunk");
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _reducers = require("./reducers");
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  *
  * @param {[type]} _csrf     [description]
  * @param {[type]} modelData [description]
  */
-const TempComponent = ({}) => React.createElement("div", null);
+var TempComponent = function TempComponent(_ref) {
+    (0, _objectDestructuringEmpty3.default)(_ref);
+    return _react2.default.createElement("div", null);
+};
 
 /**
  *
@@ -26,7 +71,7 @@ TempComponent.propTypes = {};
  * @param  {[type]} state [description]
  * @return {[type]}       [description]
  */
-const mapStateToProps = state => {
+var mapStateToProps = function mapStateToProps(state) {
     return {};
 };
 
@@ -35,11 +80,11 @@ const mapStateToProps = state => {
  * @param  {[type]} dispatch [description]
  * @return {[type]}          [description]
  */
-const mapDispatchToProps = dispatch => {
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {};
 };
 
-const TempContainer = connect(mapStateToProps, mapDispatchToProps)(TempComponent);
+var TempContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(TempComponent);
 
 /**
  * A utility function to create an initial state
@@ -47,7 +92,7 @@ const TempContainer = connect(mapStateToProps, mapDispatchToProps)(TempComponent
  * @param  {[type]} props [description]
  * @return {[type]}       [description]
  */
-const genInitialStateData = props => {
+var genInitialStateData = function genInitialStateData(props) {
     return {
         pageViewID: props.model.pageViewID,
         run_mode: props.model.run_mode,
@@ -61,141 +106,181 @@ const genInitialStateData = props => {
     };
 };
 
-export default class BaseSPATemplate extends React.Component {
-    /**
-     *
-     */
-    constructor(props) {
-        super(props);
-
-        this.getExternalAssetsDescriptor = this.getExternalAssetsDescriptor.bind(this);
-        this.filterModelData = this.filterModelData.bind(this);
-        this.getHeaderTags = this.getHeaderTags.bind(this);
-        this.getBodyEndElement = this.getBodyEndElement.bind(this);
-        this.getBodyClassName = this.getBodyClassName.bind(this);
-        this.createAppContainer = this.createAppContainer.bind(this);
-        this.getAppStateReducer = this.getAppStateReducer.bind(this);
-    }
+var BaseSPATemplate = function (_React$Component) {
+    (0, _inherits3.default)(BaseSPATemplate, _React$Component);
 
     /**
      *
      */
-    getExternalAssetsDescriptor(model) {
-        const assets = {
-            javascript: [],
-            styles: []
-        };
-        return assets;
-    }
+    function BaseSPATemplate(props) {
+        (0, _classCallCheck3.default)(this, BaseSPATemplate);
 
-    /**
-    * This method must return a subset of the modelData that is secure for
-    * sending to the browser.
-    */
-    filterModelData(model) {
-        return model;
+        var _this = (0, _possibleConstructorReturn3.default)(this, (BaseSPATemplate.__proto__ || (0, _getPrototypeOf2.default)(BaseSPATemplate)).call(this, props));
+
+        _this.getExternalAssetsDescriptor = _this.getExternalAssetsDescriptor.bind(_this);
+        _this.filterModelData = _this.filterModelData.bind(_this);
+        _this.getHeaderTags = _this.getHeaderTags.bind(_this);
+        _this.getBodyEndElement = _this.getBodyEndElement.bind(_this);
+        _this.getBodyClassName = _this.getBodyClassName.bind(_this);
+        _this.createAppContainer = _this.createAppContainer.bind(_this);
+        _this.getAppStateReducer = _this.getAppStateReducer.bind(_this);
+
+        return _this;
     }
 
     /**
      *
      */
-    getHeaderTags(model) {
-        return [];
-    }
 
-    /**
-      *
-      */
-    getBodyEndElement() {
-        return function () {
-            return React.createElement("div", null);
-        };
-    }
 
-    /**
-     *
-     */
-    getBodyClassName(model) {
-        return "";
-    }
-
-    /**
-     *
-     */
-    createAppContainer() {
-        return TempContainer;
-    }
-
-    /**
-     *
-     */
-    getAppStateReducer() {
-        return {};
-    }
-
-    /**
-     * Do not override this method in any single page app!!!
-     * Just override the method createApp() to return the main app element
-     */
-    createBody() {
-
-        const AppContainer = this.createAppContainer();
-
-        let appStateReducer = {};
-        try {
-            appStateReducer = this.getAppStateReducer() || {};
-        } catch (err) {}
-
-        /**
-         * default appState reducer
-         * @param  {Object} [state={}] [description]
-         * @return {[type]}            [description]
-         */
-        function appState(state = {}) {
-            return state;
+    (0, _createClass3.default)(BaseSPATemplate, [{
+        key: "getExternalAssetsDescriptor",
+        value: function getExternalAssetsDescriptor(model) {
+            var assets = {
+                javascript: [],
+                styles: []
+            };
+            return assets;
         }
 
-        let uberReducerObj = {
-            appState
-        };
-        _Object$assign(uberReducerObj, appStateReducer);
-        _Object$assign(uberReducerObj, SPAppReducers);
+        /**
+        * This method must return a subset of the modelData that is secure for
+        * sending to the browser.
+        */
 
-        this.___privpriv___store = createStore(combineReducers(uberReducerObj), genInitialStateData(this.props), applyMiddleware(redux_thunk));
+    }, {
+        key: "filterModelData",
+        value: function filterModelData(model) {
+            return model;
+        }
 
-        return React.createElement(
-            Provider,
-            { store: this.___privpriv___store },
-            React.createElement(AppContainer, null)
-        );
-    }
+        /**
+         *
+         */
 
-    /**
-     *
-     */
-    render() {
-        return React.createElement(
-            "div",
-            { id: "document-body" },
-            this.createBody()
-        );
-    }
+    }, {
+        key: "getHeaderTags",
+        value: function getHeaderTags(model) {
+            return [];
+        }
 
-}
+        /**
+          *
+          */
+
+    }, {
+        key: "getBodyEndElement",
+        value: function getBodyEndElement() {
+            return function () {
+                return _react2.default.createElement("div", null);
+            };
+        }
+
+        /**
+         *
+         */
+
+    }, {
+        key: "getBodyClassName",
+        value: function getBodyClassName(model) {
+            return "";
+        }
+
+        /**
+         *
+         */
+
+    }, {
+        key: "createAppContainer",
+        value: function createAppContainer() {
+            return TempContainer;
+        }
+
+        /**
+         *
+         */
+
+    }, {
+        key: "getAppStateReducer",
+        value: function getAppStateReducer() {
+            return {};
+        }
+
+        /**
+         * Do not override this method in any single page app!!!
+         * Just override the method createApp() to return the main app element
+         */
+
+    }, {
+        key: "createBody",
+        value: function createBody() {
+
+            var AppContainer = this.createAppContainer();
+
+            var appStateReducer = {};
+            try {
+                appStateReducer = this.getAppStateReducer() || {};
+            } catch (err) {}
+
+            /**
+             * default appState reducer
+             * @param  {Object} [state={}] [description]
+             * @return {[type]}            [description]
+             */
+            function appState() {
+                var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+                return state;
+            }
+
+            var uberReducerObj = {
+                appState: appState
+            };
+            (0, _assign2.default)(uberReducerObj, appStateReducer);
+            (0, _assign2.default)(uberReducerObj, _reducers2.default);
+
+            this.___privpriv___store = (0, _redux.createStore)((0, _redux.combineReducers)(uberReducerObj), genInitialStateData(this.props), (0, _redux.applyMiddleware)(_reduxThunk2.default));
+
+            return _react2.default.createElement(
+                _reactRedux.Provider,
+                { store: this.___privpriv___store },
+                _react2.default.createElement(AppContainer, null)
+            );
+        }
+
+        /**
+         *
+         */
+
+    }, {
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { id: "document-body" },
+                this.createBody()
+            );
+        }
+    }]);
+    return BaseSPATemplate;
+}(_react2.default.Component);
 
 /**
  *
  * @type {Object}
  */
+
+
+exports.default = BaseSPATemplate;
 BaseSPATemplate.propTypes = {
-    pageViewID: React.PropTypes.string,
-    run_mode: React.PropTypes.string,
-    deploy_mode: React.PropTypes.string,
-    content: React.PropTypes.object,
-    metadata: React.PropTypes.object,
-    requestInfo: React.PropTypes.object,
-    resolvedLocale: React.PropTypes.object,
-    pageID: React.PropTypes.string
+    pageViewID: _react2.default.PropTypes.string,
+    run_mode: _react2.default.PropTypes.string,
+    deploy_mode: _react2.default.PropTypes.string,
+    content: _react2.default.PropTypes.object,
+    metadata: _react2.default.PropTypes.object,
+    requestInfo: _react2.default.PropTypes.object,
+    resolvedLocale: _react2.default.PropTypes.object,
+    pageID: _react2.default.PropTypes.string
 };
 
 /**
