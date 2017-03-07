@@ -62,7 +62,7 @@ const genInitialStateData = (props) => {
     };
 };
 
-export default class BaseSPATemplate extends React.Component {
+export class BaseSPATemplate extends React.Component {
     /**
      *
      */
