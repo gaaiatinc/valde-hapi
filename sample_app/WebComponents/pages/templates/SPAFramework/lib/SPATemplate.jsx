@@ -5,13 +5,13 @@ import {connect} from "react-redux";
 
 import SPAppReducers from "./reducers";
 
-import {SPATemplate as RootSPATemplate} from "spa-framework";
+import {SPATemplate as RootTemplate} from "spa-framework";
 
 /**
  *
  */
 const TempComponent = ({}) => (
-    <div></div>
+    <div><h1>A single page app test</h1></div>
 );
 
 /**
@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const TempContainer = connect(mapStateToProps, mapDispatchToProps)(TempComponent);
 
-export class SPATemplate extends RootSPATemplate {
+export class SPATemplate extends RootTemplate {
     /**
      *
      */
@@ -100,8 +100,22 @@ export class SPATemplate extends RootSPATemplate {
      */
     getExternalAssetsDescriptor(model) {
         const assets = {
-            javascript: [],
-            styles: []
+            javascript: [
+                "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js",
+                // "https://npmcdn.com/axios/dist/axios.min.js",
+                // "/dsweb/res/js/polyfill.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.7/react-bootstrap.min.js"
+            ],
+            styles: [
+                //
+                //
+                "https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css",
+                "https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css",
+                "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+                "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.0.0/bootstrap-social.min.css"
+            ]
         };
         return assets;
     }

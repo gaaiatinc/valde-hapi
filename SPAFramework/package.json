@@ -2,6 +2,7 @@
   "author": {
     "name": "Ali Ismael"
   },
+  "main": "./SPAFramework.js",
   "bugs": {
     "url": "https://github.com/gaaiatinc/valde-hapi.git"
   },
@@ -15,7 +16,6 @@
     "node": ">=6.0.0"
   },
   "keywords": [],
-  "main": "./SPAFramework.js",
   "maintainers": [
     {
       "name": "Ali Ismael",

@@ -1,7 +1,7 @@
 "use strict";
 import {apiGet, apiPost, runningInBrowser} from "spa-framework";
-import {getAction} from "./lib/actions/rest_actions";
-import {SPATemplate} from "./lib/SPATemplate";
+import {getAction} from "./SPAFramework/lib/actions/rest_actions";
+import {SPATemplate} from "./SPAFramework/lib/SPATemplate";
 
 import {
     setContent,
@@ -13,7 +13,7 @@ import {
     setAppMountPoint,
     setPageID,
     setResolvedLocale
-} from "./lib/actions/model_data_actions";
+} from "./SPAFramework/lib/actions/model_data_actions";
 
 const SPATemplateActions = {
     setContent,

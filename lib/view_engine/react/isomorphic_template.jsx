@@ -99,11 +99,12 @@ export default class IsomorphicTemplate extends React.Component {
                     {/* Main application React javascript */}
                     <script src={app_script_url} charSet="UTF-8"/>
 
+                    {/* APP element mount code*/}
                     <script dangerouslySetInnerHTML={{
                         __html: app_mount_code
                     }} charSet="UTF-8"/>
 
-                    {/* APP element mount code*/}
+                    {/*  */}
                     {body_end_element}
                 </body>
             </html>

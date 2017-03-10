@@ -3,7 +3,6 @@ const webpack = require("webpack");
 
 var libraryName = "SPAFramework";
 var outputFile = libraryName + ".js";
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 module.exports = {
     // configuration
