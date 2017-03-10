@@ -7,10 +7,10 @@ import redux_thunk from "redux-thunk";
 
 import SPAppReducers from "./reducers";
 
+import {SPATemplate as BaseSPATemplate} from "spa-framework";
+
 /**
  *
- * @param {[type]} _csrf     [description]
- * @param {[type]} modelData [description]
  */
 const TempComponent = ({}) => (
     <div></div>
@@ -42,38 +42,21 @@ const mapDispatchToProps = (dispatch) => {
 
 const TempContainer = connect(mapStateToProps, mapDispatchToProps)(TempComponent);
 
-/**
- * A utility function to create an initial state
- *
- * @param  {[type]} props [description]
- * @return {[type]}       [description]
- */
-const genInitialStateData = (props) => {
-    return {
-        pageViewID: props.model.pageViewID,
-        run_mode: props.model.run_mode,
-        deploy_mode: props.model.deploy_mode,
-        requestInfo: props.model.requestInfo,
-        content: props.model.content,
-        metadata: props.model.metadata,
-        pageID: props.model.pageID,
-        resolvedLocale: props.model.resolvedLocale,
-        appState: {}
-    };
-};
 
-export class BaseSPATemplate extends React.Component {
+export class SPATemplate extends BaseSPATemplate {
     /**
      *
      */
     constructor(props) {
         super(props);
 
-        this.getExternalAssetsDescriptor = this
-            .getExternalAssetsDescriptor
+        this.genInitialStateData = this
+            .genInitialStateData
             .bind(this);
-        this.filterModelData = this
-            .filterModelData
+
+            
+        this.filterModel = this
+            .filterModel
             .bind(this);
         this.getHeaderTags = this
             .getHeaderTags
@@ -94,6 +77,26 @@ export class BaseSPATemplate extends React.Component {
     }
 
     /**
+     * A utility function to create an initial state
+     *
+     * @param  {[type]} props [description]
+     * @return {[type]}       [description]
+     */
+    genInitialStateData = (props) => {
+        return {
+            pageViewID: props.model.pageViewID,
+            run_mode: props.model.run_mode,
+            deploy_mode: props.model.deploy_mode,
+            requestInfo: props.model.requestInfo,
+            content: props.model.content,
+            metadata: props.model.metadata,
+            pageID: props.model.pageID,
+            resolvedLocale: props.model.resolvedLocale,
+            appState: {}
+        };
+    }
+
+    /**
      *
      */
     getExternalAssetsDescriptor(model) {
@@ -105,10 +108,10 @@ export class BaseSPATemplate extends React.Component {
     }
 
     /**
-    * This method must return a subset of the modelData that is secure for
+    * This method must return a subset of the model that is secure for
     * sending to the browser.
     */
-    filterModelData(model) {
+    filterModel(model) {
         return model;
     }
 
@@ -149,42 +152,6 @@ export class BaseSPATemplate extends React.Component {
         return {};
     }
 
-    /**
-     * Do not override this method in any single page app!!!
-     * Just override the method createApp() to return the main app element
-     */
-    createBody() {
-
-        const AppContainer = this.createAppContainer();
-
-        let appStateReducer = {};
-        try {
-            appStateReducer = this.getAppStateReducer() || {};
-        } catch (err) {}
-
-        /**
-         * default appState reducer
-         * @param  {Object} [state={}] [description]
-         * @return {[type]}            [description]
-         */
-        function appState(state = {}) {
-            return state;
-        }
-
-        let uberReducerObj = {
-            appState
-        };
-        Object.assign(uberReducerObj, appStateReducer);
-        Object.assign(uberReducerObj, SPAppReducers);
-
-        this.___privpriv___store = createStore(combineReducers(uberReducerObj), genInitialStateData(this.props), applyMiddleware(redux_thunk));
-
-        return (
-            <Provider store={this.___privpriv___store}>
-                <AppContainer/>
-            </Provider>
-        );
-    }
 
     /**
      *
@@ -203,7 +170,7 @@ export class BaseSPATemplate extends React.Component {
  *
  * @type {Object}
  */
-BaseSPATemplate.propTypes = {
+SPATemplate.propTypes = {
     pageViewID: React.PropTypes.string,
     run_mode: React.PropTypes.string,
     deploy_mode: React.PropTypes.string,
@@ -218,4 +185,4 @@ BaseSPATemplate.propTypes = {
  *
  * @type {Object}
  */
-BaseSPATemplate.defaultProps = {};
+SPATemplate.defaultProps = {};
