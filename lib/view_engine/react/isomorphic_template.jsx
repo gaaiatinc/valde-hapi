@@ -29,7 +29,7 @@ export default class IsomorphicTemplate extends React.Component {
         const {
             // run_mode,
             assets,
-            filter_model_data,
+            filter_model,
             header_tags,
             body_class_name,
             app_element,
@@ -50,7 +50,7 @@ export default class IsomorphicTemplate extends React.Component {
         const deviceType = clientInfo.client_type || "desktop";
         const lang = `${clientLocale}-${clientCountry}`;
 
-        const sanitized_model_data = filter_model_data(model);
+        const sanitized_model = filter_model(model);
 
         const app_element_markup = ReactDOMServer.renderToString(app_element);
         const app_element_div = (<div id="app-element-mountpoint" dangerouslySetInnerHTML={{
@@ -59,7 +59,7 @@ export default class IsomorphicTemplate extends React.Component {
 
         let modelVarStr = "var model = {};";
         try {
-            modelVarStr = "var model = " + JSON.stringify(sanitized_model_data) + ";";
+            modelVarStr = "var model = " + JSON.stringify(sanitized_model) + ";";
         } catch (err) {}
 
         const modelBrowserElement = <script dangerouslySetInnerHTML={{
@@ -124,7 +124,7 @@ IsomorphicTemplate.propTypes = {
     assets: PropTypes.object.isRequired,
     model: PropTypes.object.isRequired,
     app_element: PropTypes.node.isRequired,
-    filter_model_data: PropTypes.func.isRequired,
+    filter_model: PropTypes.func.isRequired,
     header_tags: React
         .PropTypes
         .arrayOf(React.PropTypes.node),

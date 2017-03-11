@@ -44,11 +44,11 @@ export default class RootTemplate extends React.Component {
    * This method must return a subset of the model that is secure for
    * sending to the browser.
    *
-   * [filterModelData description]
+   * [filterModel description]
    * @param  {[type]} model [description]
    * @return {[type]}       [description]
    */
-    static filterModelData(model) {
+    static filterModel(model) {
         return model;
     }
 

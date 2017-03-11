@@ -13,7 +13,7 @@ import {
     setAppMountPoint,
     setPageID,
     setResolvedLocale
-} from "./lib/actions/model_data_actions";
+} from "./lib/actions/model_actions";
 
 const SPATemplateActions = {
     setContent,

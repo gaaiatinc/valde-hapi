@@ -2,7 +2,7 @@
 
 import React from "react";
 
-class ModelData extends React.Component {
+class Model extends React.Component {
 
     render() {
         return (
@@ -12,4 +12,4 @@ class ModelData extends React.Component {
     }
 }
 
-export default ModelData;
+export default Model;

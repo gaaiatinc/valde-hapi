@@ -4,7 +4,7 @@ import React from "react";
 
 import HeadReactScript from "resources/jsx_components/server_side/demo_template/head/HeadScriptsComponents/HeadReactScript";
 import HeadReactDOMScript from "resources/jsx_components/server_side/demo_template/head/HeadScriptsComponents/HeadReactDOMScript";
-import ModelData from "resources/jsx_components/server_side/demo_template/head/HeadScriptsComponents/ModelData";
+import Model from "resources/jsx_components/server_side/demo_template/head/HeadScriptsComponents/Model";
 import Title from "resources/jsx_components/server_side/demo_template/head/Title";
 import MetaCharSet from "resources/jsx_components/server_side/demo_template/head/MetaCharSet";
 import HeadJQueryScript from "resources/jsx_components/server_side/demo_template/head/HeadScriptsComponents/HeadJQueryScript"
@@ -21,7 +21,7 @@ class HeadScripts extends React.Component {
                 <HeadReactScript />
                 <HeadReactDOMScript />
                 <HeadJQueryScript />
-                <ModelData model={this.props.model}/>
+                <Model model={this.props.model}/>
                 <AppScript entityRelativePath={model.pageViewID}/>
             </head>
         )

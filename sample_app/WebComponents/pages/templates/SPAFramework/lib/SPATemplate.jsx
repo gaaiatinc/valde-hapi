@@ -103,7 +103,6 @@ export class SPATemplate extends RootTemplate {
             javascript: [
                 "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js",
                 // "https://npmcdn.com/axios/dist/axios.min.js",
-                // "/dsweb/res/js/polyfill.min.js",
                 "https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js",
                 "https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js",
                 "https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.7/react-bootstrap.min.js"

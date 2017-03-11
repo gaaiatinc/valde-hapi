@@ -16,7 +16,7 @@ import {
     setAppMountPoint,
     setPageID,
     setResolvedLocale
-} from "./model_data_actions";
+} from "./model_actions";
 
 let axiosConfig = {
     baseURL: "/",
