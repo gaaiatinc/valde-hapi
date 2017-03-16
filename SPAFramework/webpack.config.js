@@ -6,9 +6,9 @@ var outputFile = libraryName + ".js";
 
 module.exports = {
     // configuration
-    name: "jsx bundling",
+    name: "jsx_bundling",
     entry: {
-        libFacade: resolve(__dirname, "./libraryFacade")
+        libFacade: resolve(__dirname, "./lib/SPAFramework")
     },
     output: {
         path: resolve(__dirname),
@@ -49,7 +49,7 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
+                // exclude: /(node_modules|bower_components)/,
                 // "include" is commonly used to match the directories
                 // include: [
                 //     path.resolve(__dirname),
@@ -61,7 +61,7 @@ module.exports = {
                     {
                         loader: "babel-loader",
                         options: {
-                            presets: ["env", "react"]
+                            presets: ["es2015", "es2016", "es2017", "react"]
                         }
                     }
                 ]
