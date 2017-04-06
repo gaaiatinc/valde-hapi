@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import SPAppReducers from "./reducers";
 
 import {SPATemplate as RootTemplate} from "spa-framework";
+import {get as _get, set as _set} from "lodash";
 
 /**
  *
@@ -68,12 +69,23 @@ export class SPATemplate extends RootTemplate {
         this.getBodyClassName = this
             .getBodyClassName
             .bind(this);
+
         this.createAppContainer = this
             .createAppContainer
             .bind(this);
         this.getAppStateReducer = this
             .getAppStateReducer
             .bind(this);
+
+        const isomorphic_props = _get(props, "isomorphic_props");
+        const model = _get(props, "model");
+        if ((typeof isomorphic_props === "object") && (typeof model === "object")) {
+            _set(isomorphic_props, "assets", this.getExternalAssetsDescriptor(model));
+            _set(isomorphic_props, "filtered_model", this.filterModel(model));
+            _set(isomorphic_props, "header_tags", this.getHeaderTags(model));
+            _set(isomorphic_props, "body_class_name", this.getBodyClassName(model));
+            _set(isomorphic_props, "body_end_element", this.getBodyEndElement(model));
+        }
     }
 
     /**

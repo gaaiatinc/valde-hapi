@@ -29,10 +29,10 @@ export default class IsomorphicTemplate extends React.Component {
         const {
             // run_mode,
             assets,
-            filter_model,
+            filtered_model,
             header_tags,
             body_class_name,
-            app_element,
+            app_element_markup,
             // locale,
             app_script_url,
             body_end_element
@@ -50,9 +50,8 @@ export default class IsomorphicTemplate extends React.Component {
         const deviceType = clientInfo.client_type || "desktop";
         const lang = `${clientLocale}-${clientCountry}`;
 
-        const sanitized_model = filter_model(model);
+        const sanitized_model = filtered_model;
 
-        const app_element_markup = ReactDOMServer.renderToString(app_element);
         const app_element_div = (<div id="app-element-mountpoint" dangerouslySetInnerHTML={{
             __html: app_element_markup
         }}/>);
@@ -97,9 +96,7 @@ export default class IsomorphicTemplate extends React.Component {
                         .map((script_url, idx) => <script src={script_url} key={"js_script_" + idx} charSet="UTF-8"/>)}
 
                     {/* Main application React javascript */}
-                    <script src={app_script_url} charSet="UTF-8"/>
-
-                    {/* APP element mount code*/}
+                    <script src={app_script_url} charSet="UTF-8"/> {/* APP element mount code*/}
                     <script dangerouslySetInnerHTML={{
                         __html: app_mount_code
                     }} charSet="UTF-8"/>
@@ -123,8 +120,8 @@ IsomorphicTemplate.propTypes = {
     body_class_name: PropTypes.string,
     assets: PropTypes.object.isRequired,
     model: PropTypes.object.isRequired,
-    app_element: PropTypes.node.isRequired,
-    filter_model: PropTypes.func.isRequired,
+    app_element_markup: PropTypes.string.isRequired,
+    filtered_model: PropTypes.object.isRequired,
     header_tags: React
         .PropTypes
         .arrayOf(React.PropTypes.node),
@@ -140,7 +137,7 @@ IsomorphicTemplate.propTypes = {
 IsomorphicTemplate.defaultProps = {
     run_mode: "production",
     assets: {}
-    // app_element     : PropTypes.node,
+    // app_element_markup     : PropTypes.string,
     // header_tags: React.PropTypes.arrayOf(React.PropTypes.node),
     // body_start  : PropTypes.func,
     // body_end    : PropTypes.func,
