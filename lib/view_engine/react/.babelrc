@@ -1,9 +1,8 @@
 {
-  "presets": [
-    "env",
-    "react"
-  ],
-  "plugins": [
-    "transform-runtime"
-  ]
+    "presets": [
+        "env", "react"
+    ],
+    "plugins": [
+        "transform-runtime"
+    ]
 }
