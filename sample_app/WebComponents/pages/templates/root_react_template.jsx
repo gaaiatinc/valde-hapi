@@ -4,6 +4,7 @@
 
 import React from "react";
 import {get as _get, set as _set} from "lodash";
+import PropTypes from "prop-types";
 
 import headMetaTags from "./template_components/HeadMetaTags";
 
@@ -143,6 +144,6 @@ export default class RootTemplate extends React.Component {
 }
 
 RootTemplate.propTypes = {
-    model: React.PropTypes.object
+    model: PropTypes.object
 };
 RootTemplate.defaultProps = {};

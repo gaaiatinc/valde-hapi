@@ -3,6 +3,7 @@
  */
 "use strict";
 import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 
 import * as MyCanvas from "./lib/graph_impl";
@@ -25,7 +26,7 @@ class MyGraphRefresher extends React.Component {
     }
 }
 MyGraphRefresher.propTypes = {
-    model: React.PropTypes.object
+    model: PropTypes.object
 };
 MyGraphRefresher.defaultProps = {};
 

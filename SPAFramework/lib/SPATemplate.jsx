@@ -1,6 +1,7 @@
 "use strict";
 
 import React from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import SPAppReducers from "./reducers";
@@ -183,18 +184,17 @@ export class SPATemplate extends RootTemplate {
  * @type {Object}
  */
 SPATemplate.propTypes = {
-    model: React
-        .PropTypes
+    model: PropTypes
         .shape({
-            app_root: React.PropTypes.string,
-            pageViewID: React.PropTypes.string,
-            run_mode: React.PropTypes.string,
-            deploy_mode: React.PropTypes.string,
-            content: React.PropTypes.object,
-            metadata: React.PropTypes.object,
-            requestInfo: React.PropTypes.object,
-            resolvedLocale: React.PropTypes.object,
-            pageID: React.PropTypes.string
+            app_root: PropTypes.string,
+            pageViewID: PropTypes.string,
+            run_mode: PropTypes.string,
+            deploy_mode: PropTypes.string,
+            content: PropTypes.object,
+            metadata: PropTypes.object,
+            requestInfo: PropTypes.object,
+            resolvedLocale: PropTypes.object,
+            pageID: PropTypes.string
         })
 };
 

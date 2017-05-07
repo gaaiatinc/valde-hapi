@@ -4,8 +4,8 @@
 
 "use strict";
 
-import React, {PropTypes} from "react";
-import ReactDOMServer from "react-dom/server";
+import React from "react";
+import PropTypes from "prop-types";
 
 /**
  *
@@ -59,7 +59,9 @@ export default class IsomorphicTemplate extends React.Component {
         let modelVarStr = "var model = {};";
         try {
             modelVarStr = "var model = " + JSON.stringify(sanitized_model) + ";";
-        } catch (err) {}
+        } catch (err) {
+            //
+        }
 
         const modelBrowserElement = <script dangerouslySetInnerHTML={{
             __html: modelVarStr
@@ -99,9 +101,7 @@ export default class IsomorphicTemplate extends React.Component {
                     <script src={app_script_url} charSet="UTF-8"/> {/* APP element mount code*/}
                     <script dangerouslySetInnerHTML={{
                         __html: app_mount_code
-                    }} charSet="UTF-8"/>
-
-                    {/*  */}
+                    }} charSet="UTF-8"/> {/*  */}
                     {body_end_element}
                 </body>
             </html>
@@ -122,9 +122,7 @@ IsomorphicTemplate.propTypes = {
     model: PropTypes.object.isRequired,
     app_element_markup: PropTypes.string.isRequired,
     filtered_model: PropTypes.object.isRequired,
-    header_tags: React
-        .PropTypes
-        .arrayOf(React.PropTypes.node),
+    header_tags: PropTypes.arrayOf(PropTypes.node),
     locale: PropTypes.string,
     body_end_element: PropTypes.node,
     app_script_url: PropTypes.string.isRequired
@@ -138,7 +136,7 @@ IsomorphicTemplate.defaultProps = {
     run_mode: "production",
     assets: {}
     // app_element_markup     : PropTypes.string,
-    // header_tags: React.PropTypes.arrayOf(React.PropTypes.node),
+    // header_tags: PropTypes.arrayOf(PropTypes.node),
     // body_start  : PropTypes.func,
     // body_end    : PropTypes.func,
     // locale      : PropTypes.string

@@ -3,8 +3,7 @@
  */
 "use strict";
 
-import React, {Component, PropTypes} from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 
 import RootTemplate from "pages/templates/root_react_template";
 
@@ -53,7 +52,9 @@ export default class AppMainPage extends RootTemplate {
         let redirect_uri;
         try {
             redirect_uri = this.props.model.requestInfo.query["redirect_uri"];
-        } catch (err) {}
+        } catch (err) {
+            //
+        }
 
         let action_string = "/sample_app/api/v1/account/signin";
         if (redirect_uri) {

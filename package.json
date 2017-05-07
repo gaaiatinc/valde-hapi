@@ -1,6 +1,6 @@
 {
   "name": "valde-hapi",
-  "version": "16.3.4",
+  "version": "16.3.5",
   "description": "A hapi and dust framework for building API and web applicatins.",
   "main": "./lib/index.js",
   "scripts": {
@@ -83,6 +83,7 @@
     "moment": "^2.18.1",
     "mongodb": "^2.2.26",
     "nconf": "^0.8.4",
+    "prop-types": "^15.5.8",
     "q": "^1.5.0",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",

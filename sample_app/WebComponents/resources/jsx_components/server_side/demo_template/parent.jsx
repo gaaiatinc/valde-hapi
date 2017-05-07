@@ -1,7 +1,9 @@
 "use strict";
 
 import React from "react";
-import ReactDOM  from "react-dom";
+import PropTypes from "prop-types";
+
+import ReactDOM from "react-dom";
 import TemplateHead from "resources/jsx_components/server_side/demo_template/head/TemplateHead";
 //import {AppMainPage} from "AppMainPage";
 
@@ -15,10 +17,11 @@ class AppMount extends React.Component {
     }
 
     render() {
-        return (<p>hello!!</p>);
+        return (
+            <p>hello!!</p>
+        );
     }
 }
-
 
 /**
  *
@@ -36,25 +39,24 @@ export default class ParentTemplate extends React.Component {
         /**
          * The following eelements are replaceable by pages which extend this template:
          */
-        this.bodyTop = <AppMount />;
-        this.bodyMain = <AppMount />;
-        this.bodyBottom = <AppMount />;
+        this.bodyTop = <AppMount/>;
+        this.bodyMain = <AppMount/>;
+        this.bodyBottom = <AppMount/>;
     }
 
     /**
      * This method will replace/re-mount the page-specific elements in the browser:
      */
     attachComponentsInBrowser() {
-        $( "#body_top_mount_point" ).replaceWith( "<div id='body_top_mount_point'></div>" );
+        $("#body_top_mount_point").replaceWith("<div id='body_top_mount_point'></div>");
         ReactDOM.render(this.bodyTop, document.getElementById("body_top_mount_point"));
 
-        $( "#body_main_mount_point" ).replaceWith( "<div id='body_main_mount_point'></div>" );
+        $("#body_main_mount_point").replaceWith("<div id='body_main_mount_point'></div>");
         ReactDOM.render(this.bodyMain, document.getElementById("body_main_mount_point"));
 
-        $( "#body_bottom_mount_point" ).replaceWith( "<div id='body_bottom_mount_point'></div>" );
+        $("#body_bottom_mount_point").replaceWith("<div id='body_bottom_mount_point'></div>");
         ReactDOM.render(this.bodyBottom, document.getElementById("body_bottom_mount_point"));
     }
-
 
     /**
      * This method is for server-side rendering only!
@@ -64,30 +66,28 @@ export default class ParentTemplate extends React.Component {
 
         return (
             <html>
-            <TemplateHead entityRelativePath={model.pageViewID} model={model}/>
+                <TemplateHead entityRelativePath={model.pageViewID} model={model}/>
 
-            <body id="document-body">
+                <body id="document-body">
 
-            <div id="body_top_mount_point">
-                {this.bodyTop}
-            </div>
+                    <div id="body_top_mount_point">
+                        {this.bodyTop}
+                    </div>
 
-            <div id="body_main_mount_point">
-                {this.bodyMain}
-            </div>
+                    <div id="body_main_mount_point">
+                        {this.bodyMain}
+                    </div>
 
-            <div id="body_bottom_mount_point">
-                {this.bodyBottom}
-            </div>
+                    <div id="body_bottom_mount_point">
+                        {this.bodyBottom}
+                    </div>
 
-            </body>
+                </body>
             </html >
         );
     }
 }
-ParentTemplate.propTypes = {model: React.PropTypes.object};
+ParentTemplate.propTypes = {
+    model: PropTypes.object
+};
 ParentTemplate.defaultProps = {};
-
-
-
-

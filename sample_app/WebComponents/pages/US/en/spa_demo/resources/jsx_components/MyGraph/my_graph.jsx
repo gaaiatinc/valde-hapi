@@ -3,6 +3,7 @@
  */
 "use strict";
 import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 
 import * as MyCanvas from "./lib/graph_impl";
@@ -83,7 +84,7 @@ class MyGraph extends React.Component {
     }
 }
 MyGraph.propTypes = {
-    model: React.PropTypes.object
+    model: PropTypes.object
 };
 MyGraph.defaultProps = {};
 
