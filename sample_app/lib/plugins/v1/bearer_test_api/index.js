@@ -19,7 +19,7 @@ function process_jwt_request(request, reply) {
  * @param options
  * @param next
  */
-module.exports.register = function(server, options, next) {
+const bearer_test_api_module = async (server, options, next) => {
 
     /**
      *
@@ -52,10 +52,9 @@ module.exports.register = function(server, options, next) {
             }
         }
     });
-
-    next();
 };
 
-module.exports.register.attributes = {
-    pkg: require("./package.json")
+module.exports.plugin = {
+    pkg: require("./package.json"),
+    register: bearer_test_api_module
 };

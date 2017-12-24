@@ -8,14 +8,20 @@ let path = require("path");
 
 platform.init(path.dirname(require.main.filename));
 
-platform.launch((err, server) => {
-    let app_config = platform.app_config;
+const pilot = async () => {
+    try {
+        const server = await platform.launch();
 
-    let loggerFactory = platform.app_logger;
+        let app_config = platform.app_config;
 
-    let logger = loggerFactory.getLogger("SampleApp", (app_config.get("env:production")) ? "WARN" : "DEBUG");
+        let loggerFactory = platform.app_logger;
 
-    server.start(() => {
+        let logger = loggerFactory.getLogger( "SampleApp", (app_config.get("env:production")) ? "WARN" : "DEBUG");
+
         logger.info("Server running at:", server.info.uri);
-    });
-});
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+pilot();

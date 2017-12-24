@@ -36,7 +36,7 @@ describe("temp tests", () => {
 
     describe("app_get", () => {
         it("should be able to get the application_root_folder from app_config", function() {
-            console.log("done it!", app_config.get("application_root_folder"));
+            //console.log("done it!", app_config.get("application_root_folder"));
         });
 
         // it("should upsert a doc in the sample db", () => {

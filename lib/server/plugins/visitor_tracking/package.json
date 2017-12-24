@@ -1,9 +1,10 @@
 {
-  "name": "visitor-tracking",
+  "name": "valde_visitor_tracking",
   "version": "1.0.0",
   "description": "Visitor tracking plugin",
   "main": "index.js",
   "author": "Ali Ismael",
   "license": "Apache-2.0",
+  "once": true,
   "dependencies": {}
 }

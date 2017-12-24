@@ -1,0 +1,15 @@
+{
+    "page_id": "home",
+    "template_id": "home.dust",
+    "access_conditions": {
+        "logged_in_only": false,
+        "visibility": "WORLDWIDE"
+    },
+    "enabled": true,
+    "campaign_start_date": "2013-08-14 07:00:00",
+    "campaign_end_date": "2027-07-09 07:00:00",
+    "mobile_template_id": "",
+    "mobile_redirect_link": "",
+    "required_services": [],
+    "analytics_descriptor": {}
+}

@@ -103,7 +103,7 @@ export const getAction = (queryStringParams, headers) => {
                     dispatch(setAppMountPoint(model));
                 })
                 .catch((error) => {
-                    // console.log(error);
+                    // //console.log(error);
                 });
         }
     };

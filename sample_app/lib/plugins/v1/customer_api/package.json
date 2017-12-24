@@ -5,6 +5,7 @@
     "main": "index.js",
     "author": "SA developer",
     "license": "ISC",
+    "once": true,
     "dependencies": {
     }
 }

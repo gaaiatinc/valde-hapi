@@ -13,7 +13,7 @@ module.exports = {
     path: app_config.get("app_root") + "/res/{resID*}",
     handler: {
         directory: {
-            path: "public",
+            path: app_config.get("platform:static_resources_path"),
             etagMethod: "hash"
         }
     }

@@ -1,9 +1,10 @@
 {
-  "name": "auth_bearer_jwt",
+  "name": "valde_auth_bearer_jwt",
   "version": "1.0.0",
   "description": "JWT bearer auth plugin",
   "main": "index.js",
   "author": "Ali Ismael",
   "license": "Apache-2.0",
+  "once": true,
   "dependencies": {}
 }

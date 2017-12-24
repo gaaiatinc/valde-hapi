@@ -1,9 +1,10 @@
 {
-  "name": "resource_set",
+  "name": "valde_resource_set",
   "version": "1.0.0",
   "description": "A plugin to load the resource set data for an HTTP request",
   "main": "index.js",
   "author": "Ali Ismael",
   "license": "Apache-2.0",
+  "once": true,
   "dependencies": {}
 }

@@ -19,15 +19,14 @@ function get_customer_account(request, reply) {
  * @param options
  * @param next
  */
-module.exports.register = function(server, options, next) {
-
+const customer_api_module = async (server, options) => {
     /**
      *
      */
     server.route({
         method: "GET",
         path: app_config.get("app_root") + "/api/v1/customer/get_customer_account",
-        config: {
+        options: {
             handler: get_customer_account,
             tags: ["api"],
             description: "get_customer_account",
@@ -42,21 +41,26 @@ module.exports.register = function(server, options, next) {
                 }
             },
             validate: {
-                headers: Joi.object({
-//                    "sa-decorator": Joi.string().required(),
-                    "authorization": Joi.string().required(),
-                    "accept-language": Joi.string().required(),
-                    "user-agent": Joi.string().required()
-                }).options({
-                    allowUnknown: true
-                })
+                headers: Joi
+                    .object({
+                        // "sa-decorator": Joi.string().required(),
+                        "authorization": Joi
+                            .string()
+                            .required(),
+                        "accept-language": Joi
+                            .string()
+                            .required(),
+                        "user-agent": Joi
+                            .string()
+                            .required()
+                    })
+                    .options({allowUnknown: true})
             }
         }
     });
-
-    next();
 };
 
-module.exports.register.attributes = {
-    pkg: require("./package.json")
+module.exports.plugin = {
+    pkg: require("./package.json"),
+    register: customer_api_module
 };

@@ -38,7 +38,7 @@ export default class RootSPATemplate extends SPATemplate {
 
 //         let isomorphic_descriptor = _get(props, "isomorphic_descriptor");
 //
-// console.log(JSON.stringify(isomorphic_descriptor, null, 4));
+// //console.log(JSON.stringify(isomorphic_descriptor, null, 4));
 //
 //         if (isomorphic_descriptor) {
 //             isomorphic_descriptor.age= 23555;

@@ -14,6 +14,6 @@ let options = { algorithm: "HS256"};
 
 let token = jwt.sign(raw_token, "some strong token password  123456789012345678901234567890", options);
 
-console.log("\n\n\ntoken: ", token);
+//console.log("\n\n\ntoken: ", token);
 
-console.log("\n\n\n");
+//console.log("\n\n\n");

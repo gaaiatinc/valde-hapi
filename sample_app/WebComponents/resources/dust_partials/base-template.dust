@@ -4,6 +4,10 @@
 <head>
         <!-- METADATA -->
         <!-- END METADATA -->
+
+        <!-- page-specific CSS-->
+        <link href="{app_root}/res/css/global.css" rel="stylesheet">
+        {+pageCSS/}
 </head>
 
 {<pageIdLogic}
@@ -14,8 +18,7 @@
     {+pageContent/}
     {+footerContent/}
 
-    <script src="/res/js/utils.js"></script>
-    <script src="/res/angle/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{app_root}/res/js/utils.js"></script>
 
     {! slot for base specific JS !}
     {+jsFiles/}

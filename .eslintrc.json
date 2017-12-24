@@ -6,6 +6,7 @@
     },
     "extends": ["eslint:recommended", "plugin:react/recommended"],
     "parserOptions": {
+        "ecmaVersion": 8,
         "ecmaFeatures": {
             "jsx": true
         },
@@ -57,7 +58,9 @@
                 },
                 "CallExpression": {
                     "arguments": "first"
-                }
+                },
+                "ignoredNodes": ["ConditionalExpression"],
+                "flatTernaryExpressions": false
             }
         ],
         "linebreak-style": [
@@ -80,6 +83,9 @@
         ],
         "no-empty": [
             "error"
+        ],
+        "require-await": [
+            "off"
         ]
     }
 }

@@ -14,6 +14,7 @@ var logger = logger_factory.getLogger("ViewEngine", (app_config.get("env:product
  * @param server
  */
 function regiterRoutes(server) {
+//console.log("router setup ...", require("./handlers/web_page"))
 
     server.route(require("./handlers/web_page"));
     server.route(require("./handlers/static_resources"));

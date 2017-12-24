@@ -13,29 +13,29 @@ var USER_NAME = "Email address for SAMPLEAPP",
 /**
  *
  * @param request
- * @param reply
+ * @param h
  * @returns {*}
  */
-function signout_handler(request, reply) {
+function signout_handler(request, h) {
     try {
         request.cookieAuth.clear();
     } catch (err) {}
 
-    return reply({
+    return {
         success: true,
         message: "Your session is signed out.",
         "sl-decorator": "",
         redirect: app_config.get("app_root") + "/home"
-    }).type("application/json");
+    };
 }
 
 /**
  *
  * @param request
- * @param reply
+ * @param h
  * @returns {*}
  */
-function signin_handler(request, reply) {
+function signin_handler(request, h) {
 
     if (!request.auth.isAuthenticated) {
         var shasum = crypto.createHash("sha1");
@@ -54,22 +54,22 @@ function signin_handler(request, reply) {
     }
 
     if (request.query["redirect_uri"]) {
-        return reply.redirect(request.query["redirect_uri"]);
+        return h.redirect(request.query["redirect_uri"]);
     } else {
-        return reply({
+        return {
             success: true,
             message: "This method is just a dummy for demo purposes",
             "sl-decorator": "",
             redirect: app_config.get("app_root") + "/home"
-        }).type("application/json");
+        };
     }
 }
 
-module.exports.register = function(server, options, next) {
+const account_module = async(server, options) => {
     server.route({
         method: "POST",
         path: app_config.get("app_root") + "/api/v1/account/signin",
-        config: {
+        options: {
             handler: signin_handler,
             tags: ["api"],
             description: "signin",
@@ -85,7 +85,7 @@ module.exports.register = function(server, options, next) {
                 "resource_set": {
                     /**
                      * If enabled, the localized resource sets will be added to the  request:
-                     *      request.__valde.resource_set
+                     *      request.plugins.valde_resource_set
                      *  An example of the localized resource sets is in the folder WebComponents.
                      */
                     enabled: true
@@ -123,9 +123,9 @@ module.exports.register = function(server, options, next) {
         }
     });
 
-    next();
 };
 
-module.exports.register.attributes = {
-    pkg: require("./package.json")
+module.exports.plugin = {
+    pkg: require("./package.json"),
+    register: account_module
 };
