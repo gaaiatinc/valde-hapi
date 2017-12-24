@@ -38,10 +38,7 @@ export default class IsomorphicTemplate extends React.Component {
             body_end_element
         } = this.props;
 
-        const app_mount_code = " if (typeof window !== \"undefined\" && window.document && window.document.createElement) {" +
-        " var appElement = React.createElement(window.PageBundle.default,   {model: window.model}); " +
-        " ReactDOM.render(appElement, window.document.getElementById(\"app-element-mountpoint\")); " +
-        "}";
+        const app_mount_code = " if (typeof window !== \"undefined\" && window.document && window.document.createElement) {" + " var appElement = React.createElement(window.PageBundle.default,   {model: window.model}); " + " ReactDOM.hydrate(appElement, window.document.getElementById(\"app-element-mountpoint\")); " + "}";
 
         const model = this.props.model || {};
         const clientInfo = model.client_info || {};
@@ -52,9 +49,7 @@ export default class IsomorphicTemplate extends React.Component {
 
         const sanitized_model = filtered_model;
 
-        const app_element_div = (<div id="app-element-mountpoint" dangerouslySetInnerHTML={{
-            __html: app_element_markup
-        }}/>);
+        const app_element_div = (<div id="app-element-mountpoint" dangerouslySetInnerHTML={{ __html: app_element_markup }}/>);
 
         let modelVarStr = "var model = {};";
         try {
@@ -63,49 +58,44 @@ export default class IsomorphicTemplate extends React.Component {
             //
         }
 
-        const modelBrowserElement = <script dangerouslySetInnerHTML={{
-            __html: modelVarStr
-        }}/>;
+        const modelBrowserElement = <script dangerouslySetInnerHTML={{__html: modelVarStr }}/>;
 
-        const html = (
-            <html lang={lang} data-device-type={deviceType} className="no-js">
-                <head>
-                    {header_tags.map((header_tag) => header_tag)}
+        const html = (<html lang={lang} data-device-type={deviceType} className="no-js">
+            <head>
+                {header_tags.map((header_tag) => header_tag)}
 
-                    {/* Model  data */}
-                    {modelBrowserElement}
+                {/* Model  data */}
+                {modelBrowserElement}
 
-                    {/* Generating link tags for css artifacts */}
-                    {assets
-                        .styles
-                        .map((style_url, idx) => <link key={"style_" + idx} href={style_url} media="screen, projection" rel="stylesheet" type="text/css" charSet="UTF-8"/>)}
-                </head>
+                {/* Generating link tags for css artifacts */}
+                {
+                    assets.styles.map((style_url, idx) => <link key={"style_" + idx} href={style_url} media="screen, projection" rel="stylesheet" type="text/css" charSet="UTF-8"/>)
+                }
+            </head>
 
-                <body className={body_class_name}>
-                    {/* support adding arbitrary markup to body start */}
-                    {/*{body_top
+            <body className={body_class_name}>
+                {/* support adding arbitrary markup to body start */}
+                {/*{body_top
                         ? body_top()
-                    : null}*/}
-                    {/* React page content */}
-                    {app_element_div}
+                    : null}*/
+                }
+                {/* React page content */}
+                {app_element_div}
 
-                    {/* locale for international messages */}
-                    {/* <script dangerouslySetInnerHTML={{__html: `window._locale=${JSON.stringify(locale)}`}} charSet="UTF-8"/> */}
+                {/* locale for international messages */}
+                {/* <script dangerouslySetInnerHTML={{__html: `window._locale=${JSON.stringify(locale)}`}} charSet="UTF-8"/> */}
 
-                    {/* javascripts */}
-                    {assets
-                        .javascript
-                        .map((script_url, idx) => <script src={script_url} key={"js_script_" + idx} charSet="UTF-8"/>)}
+                {/* javascripts */}
+                {
+                    assets.javascript.map((script_url, idx) => <script src={script_url} key={"js_script_" + idx} charSet="UTF-8"/>)
+                }
 
-                    {/* Main application React javascript */}
-                    <script src={app_script_url} charSet="UTF-8"/> {/* APP element mount code*/}
-                    <script dangerouslySetInnerHTML={{
-                        __html: app_mount_code
-                    }} charSet="UTF-8"/> {/*  */}
-                    {body_end_element}
-                </body>
-            </html>
-        );
+                {/* Main application React javascript */}
+                <script src={app_script_url} charSet="UTF-8"/> {/* APP element mount code */}
+                <script dangerouslySetInnerHTML={{ __html: app_mount_code }} charSet="UTF-8"/> {/*  */}
+                {body_end_element}
+            </body>
+        </html>);
 
         return html;
     }
