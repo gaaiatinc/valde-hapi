@@ -90,6 +90,33 @@
                     "app_id": "321123456",
                     "app_secret": "secret-321123456"
                 }
+            },
+            "hapi-swagger" : {
+                "module_name": "hapi-swagger",
+                "module_options": {
+                    "schemes": [
+                        "https"
+                    ],
+                    "host": "localhost.sampleapp.com:8443",
+                    "documentationPath": "/sample_app/api/swagger-ui",
+                    "swaggerUIPath": "/sample_app/api/swaggerui/",
+                    "jsonPath": "/sample_app/api/swagger.json",
+                    "basePath": "/sample_app",
+                    "pathPrefixSize": 2,
+                    "info": {
+                        "title": "SampleCorp REST API",
+                        "version": "V2.0",
+                        "description": "The REST API published by SampleCorp for mobile applications integration.",
+                        "termsOfService": "https://www.samplecorp.com/sample_app/terms-and-conditions",
+                        "contact": {
+                            "email": "support@gaaiat.com"
+                        },
+                        "license": {
+                            "name": "SampleCorp license - TBD",
+                            "url": "https://www.samplecorp.com/sample_app/api-license"
+                        }
+                    }
+                }
             }
         },
         "session": {
