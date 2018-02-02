@@ -13,8 +13,43 @@ The valde-hapi platform offers configurable features, using valde-hapi plugins, 
 7. Locale-based/internationalization of resource resolution for both Rest API, and web page requests.
 
 
-## valde-hapi Plugins
-All the features integrated into the platform are implemented as HAPI plugins, which can be configured without any need to change the code.  The configuration parameters for each plugin are listed in the following subsections.
+## valde-hapi Configuration
+The _config_ folder, which must be created immediately under the root folder of the application, must contain at least the _config.json_ file.  This json file contains the configuration parameters for the valde-hapi web application when running in production mode.  Additionally, the _config_ folder may contain a development mode configuration file named _development.json_, and another one for staging mode, named _staging.json_.
+
+When the valde-hapi web application is running in development or staging mode, the configuration parameters in the _development.json_ or _staging.json_ will override the ones in the production mode _config.json_, respectively.
+
+The _config.json_ configuration file must have the following top-level parameters (please refer to the sample_app/config/config.json file for an example):
+
+```javascript
+{
+    "PORT": 8000, //the port number for the web application to listen to
+    "app_root": "/sample_app", //the URL application root
+    "app_url_domain": "sampleapp.com", //the URL domain of the web app
+    "external_server_url": "https://localhost.sampleapp.com:8443",
+    "PID_FILE_PATH": "/var/run/sample_app.pid",
+    "platform": {
+        "plugins": {
+            ... // platform plugin configurations as documented below
+        },
+
+        "static_resources_path": "./public" //path to the static resources folder
+    },
+    "router": {
+        "module": {
+            "name": "/lib/router", //path to the application router code
+            "params": {}
+        }
+    },
+    "app": {
+        "plugins": {
+            ... //application plugin configurations - see the sample_app for an example
+        },
+        .... //other application-specific configurations.
+    }
+}
+```
+
+All the features integrated into the platform are implemented as HAPI plugins, which can be configured without any need to change the code. The configuration parameters for each plugin are listed in the following subsections.
 
 ### valde_csrf_agent
 
