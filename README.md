@@ -52,7 +52,15 @@ The _config.json_ configuration file must have the following top-level parameter
 All the features integrated into the platform are implemented as HAPI plugins, which can be configured without any need to change the code. The configuration parameters for each plugin are listed in the following subsections.
 
 ### valde_csrf_agent
+When the CSRF plugin is enabled on an endpoint, the plugin checks for the header, named as per the  respective configuration entry *csrf_header_name*, and asserts that its value is identical to the one in the encrypted session cookie. This is an implementation of CSRF protection by means of encrypted header+cookie.  The configuration of the CSRF plugin is an entry in the platform.plugins (described above), which includes the following parameters:
 
+```javascript
+"valde_csrf_agent": {
+                "csrf_header_password": "some strong CSRF password 123456789012345678901234567890",
+                "csrf_header_name": "sa-decorator",
+                "enabled_by_default": false //if false, it can be selectively enabled for each endpoint
+            },
+```
 
 ### valde_auth_bearer_jwt
 
@@ -73,8 +81,10 @@ The sample_app is provided as an example of a typical valde-hapi web application
 
 ### config
 This folder contains the json configuration files for various run-time environments.  The configuration files must be named as follows:
-1. development.json:  for configuration values to be used when the application is running in development mode.
-2.  
+1. config.json:  A mandatory configuration file with values used in production environment, as described in the valde-hapi Configuration Section above.  The included values are overridden in development or staging modes by the respective conffiguration files described below.
+2. development.json:  An optional configuration file with values to be used when the application is running in development mode.
+3.  staging.json:  An optional configuration file with values to be used when the application is running in staging mode.
+
 
 
 ## License
