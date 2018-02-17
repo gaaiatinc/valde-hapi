@@ -12,10 +12,6 @@
         {
             "loggerName": "DustLRUCache",
             "logLevel": "warn"
-        },
-        {
-            "loggerName": "APP_Database_Mgr",
-            "logLevel": "info"
         }
     ]
 }

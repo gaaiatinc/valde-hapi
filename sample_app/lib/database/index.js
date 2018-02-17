@@ -4,13 +4,11 @@
 "use strict";
 const mongo = require("mongodb");
 const mongo_client = mongo.MongoClient;
-const app_config = require("../app_config").get_config();
 
 let dbURL;
 let dbName = null;
 let dbInstance = null;
 let array_fetch_limit = 1000;
-const logger_factory = require("../app_logger");
 const _get = require("lodash/get");
 const _set = require("lodash/set");
 
@@ -120,13 +118,11 @@ const __removeAttribute = (doc, attrName) => {
  *
  * @param config
  */
-const init = () => {
+const init = (app_config, aLogger) => {
     if (!app_config.get("app:database")) {
         return Promise.resolve();
     } else {
-        logger = logger_factory.getLogger("APP_Database_Mgr", app_config.get("env:production")
-            ? "WARN"
-            : "DEBUG");
+        logger = aLogger;
         array_fetch_limit = app_config.get("app:database:array_fetch_limit") || 1000;
 
         dbName = app_config.get("app:database:database");

@@ -7,7 +7,7 @@
     "url": "https://github.com/gaaiatinc/valde-hapi.git"
   },
   "dependencies": {
-    "babel-preset-env": "^1.2.1"
+    "babel-preset-env": "^1.6.1"
   },
   "description": "A module comprising the base framework for a single page react-redux app.",
   "devDependencies": {},

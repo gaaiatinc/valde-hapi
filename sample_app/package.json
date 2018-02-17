@@ -20,7 +20,9 @@
   "homepage": "https://github.com/gaaiatinc",
   "dependencies": {
     "babel-loader": "^7.1.2",
+    "hapi": "^17.2.0",
     "hapi-swagger": "^9.0.2",
+    "mongodb": "^3.0.2",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",

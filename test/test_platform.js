@@ -10,13 +10,12 @@ let app_config;
 
 describe("temp tests", () => {
 
-    before((next) => {
+    before(() => {
         // runs before all tests in this block
         //
         platform.init("./");
         app_config = platform.app_config;
 
-        // platform.launch(next);
         return;
     });
 
@@ -38,13 +37,6 @@ describe("temp tests", () => {
         it("should be able to get the application_root_folder from app_config", function() {
             //console.log("done it!", app_config.get("application_root_folder"));
         });
-
-        // it("should upsert a doc in the sample db", () => {
-        //     let db_mgr = platform.database;
-        //
-        //     return db_mgr.updateOne({_id: null}, {$currentDate: {expire_on: true}}, {upsert: true} );
-        //
-        // });
     });
 
 });

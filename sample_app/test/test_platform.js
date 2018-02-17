@@ -40,10 +40,6 @@ describe("temp tests", () => {
         });
 
         it("should upsert a doc in the sample db", () => {
-            let db_mgr = platform.database;
-
-            return db_mgr.updateOne("demo_col", {_id: {$exists: false}}, {$currentDate: {expire_on: true}}, {upsert: true} );
-
         });
     });
 
