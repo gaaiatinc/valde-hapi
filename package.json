@@ -1,6 +1,6 @@
 {
   "name": "valde-hapi",
-  "version": "17.1.1",
+  "version": "17.2.1",
   "description": "A hapi and dust framework for building API and web applicatins.",
   "main": "./lib/index.js",
   "scripts": {

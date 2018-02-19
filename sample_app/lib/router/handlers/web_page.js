@@ -4,31 +4,30 @@
 
 "use strict";
 
-var db_mgr = require("../../database"),
+var dbMgr = require("../../database"),
     _set = require("lodash/set"),
     _get = require("lodash/get"),
     app_config = require("valde-hapi").app_config;
 
-function handler(request, h) {
-
+/**
+ *
+ * @param  {[type]} request [description]
+ * @param  {[type]} h       [description]
+ * @return {[type]}         [description]
+ */
+async function handler(request, h) {
     if (request.auth.isAuthenticated) {
-        //add the user account data to the model
-        var collectionName = "sa_customer_accounts";
-        db_mgr
-            .find(collectionName, {"_id": request.auth.credentials.account_id})
-            .then((accountData) => {
-                _set(request, "plugins.valde_web_model.account_type", _get(request, "auth.credentials.account_type"));
-                _set(request, "plugins.valde_web_model.account_data", accountData);
-                return h.view(_get(request, "plugins.valde_web_model.pageViewTemplate"), _get(request, "plugins.valde_web_model"));
-            }, () => {
-                return h.view(_get(request, "plugins.valde_web_model.pageViewTemplate"), _get(request, "plugins.valde_web_model"));
-            })
-            .catch(() => {
-                return h.view(_get(request, "plugins.valde_web_model.pageViewTemplate"), _get(request, "plugins.valde_web_model"));
-            });
-    } else {
-        return h.view(_get(request, "plugins.valde_web_model.pageViewTemplate"), _get(request, "plugins.valde_web_model"));
+        try {
+            let accounts = await dbMgr.find(app_config.get("app:db_collections:user_account"), {"username": request.auth.credentials.username});
+            if (accounts && accounts.length > 0) {
+                _set(request, "plugins.valde_web_model.account_data", accounts[0]);
+            }
+        } catch (err) {
+            //error case!!!   Request is authenticated with no account username in auth!!!
+        }
     }
+
+    return h.view(_get(request, "plugins.valde_web_model.pageViewTemplate"), _get(request, "plugins.valde_web_model"));
 }
 
 module.exports = {
