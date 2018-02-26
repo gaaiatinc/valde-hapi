@@ -1,6 +1,5 @@
 "use strict";
-import {apiGet, apiPost, runningInBrowser} from "spa-framework";
-import {getAction} from "./actions/rest_actions";
+import {getAction, apiGet, apiPost, runningInBrowser} from "./actions/rest_actions";
 import {SPATemplate} from "./SPATemplate";
 
 import {

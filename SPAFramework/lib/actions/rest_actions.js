@@ -59,6 +59,65 @@ export const runningInBrowser = () => {
 
     return true;
 };
+/**
+ *
+ * @param  {[type]}   targetUrl          [description]
+ * @param  {[type]}   queryStringParams [description]
+ * @param  {Function} callback            [description]
+ * @return {[type]}                       [description]
+ */
+export const apiGet = (targetUrl, queryStringParams, headers) => {
+    if (runningInBrowser()) {
+        if (!isURL(targetUrl, urlOptions)) {
+            return Promise.reject(new Error("Invlaid target URL!"));
+        }
+
+        let opConfig = Object.assign({}, axiosConfig);
+
+        if (typeof queryStringParams === "object") {
+            opConfig.params = queryStringParams;
+        }
+
+        if (typeof headers === "object") {
+            opConfig.headers = headers;
+        }
+
+        return axios.get(targetUrl, opConfig);
+    } else {
+        //This will simply resolve with an empty object when run outside of a browser
+        return Promise.resolve({});
+    }
+};
+
+/**
+ *
+ * @param  {[type]} targetUrl         [description]
+ * @param  {[type]} queryStringParams [description]
+ * @param  {[type]} payload           [description]
+ * @return {[type]}                   [description]
+ */
+export const apiPost = (targetUrl, queryStringParams, headers, payload) => {
+    if (runningInBrowser()) {
+        if (!isURL(targetUrl, urlOptions)) {
+            return Promise.reject(new Error("Invlaid target URL!"));
+        }
+
+        let opConfig = Object.assign({}, axiosConfig);
+
+        if (typeof queryStringParams === "object") {
+            opConfig.params = queryStringParams;
+        }
+
+        if (typeof headers === "object") {
+            opConfig.headers = headers;
+        }
+
+        return axios.post(targetUrl, payload, opConfig);
+    } else {
+        //This will simply resolve with an empty object when run outside of a browser
+        return Promise.resolve({});
+    }
+};
 
 /**
  *
@@ -103,7 +162,7 @@ export const getAction = (queryStringParams, headers) => {
                     dispatch(setAppMountPoint(model));
                 })
                 .catch((error) => {
-                    // //console.log(error);
+                    // console.log(error);
                 });
         }
     };

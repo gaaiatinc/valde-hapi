@@ -6,17 +6,14 @@ import {connect} from "react-redux";
 
 import SPAppReducers from "./reducers";
 
-import {SPATemplate as RootTemplate} from "spa-framework";
 import {get as _get, set as _set} from "lodash";
 
 /**
  *
  */
-const TempComponent = ({}) => (
-    <div>
-        <h1>A single page app test</h1>
-    </div>
-);
+const TempComponent = ({}) => (<div>
+    <h1>A single page app - test</h1>
+</div>);
 
 /**
  *
@@ -44,12 +41,16 @@ const mapDispatchToProps = (dispatch) => {
 
 const TempContainer = connect(mapStateToProps, mapDispatchToProps)(TempComponent);
 
-export class SPATemplate extends RootTemplate {
+export class SPATemplate extends React.Component {
     /**
      *
      */
     constructor(props) {
         super(props);
+
+        this.____createBody__ = this
+            .____createBody__
+            .bind(this);
 
         this.genInitialStateData = this
             .genInitialStateData
@@ -116,11 +117,11 @@ export class SPATemplate extends RootTemplate {
     getExternalAssetsDescriptor(model) {
         const assets = {
             javascript: [
-                "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js",
-                // "https://npmcdn.com/axios/dist/axios.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.7/react-bootstrap.min.js"
+                "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/cjs/react.production.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/cjs/react-dom.production.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.1/react-bootstrap.min.js"
             ],
             styles: [
                 //
@@ -177,6 +178,50 @@ export class SPATemplate extends RootTemplate {
         return SPAppReducers;
     }
 
+    /**
+     *
+     */
+    ____createBody__() {
+
+        const AppContainer = this.createAppContainer();
+
+        let appStateReducer = {};
+        try {
+            appStateReducer = this.getAppStateReducer() || {};
+        } catch (err) {
+            //
+        }
+
+        /**
+         * default appState reducer
+         * @param  {Object} [state={}] [description]
+         * @return {[type]}            [description]
+         */
+        function appState(state = {}) {
+            return state;
+        }
+
+        let uberReducerObj = {
+            appState
+        };
+        Object.assign(uberReducerObj, appStateReducer);
+        Object.assign(uberReducerObj, SPAppReducers);
+
+        this.___privpriv___store = createStore(combineReducers(uberReducerObj), this.genInitialStateData(this.props), applyMiddleware(redux_thunk));
+
+        return (<Provider store={this.___privpriv___store}>
+            <AppContainer/>
+        </Provider>);
+    }
+
+    /**
+     *
+     */
+    render() {
+        return (<div id="document-body">
+            {this.____createBody__()}
+        </div>);
+    }
 }
 
 /**
@@ -184,18 +229,17 @@ export class SPATemplate extends RootTemplate {
  * @type {Object}
  */
 SPATemplate.propTypes = {
-    model: PropTypes
-        .shape({
-            app_root: PropTypes.string,
-            pageViewID: PropTypes.string,
-            run_mode: PropTypes.string,
-            deploy_mode: PropTypes.string,
-            content: PropTypes.object,
-            metadata: PropTypes.object,
-            requestInfo: PropTypes.object,
-            resolvedLocale: PropTypes.object,
-            pageID: PropTypes.string
-        })
+    model: PropTypes.shape({
+        app_root: PropTypes.string,
+        pageViewID: PropTypes.string,
+        run_mode: PropTypes.string,
+        deploy_mode: PropTypes.string,
+        content: PropTypes.object,
+        metadata: PropTypes.object,
+        requestInfo: PropTypes.object,
+        resolvedLocale: PropTypes.object,
+        pageID: PropTypes.string
+    })
 };
 
 /**

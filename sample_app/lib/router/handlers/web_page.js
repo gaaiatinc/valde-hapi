@@ -4,7 +4,7 @@
 
 "use strict";
 
-var dbMgr = require("../../database"),
+let dbMgr = require("../../database"),
     _set = require("lodash/set"),
     _get = require("lodash/get"),
     app_config = require("valde-hapi").app_config;
