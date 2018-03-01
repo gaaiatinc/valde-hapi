@@ -123,8 +123,8 @@ export class SPATemplate extends React.Component {
             javascript: [
                 "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js",
                 "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/cjs/react.production.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/cjs/react-dom.production.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js",
                 "https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.1/react-bootstrap.min.js"
             ],
             styles: [
