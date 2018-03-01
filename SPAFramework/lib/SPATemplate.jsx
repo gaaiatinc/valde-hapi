@@ -1,12 +1,16 @@
 "use strict";
 
+
+
+
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import {createStore, applyMiddleware, combineReducers} from "redux";
+import redux_thunk from "redux-thunk";
+import {connect, Provider} from "react-redux";
+import {get as _get, set as _set} from "lodash";
 
 import SPAppReducers from "./reducers";
-
-import {get as _get, set as _set} from "lodash";
 
 /**
  *

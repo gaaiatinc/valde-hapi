@@ -7,7 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 
-import {SPATemplate} from "pages/templates/SPAFramework";
+import RootSPATemplate from "pages/templates/root_spa_template";
 
 
 
@@ -15,7 +15,7 @@ import {SPATemplate} from "pages/templates/SPAFramework";
  * An example of how to extend the parent template, and replace the elements that the
  * parent template allows for overriding.
  */
-export default class AppMainPage extends SPATemplate {
+export default class AppMainPage extends RootSPATemplate {
     constructor(props) {
         super(props);
 
