@@ -22,7 +22,7 @@
     "babel-loader": "^7.1.2",
     "hapi-swagger": "^9.0.2",
     "mongodb": "^3.0.2",
-    "valde-hapi": "^17.2.2"
+    "valde-hapi": "^17.2.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
