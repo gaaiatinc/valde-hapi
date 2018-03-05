@@ -6,6 +6,7 @@ var outputFile = libraryName + ".js";
 
 module.exports = {
     // configuration
+    mode: "production",
     name: "jsx_bundling",
     entry: {
         libFacade: resolve(__dirname, "./lib/SPAFramework")
@@ -38,9 +39,9 @@ module.exports = {
         // ALIAS are no more valid in Webpack 2, remove them.
 
         // modules: [//path.resolve(__dirname, "node_modules")
-        //     // path.join(app_config.get("application_root_folder"), "node_modules"),
-        //     // path.path.resolve("./node_modules"),
-        //     // path.path.resolve("./lib")
+        //      path.join(app_config.get("application_root_folder"), "node_modules"),
+        //      path.path.resolve("./node_modules"),
+        //      path.path.resolve("./lib")
         // ],
         extensions: [".js", ".jsx"]
     },
@@ -53,32 +54,30 @@ module.exports = {
                 // "include" is commonly used to match the directories
                 // include: [
                 //     path.resolve(__dirname),
-                //     // path.join(path.resolverRoot, entityRelativePath, "resources"),
-                //     // path.join(path.resolverRoot, "resources"),
-                //     // path.resolverRoot
+                //      path.join(path.resolverRoot, entityRelativePath, "resources"),
+                //      path.join(path.resolverRoot, "resources"),
+                //      path.resolverRoot
                 // ],
                 use: [
                     {
                         loader: "babel-loader",
                         options: {
-                            presets: ["es2015", "es2016", "es2017", "react"]
+                            presets: ["env", "react"]
                         }
                     }
                 ]
             }
         ]
     },
-
-    plugins: [
-        new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify("production")
-        }),
-        new webpack.optimize.UglifyJsPlugin({comments: false, mangle: true, compress: false})
-    ]
+    plugins: [new webpack.DefinePlugin({
+            "process.env": {
+                "NODE_ENV": JSON.stringify("production")
+            }
+        })]
 };
 // config
 //     .plugins
-//     .push(new webpack.optimize.UglifyJsPlugin({
+//     .push(new webpack.optimize.xxxx({
 //         compressor: {
 //             screw_ie8: true,
 //             warnings: false
