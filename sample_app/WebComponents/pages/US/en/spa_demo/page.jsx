@@ -28,7 +28,6 @@ export default class AppMainPage extends RootSPATemplate {
      *
      */
     createAppContainer() {
-        // //console.log(">>>>>>>\n\n\n\n", RootTemplate);
         return super.createAppContainer();
     }
 
@@ -36,7 +35,6 @@ export default class AppMainPage extends RootSPATemplate {
      *
      */
     getAppStateReducer() {
-        // //console.log(">>>>>>>\n\n\n\n", RootTemplate);
         return super.getAppStateReducer();
     }
 }

@@ -6,6 +6,8 @@ import React from "react";
 import {get as _get, set as _set} from "lodash";
 import PropTypes from "prop-types";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import headMetaTags from "./template_components/HeadMetaTags";
 
 /**
@@ -61,18 +63,19 @@ export default class RootTemplate extends React.Component {
         const assets = {
             javascript: [
                 "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js",
-                // "https://npmcdn.com/axios/dist/axios.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.31.5/react-bootstrap.min.js"
+                "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react/16.3.2/umd/react.production.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.3.2/umd/react-dom.production.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.3.1/react-transition-group.min.js",
+                "https://cdnjs.cloudflare.com/ajax/libs/reactstrap/6.0.1/reactstrap.min.js"
+
             ],
             styles: [
-                //
-                //
                 "https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css",
                 "https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css",
                 "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
-                "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.0.0/bootstrap-social.min.css"
+                "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css"
             ]
         };
         return assets;

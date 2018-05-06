@@ -5,21 +5,6 @@
 "use strict";
 
 import React from "react";
-import ReactDOM from "react-dom";
-
-import {Image} from "react-bootstrap";
-import {Col} from "react-bootstrap";
-import {Grid} from "react-bootstrap";
-import {Row} from "react-bootstrap";
-
-import {Button} from "react-bootstrap";
-import {Modal} from "react-bootstrap";
-import {Navbar} from "react-bootstrap";
-
-import {NavItem} from "react-bootstrap";
-import {NavDropdown} from "react-bootstrap";
-import {MenuItem} from "react-bootstrap";
-import {Nav} from "react-bootstrap";
 
 function HeadMetaTags(model) {
     const retVal = [

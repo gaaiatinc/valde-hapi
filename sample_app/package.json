@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/gaaiatinc",
   "dependencies": {
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.4",
+    "bootstrap": "^4.1.1",
     "hapi-swagger": "^9.0.2",
     "mongodb": "^3.0.2",
-    "valde-hapi": "^17.3.1"
+    "reactstrap": "^6.0.1",
+    "valde-hapi": "^17.4.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

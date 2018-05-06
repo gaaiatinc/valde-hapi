@@ -9,6 +9,8 @@ import headMetaTags from "pages/templates/template_components/HeadMetaTags";
 import {SPATemplate} from "valde-hapi/SPAFramework";
 // import {get as _get} from "lodash";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 /**
  *
  * @param  {Object} [state={}] [description]
@@ -36,13 +38,17 @@ export default class RootSPATemplate extends SPATemplate {
     constructor(props) {
         super(props);
 
-//         let isomorphic_descriptor = _get(props, "isomorphic_descriptor");
-//
-// //console.log(JSON.stringify(isomorphic_descriptor, null, 4));
-//
-//         if (isomorphic_descriptor) {
-//             isomorphic_descriptor.age= 23555;
-//         }
+        // this.getExternalAssetsDescriptor = this
+        //     .getExternalAssetsDescriptor
+        //     .bind(this);
+
+        //         let isomorphic_descriptor = _get(props, "isomorphic_descriptor");
+        //
+        // console.log(JSON.stringify(isomorphic_descriptor, null, 4));
+        //
+        //         if (isomorphic_descriptor) {
+        //             isomorphic_descriptor.age= 23555;
+        //         }
     }
 
     genInitialStateData(props) {
@@ -51,6 +57,31 @@ export default class RootSPATemplate extends SPATemplate {
         }, super.genInitialStateData(props));
 
         return initState;
+    }
+
+    /**
+     * [getExternalAssetsDescriptor description]
+     * @param  {[type]} model [description]
+     * @return {[type]}       [description]
+     */
+    getExternalAssetsDescriptor(model) {
+
+        let superAssets = super.getExternalAssetsDescriptor(model);
+
+        let additionalJavascriptAsseets = [
+            "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.3.1/react-transition-group.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/reactstrap/6.0.1/reactstrap.min.js"
+        ];
+
+        let externalAssets = {
+            javascript: superAssets
+                .javascript
+                .concat(additionalJavascriptAsseets),
+            styles: superAssets.styles
+        };
+
+        return externalAssets;
     }
 
     /**

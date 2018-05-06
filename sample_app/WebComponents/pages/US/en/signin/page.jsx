@@ -7,17 +7,15 @@ import React from "react";
 
 import RootTemplate from "pages/templates/root_react_template";
 
+import {Container, Row, Col} from "reactstrap";
 import {
-    Grid,
-    Row,
+    Button,
     Form,
     FormGroup,
-    FormControl,
-    Col,
-    Checkbox,
-    Button,
-    ControlLabel
-} from "react-bootstrap";
+    Label,
+    Input,
+    FormText
+} from "reactstrap";
 
 /**
  * An example of how to extend the parent template, and replace the elements that the
@@ -41,7 +39,9 @@ export default class AppMainPage extends RootTemplate {
      * @return {[type]} [description]
      */
     handleClick() {
-        this.__bodyMainRef.setState({age: Math.random()});
+        this
+            .__bodyMainRef
+            .setState({age: Math.random()});
     }
 
     /**
@@ -51,7 +51,11 @@ export default class AppMainPage extends RootTemplate {
 
         let redirect_uri;
         try {
-            redirect_uri = this.props.model.requestInfo.query["redirect_uri"];
+            redirect_uri = this
+                .props
+                .model
+                .requestInfo
+                .query["redirect_uri"];
         } catch (err) {
             //
         }
@@ -62,58 +66,69 @@ export default class AppMainPage extends RootTemplate {
         }
 
         if (this.props.model.requestInfo.query["authorization_request_id"]) {
-            action_string += "?authorization_request_id=" + this.props.model.requestInfo.query["authorization_request_id"];
+            action_string += "?authorization_request_id=" + this
+                .props
+                .model
+                .requestInfo
+                .query["authorization_request_id"];
         }
 
-        return (
+        console.log("action_string", action_string);
 
-            <Grid className="loginForm">
-                <Row>
-                    <Col sm={8} smOffset={2} xs={12}>
-                        <h1>OpenID-Connect 2.0</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={8} smOffset={2} xs={12}>
-                        <h1></h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Form method="POST" action={action_string} horizontal>
-                        <FormGroup controlId="formHorizontalEmail">
-                            <Col componentClass={ControlLabel} xs={2}>
-                                Email
-                            </Col>
-                            <Col sm={8} xs={12}>
-                                <FormControl type="email" name="username" placeholder="Email"/>
-                            </Col>
-                        </FormGroup>
+        return (<Container fluid="true">
+            <Row>
+                <Col sm={{
+                        size: 8,
+                        offset: 2
+                }} xs={{
+                        size: 12
+                }}>
+                    <h1>OpenID-Connect 2.0</h1>
+                </Col>
+            </Row>
+            <Row>
+                <Col sm={{
+                        size: 8,
+                        offset: 2
+                }} xs="12">
+                    <h1></h1>
+                </Col>
+            </Row>
+            <Row>
+                <Col sm={{
+                        size: 8,
+                        offset: 2
+                }} xs={{
+                        size: 12
+                }}>
 
-                        <FormGroup controlId="formHorizontalPassword">
-                            <Col componentClass={ControlLabel} xs={2}>
-                                Password
-                            </Col>
-                            <Col sm={8} xs={12}>
-                                <FormControl type="password" name="password" placeholder="Password"/>
-                            </Col>
+                    <Form method="POST" action={action_string} horizontal="horizontal">
+
+                        <FormGroup>
+                            <Label for="exampleEmail">Email</Label>
+                            <Input type="email" name="username" id="exampleEmail" placeholder="Email"/>
                         </FormGroup>
 
                         <FormGroup>
-                            <Col sm={8} smOffset={2} xs={12}>
-                                <Checkbox>Remember me</Checkbox>
-                            </Col>
+                            <Label for="examplePassword">Password</Label>
+                            <Input type="password" name="password" id="examplePassword" placeholder="Password"/>
+                        </FormGroup>
+
+                        <FormGroup check="check">
+                            <Label check="check">
+                                <Input type="checkbox"/>{' '}
+                                Remember me
+                            </Label>
                         </FormGroup>
 
                         <FormGroup>
-                            <Col sm={8} smOffset={2} xs={12}>
-                                <Button type="submit">
-                                    Sign in
-                                </Button>
-                            </Col>
+                            <Button color="primary" type="submit">
+                                Sign in
+                            </Button>
                         </FormGroup>
                     </Form>
-                </Row>
-            </Grid>
-        );
+                </Col>
+            </Row>
+        </Container>);
     }
 }
