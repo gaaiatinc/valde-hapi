@@ -73,8 +73,6 @@ export default class AppMainPage extends RootTemplate {
                 .query["authorization_request_id"];
         }
 
-        console.log("action_string", action_string);
-
         return (<Container fluid="true">
             <Row>
                 <Col sm={{
