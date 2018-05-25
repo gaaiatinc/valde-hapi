@@ -22,9 +22,9 @@
     "babel-loader": "^7.1.4",
     "bootstrap": "^4.1.1",
     "hapi-swagger": "^9.0.2",
-    "mongodb": "^3.0.2",
+    "mongodb": "^3.0.8",
     "reactstrap": "^6.0.1",
-    "valde-hapi": "^17.4.1"
+    "valde-hapi": "^17.5.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -41,7 +41,7 @@
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-contrib-nodeunit": "^2.0.0",
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.0.0",
     "mocha": "^5.0.1"
