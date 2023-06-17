@@ -3,10 +3,10 @@
 let path = require("path"),
     app_config = require("valde-hapi").app_config,
     crypto = require("crypto"),
-    moment = require("moment"),
+    moment = require("moment");
 
-    Joi = require("joi");
-
+// Joi = require("joi");
+const Joi = require("@hapi/joi")
 var USER_NAME = "Email address for SAMPLEAPP",
     PASSWORD_DESCR = "Account password for SAMPLEAPP accounts";
 
@@ -19,7 +19,7 @@ var USER_NAME = "Email address for SAMPLEAPP",
 function signout_handler(request, h) {
     try {
         request.cookieAuth.clear();
-    } catch (err) {}
+    } catch (err) { }
 
     return {
         success: true,
@@ -65,7 +65,7 @@ function signin_handler(request, h) {
     }
 }
 
-const account_module = async(server, options) => {
+const account_module = async (server, options) => {
     server.route({
         method: "POST",
         path: app_config.get("app_root") + "/api/v1/account/signin",
@@ -92,13 +92,13 @@ const account_module = async(server, options) => {
                 }
             },
             validate: {
-                payload: {
+                payload: Joi.object({
                     username: Joi.string().required().description(USER_NAME),
                     password: Joi.string().required().description(PASSWORD_DESCR)
-                },
-                query: {
+                }),
+                query: Joi.object({
                     redirect_uri: Joi.string().description("An optional URI to redirect to upon successful login")
-                },
+                }),
                 headers: Joi.object({
                     "accept-language": Joi.string().required(),
                     "user-agent": Joi.string().required()

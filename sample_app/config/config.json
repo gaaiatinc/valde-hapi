@@ -6,7 +6,7 @@
     "PID_FILE_PATH": "/var/run/sample_app.pid",
     "platform": {
         "plugins": {
-            "hapi_auth_cookie": {
+            "hapi_cookie": {
                 "session_cookie_password": "some strong session password  123456789012345678901234567890",
                 "cookie_name": "sats",
                 "on_auth_failure_redirect_to": "/sample_app/signin",
@@ -128,10 +128,10 @@
         },
         "database": {
             "host_seed": "localhost:27017",
-            "login_id": "sa_db_user",
-            "login_password": "sa_db_pwd",
+            "login_id": "nf_db_user",
+            "login_password": "nf_db_pwd",
             "connect_retry_millies": 5000,
-            "database": "sa_db"
+            "database": "nf_db"
         }
     }
 }

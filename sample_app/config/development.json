@@ -1,4 +1,5 @@
 {
+    "PID_FILE_PATH": "/Users/ali/var/run/sample_app.pid",
     "app": {
         "third_party_oauth": {
         }
