@@ -23,9 +23,9 @@ module.exports = {
     externals: {
         //don"t bundle the following npm module packages within our bundle page.js
         //but get them from global variables
-        "react": "React",
-        "react-dom": "ReactDOM",
-        "react-dom/server": "ReactDOMServer"
+        // "react": "React",
+        // "react-dom": "ReactDOM",
+        // "react-dom/server": "ReactDOMServer"
     },
     resolve: {
         // modules: [
