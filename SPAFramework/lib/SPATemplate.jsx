@@ -2,6 +2,8 @@
 
 
 import React from "react";
+import * as ReactDOM from 'react-dom';
+
 import PropTypes from "prop-types";
 import {createStore, applyMiddleware, combineReducers} from "redux";
 import redux_thunk from "redux-thunk";
@@ -119,16 +121,16 @@ export class SPATemplate extends React.Component {
     getExternalAssetsDescriptor(model) {
         const assets = {
             javascript: [
-                "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react/16.3.2/umd/react.production.min.js",
-                "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.3.2/umd/react-dom.production.min.js"
+                'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js'
             ],
             styles: [
                 "https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css",
                 "https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css",
-                "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
-                "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css"
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+                'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css'
             ]
         };
         return assets;

@@ -38,7 +38,11 @@ export default class IsomorphicTemplate extends React.Component {
             body_end_element
         } = this.props;
 
-        const app_mount_code = " if (typeof window !== \"undefined\" && window.document && window.document.createElement) {" + " var appElement = React.createElement(window.PageBundle.default,   {model: window.model}); " + " ReactDOM.hydrate(appElement, window.document.getElementById(\"app-element-mountpoint\")); " + "}";
+        const app_mount_code = 
+        `if (typeof window !== "undefined" && window.document && window.document.createElement) {
+            var appElement = React.createElement(window.PageBundle.default,   {model: window.model});
+            ReactDOM.hydrate(appElement, window.document.getElementById(\"app-element-mountpoint\"));
+        }`
 
         const model = this.props.model || {};
         const clientInfo = model.client_info || {};

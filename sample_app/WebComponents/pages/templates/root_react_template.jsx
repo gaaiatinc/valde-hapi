@@ -3,12 +3,13 @@
  */
 
 import React from "react";
-import {get as _get, set as _set} from "lodash";
+import { get as _get, set as _set } from "lodash";
 import PropTypes from "prop-types";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import headMetaTags from "./template_components/HeadMetaTags";
+import 'babel-runtime/core-js/json/stringify';
 
 /**
  * This is a template for react-based pages.  The purpose of this template is to
