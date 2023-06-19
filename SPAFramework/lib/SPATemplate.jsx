@@ -1,9 +1,5 @@
 "use strict";
 
-
-import React from "react";
-import * as ReactDOM from 'react-dom';
-
 import PropTypes from "prop-types";
 import {createStore, applyMiddleware, combineReducers} from "redux";
 import redux_thunk from "redux-thunk";
@@ -123,8 +119,10 @@ export class SPATemplate extends React.Component {
             javascript: [
                 'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js'
+                
+                'https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js'
+
             ],
             styles: [
                 "https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css",
